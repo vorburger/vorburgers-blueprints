@@ -8,15 +8,12 @@ package ch.vorburger.appviewsnflows;
  */
 public abstract class FlowAbstract implements Flow {
 	
-	// TODO This currently mixed up "descriptor" and "instance", tear apart later
+	// TODO This currently may have mixed up "descriptor" and "instance", does it need to be tear apart later?
 	
 	private View currentView;
 
-	protected FlowAbstract(View initialView) {
-		if (initialView == null) {
-			throw new IllegalArgumentException("initialView == null");
-		}
-		currentView = initialView;
+	protected FlowAbstract() {
+		currentView = noView;
 	}
 
 	@Override
@@ -43,4 +40,14 @@ public abstract class FlowAbstract implements Flow {
 	public View handleEvent(Event event) {
 		throw new FlowException("Event " + event.toString() + " occured while on view " + getCurrentView().toString() + " but wasn't handled; I don't know where do you want to go today?!");
 	}
+	
+	
+	/**
+	 * View which the Flow is on before any Event was handled.
+	 */
+	protected static class NoView implements View {
+		private NoView() {
+		}
+	}
+	private static NoView noView = new NoView();
 }

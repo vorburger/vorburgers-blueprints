@@ -5,7 +5,6 @@ import org.junit.Test;
 import ch.vorburger.appviewsnflows.Event1;
 import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.FlowException;
-import ch.vorburger.appviewsnflows.View;
 
 /**
  * Unit Test for AppFlowAdapter.
@@ -17,8 +16,7 @@ public class FlowAbstractTest {
 
 	@Test(expected=FlowException.class)
 	public void testAppFlowAdapterEventNotHandled() {
-		FlowAbstract flow = new FlowAbstract(new View() {
-		}) {
+		FlowAbstract flow = new FlowAbstract() {
 		};
 
 		flow.handleEvent(new Event1<String>(null) {
