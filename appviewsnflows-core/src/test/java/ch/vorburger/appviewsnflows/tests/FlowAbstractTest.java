@@ -3,21 +3,21 @@ package ch.vorburger.appviewsnflows.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ch.vorburger.appviewsnflows.AppFlowAbstract;
+import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.FlowException;
 
 
 /**
  * Unit Test for AppFlowAdapter.
  * 
- * @see AppFlowAbstract
+ * @see FlowAbstract
  * @author Michael Vorburger
  */
-public class AppFlowAbstractTest {
+public class FlowAbstractTest {
 
 	@Test(expected=FlowException.class)
 	public void testAppFlowAdapterStartStart() {
-		AppFlowAbstract flow = new AppFlowAbstract() {
+		FlowAbstract flow = new FlowAbstract() {
 		};
 		
 		flow.start();

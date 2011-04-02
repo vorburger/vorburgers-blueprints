@@ -5,7 +5,7 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public abstract class AppFlowAbstract implements AppFlow {
+public abstract class FlowAbstract implements Flow {
 	
 	@Override
 	public void start() {

@@ -5,7 +5,7 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public interface AppFlow {
+public interface Flow {
 
 	void start();
 

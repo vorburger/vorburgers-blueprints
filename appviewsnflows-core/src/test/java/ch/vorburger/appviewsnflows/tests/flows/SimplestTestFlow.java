@@ -2,8 +2,8 @@ package ch.vorburger.appviewsnflows.tests.flows;
 
 import java.util.List;
 
-import ch.vorburger.appviewsnflows.AppFlow;
-import ch.vorburger.appviewsnflows.AppFlowAbstract;
+import ch.vorburger.appviewsnflows.Flow;
+import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 
 /**
@@ -11,9 +11,9 @@ import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
  * 
  * @author Michael Vorburger
  */
-public class SimplestFlow extends AppFlowAbstract implements AppFlow {
+public class SimplestTestFlow extends FlowAbstract implements Flow {
 
-	public SimplestFlow(List<Customer> customers) {
+	public SimplestTestFlow(List<Customer> customers) {
 		// TODO Auto-generated constructor stub
 	}
 
