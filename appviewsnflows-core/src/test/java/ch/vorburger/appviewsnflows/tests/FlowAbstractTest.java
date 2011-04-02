@@ -2,7 +2,7 @@ package ch.vorburger.appviewsnflows.tests;
 
 import org.junit.Test;
 
-import ch.vorburger.appviewsnflows.Event;
+import ch.vorburger.appviewsnflows.Event1;
 import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.FlowException;
 import ch.vorburger.appviewsnflows.View;
@@ -21,7 +21,7 @@ public class FlowAbstractTest {
 		}) {
 		};
 
-		flow.handleEvent(new Event<String>(null) {
+		flow.handleEvent(new Event1<String>(null) {
 		});
 	}
 

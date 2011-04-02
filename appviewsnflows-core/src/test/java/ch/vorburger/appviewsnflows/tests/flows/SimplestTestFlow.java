@@ -22,12 +22,13 @@ public class SimplestTestFlow extends FlowAbstract implements Flow {
 	}
 
 	@Override
-	public <T> View handleEvent(Event<T> event) {
+	public View handleEvent(Event event) {
 		if (getCurrentView() instanceof CustomersListView) {
 			if (event instanceof CustomersListView.CustomerClickedEvent) {
-				return new CustomerSummaryView(this, (Customer) event.getData());
+				CustomersListView.CustomerClickedEvent e = (CustomersListView.CustomerClickedEvent) event;
+				return new CustomerSummaryView(this, e.getData());
 			}
-		};
+		}
 		return super.handleEvent(event);
 	}
 

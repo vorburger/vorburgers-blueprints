@@ -26,7 +26,7 @@ public abstract class FlowAbstract implements Flow {
 	}
 
 	@Override
-	public <T> void onEvent(Event<T> event) {
+	public void onEvent(Event event) {
 		View nextView = handleEvent(event);
 		if (nextView == null) {
 			throw new FlowException("Event " + event.toString() + " occured while on view " + getCurrentView().toString() + " and was handled but returned null; I don't know where do you want to go today?!");
@@ -40,7 +40,7 @@ public abstract class FlowAbstract implements Flow {
 	 * @param event the Event
 	 * @return next View
 	 */
-	public <T> View handleEvent(Event<T> event) {
+	public View handleEvent(Event event) {
 		throw new FlowException("Event " + event.toString() + " occured while on view " + getCurrentView().toString() + " but wasn't handled; I don't know where do you want to go today?!");
 	}
 }

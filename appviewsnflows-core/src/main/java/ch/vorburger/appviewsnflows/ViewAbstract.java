@@ -16,7 +16,7 @@ public abstract class ViewAbstract implements View {
 		this.ofFlow = flow;
 	}
 	
-	protected <T> void send(Event<T> event) {
+	protected void send(Event event) {
 		ofFlow.onEvent(event);
 	}
 

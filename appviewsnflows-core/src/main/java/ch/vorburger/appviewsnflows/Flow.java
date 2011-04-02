@@ -14,6 +14,6 @@ public interface Flow {
 	 * 
 	 * @param event the Event
 	 */
-	<T> void onEvent(Event<T> event);
+	void onEvent(Event event);
 	
 }

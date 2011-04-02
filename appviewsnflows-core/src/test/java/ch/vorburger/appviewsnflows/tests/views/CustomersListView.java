@@ -2,7 +2,7 @@ package ch.vorburger.appviewsnflows.tests.views;
 
 import java.util.List;
 
-import ch.vorburger.appviewsnflows.Event;
+import ch.vorburger.appviewsnflows.Event1;
 import ch.vorburger.appviewsnflows.Flow;
 import ch.vorburger.appviewsnflows.ViewAbstract;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
@@ -27,7 +27,7 @@ public class CustomersListView extends ViewAbstract {
 	}
 
 	
-	public static class CustomerClickedEvent extends Event<Customer> {
+	public static class CustomerClickedEvent extends Event1<Customer> {
 		public CustomerClickedEvent(Customer customer) {
 			super(customer);
 		}
