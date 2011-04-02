@@ -10,10 +10,14 @@ public abstract class ViewAbstract implements View {
 
 	// TODO ? protected dataModels
 	
+	private final Flow ofFlow;
 
-	protected <T> void send(Event<T> customerClickedEvent) {
-		// TODO Auto-generated method stub
-		
+	protected ViewAbstract(Flow flow) {
+		this.ofFlow = flow;
+	}
+	
+	protected <T> void send(Event<T> event) {
+		ofFlow.onEvent(event);
 	}
 
 }

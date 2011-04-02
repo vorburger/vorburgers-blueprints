@@ -1,11 +1,11 @@
 package ch.vorburger.appviewsnflows.tests;
 
-import org.junit.Assert;
 import org.junit.Test;
 
+import ch.vorburger.appviewsnflows.Event;
 import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.FlowException;
-
+import ch.vorburger.appviewsnflows.View;
 
 /**
  * Unit Test for AppFlowAdapter.
@@ -16,13 +16,13 @@ import ch.vorburger.appviewsnflows.FlowException;
 public class FlowAbstractTest {
 
 	@Test(expected=FlowException.class)
-	public void testAppFlowAdapterStartStart() {
-		FlowAbstract flow = new FlowAbstract() {
+	public void testAppFlowAdapterEventNotHandled() {
+		FlowAbstract flow = new FlowAbstract(new View() {
+		}) {
 		};
-		
-		flow.start();
-		// starting an already started Flow should fail
-		flow.start();
-		Assert.fail("Should have failed");
+
+		flow.handleEvent(new Event<String>(null) {
+		});
 	}
+
 }

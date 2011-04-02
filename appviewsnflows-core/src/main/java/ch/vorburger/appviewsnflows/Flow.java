@@ -7,8 +7,13 @@ package ch.vorburger.appviewsnflows;
  */
 public interface Flow {
 
-	void start();
-
 	<T extends View> T getCurrentView();
 
+	/**
+	 * Handle an Event which occurred on the current view.
+	 * 
+	 * @param event the Event
+	 */
+	<T> void onEvent(Event<T> event);
+	
 }

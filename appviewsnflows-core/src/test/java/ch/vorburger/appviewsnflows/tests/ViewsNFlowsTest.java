@@ -30,7 +30,6 @@ public class ViewsNFlowsTest {
 		// TODO Think through if passing in via constructor is right here - shouldn't the Flow be responsible for obtaining the customers model?!
 		
 		Flow flow = new SimplestTestFlow(customers);
-		flow.start();
 		
 		CustomersListView customersListView = flow.getCurrentView();
 		Assert.assertThat(customersListView.getCustomers(), equalTo(customers));

@@ -2,9 +2,12 @@ package ch.vorburger.appviewsnflows.tests.flows;
 
 import java.util.List;
 
+import ch.vorburger.appviewsnflows.Event;
 import ch.vorburger.appviewsnflows.Flow;
 import ch.vorburger.appviewsnflows.FlowAbstract;
+import ch.vorburger.appviewsnflows.View;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
+import ch.vorburger.appviewsnflows.tests.views.CustomerSummaryView;
 import ch.vorburger.appviewsnflows.tests.views.CustomersListView;
 
 /**
@@ -15,7 +18,17 @@ import ch.vorburger.appviewsnflows.tests.views.CustomersListView;
 public class SimplestTestFlow extends FlowAbstract implements Flow {
 
 	public SimplestTestFlow(List<Customer> customers) {
-		setInitialView(new CustomersListView(customers));
+		super(new CustomersListView(this, customers));
+	}
+
+	@Override
+	public <T> View handleEvent(Event<T> event) {
+		if (getCurrentView() instanceof CustomersListView) {
+			if (event instanceof CustomersListView.CustomerClickedEvent) {
+				return new CustomerSummaryView(this, (Customer) event.getData());
+			}
+		};
+		return super.handleEvent(event);
 	}
 
 }

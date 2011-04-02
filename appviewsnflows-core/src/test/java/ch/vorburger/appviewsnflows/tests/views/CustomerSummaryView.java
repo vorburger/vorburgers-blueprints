@@ -1,5 +1,6 @@
 package ch.vorburger.appviewsnflows.tests.views;
 
+import ch.vorburger.appviewsnflows.Flow;
 import ch.vorburger.appviewsnflows.ViewAbstract;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 
@@ -10,9 +11,16 @@ import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
  */
 public class CustomerSummaryView extends ViewAbstract {
 
+	private final Customer customer;
+	// TODO static public ? CUSTOMER = ? 
+	
+	public CustomerSummaryView(Flow flow, Customer customer) {
+		super(flow);
+		this.customer = customer;
+	}
+	
 	public Customer getCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		return customer;
 	}
 
 }
