@@ -1,5 +1,6 @@
 package ch.vorburger.appviewsnflows;
 
+
 /**
  * Abstract base class with typical implementation of Flow interface.
  * 
@@ -7,15 +8,23 @@ package ch.vorburger.appviewsnflows;
  */
 public abstract class FlowAbstract implements Flow {
 	
+	// TODO This currently mixed up "descriptor" and "instance", tear apart later
+	
+	private View initialView;
+	private View currentView;
+
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
+		currentView = initialView;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T extends View> T getCurrentView() {
-		// TODO Auto-generated method stub
-		return null;
+		return (T) currentView;
 	}
 
+	protected void setInitialView(View initialView) {
+		this.initialView = initialView;
+	}
 }

@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ch.vorburger.appviewsnflows.AppFlow;
+import ch.vorburger.appviewsnflows.Flow;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
-import ch.vorburger.appviewsnflows.tests.flows.SimplestFlow;
+import ch.vorburger.appviewsnflows.tests.flows.SimplestTestFlow;
 import ch.vorburger.appviewsnflows.tests.views.CustomerSummaryView;
 import ch.vorburger.appviewsnflows.tests.views.CustomersListView;
 
@@ -27,7 +27,9 @@ public class ViewsNFlowsTest {
 		Customer firstCustomer = new Customer();
 		customers.add(firstCustomer);
 		
-		AppFlow flow = new SimplestFlow(customers);
+		// TODO Think through if passing in via constructor is right here - shouldn't the Flow be responsible for obtaining the customers model?!
+		
+		Flow flow = new SimplestTestFlow(customers);
 		flow.start();
 		
 		CustomersListView customersListView = flow.getCurrentView();

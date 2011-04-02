@@ -2,6 +2,7 @@ package ch.vorburger.appviewsnflows.tests.views;
 
 import java.util.List;
 
+import ch.vorburger.appviewsnflows.Event;
 import ch.vorburger.appviewsnflows.ViewAbstract;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 
@@ -12,13 +13,26 @@ import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
  */
 public class CustomersListView extends ViewAbstract {
 
-	public List<Customer> getCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+	private List<Customer> customers;
+	// TODO static public ? customers = ? 
+	
+	public CustomersListView(List<Customer> customers) {
+		this.customers = customers;
 	}
 
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	
+	public static class CustomerClickedEvent extends Event<Customer> {
+		public CustomerClickedEvent(Customer customer) {
+			super(customer);
+		}
+	}
+	
 	public void sayUserClickedOnFirstCustomer() {
-		// TODO send(new Event(customers.get(1));
+		send(new CustomerClickedEvent(customers.get(0)));
 	}
 
 }

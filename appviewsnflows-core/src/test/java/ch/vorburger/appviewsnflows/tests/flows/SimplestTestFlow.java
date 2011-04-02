@@ -5,6 +5,7 @@ import java.util.List;
 import ch.vorburger.appviewsnflows.Flow;
 import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
+import ch.vorburger.appviewsnflows.tests.views.CustomersListView;
 
 /**
  * First and quite simple Test Flow.
@@ -14,7 +15,7 @@ import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 public class SimplestTestFlow extends FlowAbstract implements Flow {
 
 	public SimplestTestFlow(List<Customer> customers) {
-		// TODO Auto-generated constructor stub
+		setInitialView(new CustomersListView(customers));
 	}
 
 }
