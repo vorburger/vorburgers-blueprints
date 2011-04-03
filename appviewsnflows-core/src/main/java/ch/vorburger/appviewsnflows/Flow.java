@@ -16,4 +16,5 @@ public interface Flow {
 	 */
 	void onEvent(Event event);
 	
+	public String getFlowId();
 }

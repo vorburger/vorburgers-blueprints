@@ -27,4 +27,7 @@ package ch.vorburger.appviewsnflows;
  */
 public interface Event {
 
+	String getEventId();
+
+	Object[] getData();
 }

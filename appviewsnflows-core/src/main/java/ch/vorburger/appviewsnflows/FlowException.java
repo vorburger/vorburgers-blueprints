@@ -12,4 +12,8 @@ public class FlowException extends RuntimeException {
 		super(message);
 	}
 
+	public FlowException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
 }

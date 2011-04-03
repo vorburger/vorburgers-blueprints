@@ -1,4 +1,4 @@
-package ch.vorburger.appviewsnflows.tests.flows;
+package ch.vorburger.appviewsnflows.tests.java;
 
 import java.util.List;
 
@@ -20,15 +20,15 @@ public class SimplestTestFlow extends FlowAbstract implements Flow {
 
 	@Override
 	public View handleEvent(Event event) {
-		if (getCurrentView() instanceof NoView) {
+		if (getCurrentView() instanceof EmptyView) {
 			if (event instanceof StartEvent) {
 				StartEvent e = (StartEvent) event;
-				return new CustomersListView(this, e.getData());
+				return new CustomersListView(this, e.getData1());
 			}
 		} else if (getCurrentView() instanceof CustomersListView) {
 			if (event instanceof CustomersListView.CustomerClickedEvent) {
 				CustomersListView.CustomerClickedEvent e = (CustomersListView.CustomerClickedEvent) event;
-				return new CustomerSummaryView(this, e.getData());
+				return new CustomerSummaryView(this, e.getData1());
 			}
 		}
 		return super.handleEvent(event);

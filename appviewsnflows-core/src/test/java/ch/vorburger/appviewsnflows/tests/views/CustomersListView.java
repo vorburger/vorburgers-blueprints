@@ -5,6 +5,7 @@ import java.util.List;
 import ch.vorburger.appviewsnflows.Event1;
 import ch.vorburger.appviewsnflows.Flow;
 import ch.vorburger.appviewsnflows.ViewAbstract;
+import ch.vorburger.appviewsnflows.dyn.Event;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 
 /**
@@ -33,8 +34,12 @@ public class CustomersListView extends ViewAbstract {
 		}
 	}
 	
-	public void sayUserClickedOnFirstCustomer() {
+	public void sayUserClickedOnFirstCustomerViaJavaTypedEvent() {
 		send(new CustomerClickedEvent(customers.get(0)));
 	}
-
+	
+	
+	public void sayUserClickedOnFirstCustomerViaDynEvent() {
+		send(new Event("customerClicked", customers.get(0)));
+	}
 }

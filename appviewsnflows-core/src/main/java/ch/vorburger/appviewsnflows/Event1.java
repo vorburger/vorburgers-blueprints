@@ -5,15 +5,21 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public abstract class Event1<T> implements Event {
+public abstract class Event1<T> extends EventAbstract implements Event {
 
-	private final T data;
+	@SuppressWarnings("unchecked")
+	private final T[] data = (T[]) new Object[1];
 
 	protected Event1(T data) {
-		this.data = data;
+		this.data[0] = data;
 	}
 
-	public T getData() {
+	public T getData1() {
+		return data[0];
+	}
+	
+	@Override
+	public T[] getData() {
 		return data;
 	}
 }

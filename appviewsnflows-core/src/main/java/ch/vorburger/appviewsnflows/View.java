@@ -8,5 +8,4 @@ package ch.vorburger.appviewsnflows;
  * @author Michael Vorburger
  */
 public interface View {
-
 }
