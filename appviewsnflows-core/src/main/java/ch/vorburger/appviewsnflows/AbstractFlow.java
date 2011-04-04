@@ -38,7 +38,7 @@ public abstract class AbstractFlow implements Flow {
 	 * @param event the Event
 	 * @return next View
 	 */
-	public View handleEvent(Event event) {
+	protected View handleEvent(Event event) {
 		throw new FlowException(message(event) + " occured while on view " + getCurrentView().toString() + " but wasn't handled; I don't know where do you want to go today?!");
 	}
 	

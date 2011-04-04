@@ -58,15 +58,13 @@ public class Flow extends AbstractFlow {
 	}
 	
 	@Override
-	public View handleEvent(Event event) {
-		Map<String, Class<View>> subMap = map.get(getCurrentView().getClass());
-		if (subMap == null)
-			throw new FlowException(message(event) + " but no rules whatsoever for that view have been configured, I only know these views: " + map.keySet());
-		Class<View> viewClass = subMap.get(event.getEventId());
-		if (viewClass == null)
-			throw new FlowException(message(event) + " but no matching rules for that event have been configured, only: " + subMap.keySet());
-		Object[] params = event.getData();
-		
+	protected View handleEvent(Event event) {
+		Class<View> viewClass = findViewClass(event);
+		View nextView = createNewView(viewClass, event.getData());
+		return nextView;
+	}
+
+	private View createNewView(Class<View> viewClass, Object[] params) {
 		Class<?>[] viewConstructorParameterTypes = new Class<?>[params.length + 1];
 		viewConstructorParameterTypes[0] = Flow.class;
 		for (int i = 1; i < viewConstructorParameterTypes.length; i++) {
@@ -87,9 +85,8 @@ public class Flow extends AbstractFlow {
 			constructorParameters[i] = params[i - 1];
 		}
 		
-		View nextView;
 		try {
-			nextView = c.newInstance(constructorParameters);
+			return c.newInstance(constructorParameters);
 		} catch (IllegalArgumentException e) {
 			throw new FlowException("IllegalArgumentException from newInstance() for next View with constructor " + c + " for args " + Arrays.asList(params) + ", types: " + Arrays.asList(viewConstructorParameterTypes), e);
 		} catch (InstantiationException e) {
@@ -99,8 +96,17 @@ public class Flow extends AbstractFlow {
 		} catch (InvocationTargetException e) {
 			throw new FlowException("InvocationTargetException from newInstance() for next View" , e);
 		}
-		
-		return nextView;
+	}
+
+
+	private Class<View> findViewClass(Event event) {
+		Map<String, Class<View>> subMap = map.get(getCurrentView().getClass());
+		if (subMap == null)
+			throw new FlowException(message(event) + " but no rules whatsoever for that view have been configured, I only know these views: " + map.keySet());
+		Class<View> viewClass = subMap.get(event.getEventId());
+		if (viewClass == null)
+			throw new FlowException(message(event) + " but no matching rules for that event have been configured, only: " + subMap.keySet());
+		return viewClass;
 	}
 
 	

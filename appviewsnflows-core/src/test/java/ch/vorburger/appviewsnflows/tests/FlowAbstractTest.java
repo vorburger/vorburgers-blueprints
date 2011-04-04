@@ -19,7 +19,7 @@ public class FlowAbstractTest {
 		AbstractFlow flow = new AbstractFlow() {
 		};
 
-		flow.handleEvent(new Event1<String>(null) {
+		flow.onEvent(new Event1<String>(null) {
 		});
 	}
 

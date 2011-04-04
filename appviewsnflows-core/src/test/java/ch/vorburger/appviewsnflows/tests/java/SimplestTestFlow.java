@@ -19,7 +19,7 @@ import ch.vorburger.appviewsnflows.tests.views.CustomersListView;
 public class SimplestTestFlow extends AbstractFlow implements Flow {
 
 	@Override
-	public View handleEvent(Event event) {
+	protected View handleEvent(Event event) {
 		if (getCurrentView() instanceof EmptyView) {
 			if (event instanceof StartEvent) {
 				StartEvent e = (StartEvent) event;

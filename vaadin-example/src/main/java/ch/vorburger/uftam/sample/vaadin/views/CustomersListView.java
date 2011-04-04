@@ -2,8 +2,8 @@ package ch.vorburger.uftam.sample.vaadin.views;
 
 import java.util.Collection;
 
-import ch.vorburger.appviewsnflows.vaadin.AbstractListView;
 import ch.vorburger.appviewsnflows.vaadin.Presenter;
+import ch.vorburger.appviewsnflows.vaadin.views.AbstractListView;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 
 import com.vaadin.data.Container;

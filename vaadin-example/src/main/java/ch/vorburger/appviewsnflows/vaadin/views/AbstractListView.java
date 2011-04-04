@@ -1,8 +1,10 @@
-package ch.vorburger.appviewsnflows.vaadin;
+package ch.vorburger.appviewsnflows.vaadin.views;
 
 import java.util.Collection;
 
 import ch.vorburger.appviewsnflows.Event1;
+import ch.vorburger.appviewsnflows.vaadin.AbstractView;
+import ch.vorburger.appviewsnflows.vaadin.Presenter;
 
 /**
  * List View.
