@@ -2,7 +2,8 @@ package ch.vorburger.uftam.sample.vaadin.views;
 
 import java.util.Collection;
 
-import ch.vorburger.appviewsnflows.vaadin.AbstractView;
+import ch.vorburger.appviewsnflows.vaadin.AbstractListView;
+import ch.vorburger.appviewsnflows.vaadin.Presenter;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 
 import com.vaadin.data.Container;
@@ -18,9 +19,13 @@ import com.vaadin.ui.Table;
  *
  * @author Michael Vorburger
  */
-public class CustomersListView extends AbstractView<Collection<Customer>> {
+public class CustomersListView extends AbstractListView<Customer> {
 
 	private Table customersTable;
+
+	public CustomersListView(Presenter presenter) {
+		super(presenter);
+	}
 
 	@Override
 	public Component createRootComponent() {
@@ -39,7 +44,7 @@ public class CustomersListView extends AbstractView<Collection<Customer>> {
 				BeanItem<Customer> item = (BeanItem<Customer>) event.getItem();
 				Customer customer = item.getBean();
 
-				getPresenter().showOrders(customer);
+				send(new ItemClickedEvent(customer));
 			}
 		});
 

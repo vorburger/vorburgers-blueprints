@@ -2,9 +2,8 @@ package ch.vorburger.uftam.sample.vaadin;
 
 import java.util.Collection;
 
-import ch.vorburger.appviewsnflows.dyn.Flow;
 import ch.vorburger.appviewsnflows.vaadin.AbstractView;
-import ch.vorburger.appviewsnflows.vaadin.View;
+import ch.vorburger.appviewsnflows.vaadin.Presenter;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
 import ch.vorburger.uftam.sample.vaadin.views.CustomersListView;
@@ -20,22 +19,19 @@ public class SampleApplication extends Application {
 
 	@Override
 	public void init() {
+		Presenter p = new SampleAppPresenter();
+
 		Collection<Customer> customers = CustomersRepository.getAFewCustomers();
-		AbstractView<Collection<Customer>> firstView = new CustomersListView();
+		AbstractView<Collection<Customer>> firstView = new CustomersListView(p);
 		firstView.setModel(customers);
 		
-		MainRootWindowView mainDecoView = new MainRootWindowView();
+		MainRootWindowView mainDecoView = new MainRootWindowView(p);
 		mainDecoView.setMainView(firstView);
 		
 		Component component = mainDecoView.getRootComponent();
 		ComponentContainer rootViewComponent = (ComponentContainer) component;
 		final Window mainWindow = new Window("UFTAM Vaadin Sample Application", rootViewComponent);
 		setMainWindow(mainWindow);
-
-		SampleAppPresenter p = new SampleAppPresenter();
-		p.mainView = mainDecoView;
-		mainDecoView.setPresenter(p);
-		firstView.setPresenter(p);
 	}
 
 }

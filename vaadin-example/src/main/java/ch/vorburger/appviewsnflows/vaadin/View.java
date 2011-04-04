@@ -1,7 +1,6 @@
 package ch.vorburger.appviewsnflows.vaadin;
 
 import com.vaadin.ui.Component;
-import com.vaadin.ui.ComponentContainer;
 
 /**
  * TODO

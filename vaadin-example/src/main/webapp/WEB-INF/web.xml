@@ -16,7 +16,7 @@
 		<init-param>
 			<description>Vaadin application class to start</description>
 			<param-name>application</param-name>
-			<param-value>ch.vorburger.uftam.sample.vaadin.UFTAMSampleApplication</param-value>
+			<param-value>ch.vorburger.uftam.sample.vaadin.SampleApplication</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

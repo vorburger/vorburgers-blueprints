@@ -3,6 +3,7 @@ package ch.vorburger.uftam.sample.vaadin.views;
 import java.util.Set;
 
 import ch.vorburger.appviewsnflows.vaadin.AbstractView;
+import ch.vorburger.appviewsnflows.vaadin.Presenter;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.Order;
 
@@ -19,6 +20,10 @@ import com.vaadin.ui.Table;
 public class CustomerOrdersView extends AbstractView<Customer> {
 
 	private Table ordersTable;
+
+	public CustomerOrdersView(Presenter presenter) {
+		super(presenter);
+	}
 
 	@Override
 	public Component createRootComponent() {

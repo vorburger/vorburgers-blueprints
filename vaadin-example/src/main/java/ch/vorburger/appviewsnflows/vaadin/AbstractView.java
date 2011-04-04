@@ -1,7 +1,5 @@
 package ch.vorburger.appviewsnflows.vaadin;
 
-import ch.vorburger.uftam.sample.vaadin.Presenter;
-
 import com.vaadin.ui.Component;
 
 /**
@@ -9,16 +7,16 @@ import com.vaadin.ui.Component;
  *
  * @author Michael Vorburger
  */
-public abstract class AbstractView<T> implements View<T> {
+public abstract class AbstractView<T> extends ch.vorburger.appviewsnflows.AbstractView implements View<T> {
 
 	private /* final */ Presenter presenter;
-
 	private final Component root;
 
 	abstract protected Component createRootComponent();
 
-	public AbstractView() {
-		super();
+	public AbstractView(Presenter presenter) {
+		super(presenter.getFlow());
+		this.presenter = presenter;
 		root = createRootComponent();
 	}
 
@@ -51,5 +49,4 @@ public abstract class AbstractView<T> implements View<T> {
 			throw new IllegalStateException("Presenter already set");
 		}
 	}
-
 }

@@ -1,6 +1,7 @@
 package ch.vorburger.uftam.sample.vaadin.views;
 
 import ch.vorburger.appviewsnflows.vaadin.AbstractView;
+import ch.vorburger.appviewsnflows.vaadin.Presenter;
 import ch.vorburger.appviewsnflows.vaadin.View;
 
 import com.vaadin.ui.Component;
@@ -20,16 +21,15 @@ public class MainRootWindowView extends AbstractView<Void> {
 	private VerticalLayout rootLayout;
 	private Component currentMainComponent;
 
+	public MainRootWindowView(Presenter presenter) {
+		super(presenter);
+	}
+
 	@Override
 	protected ComponentContainer createRootComponent() {
 		rootLayout = new VerticalLayout();
 		rootLayout.setMargin(true);
 		return rootLayout;
-	}
-
-	public MainRootWindowView() {
-		super();
-
 	}
 
 	public void setMainView(View<?> mainView) {
