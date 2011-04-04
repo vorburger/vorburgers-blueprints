@@ -2,6 +2,7 @@ package ch.vorburger.uftam.sample.vaadin;
 
 import java.util.Collection;
 
+import ch.vorburger.appviewsnflows.dyn.Flow;
 import ch.vorburger.appviewsnflows.vaadin.AbstractView;
 import ch.vorburger.appviewsnflows.vaadin.View;
 import ch.vorburger.uftam.sample.model.domain.Customer;
@@ -14,7 +15,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.Window;
 
-public class UFTAMSampleApplication extends Application {
+public class SampleApplication extends Application {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -31,7 +32,7 @@ public class UFTAMSampleApplication extends Application {
 		final Window mainWindow = new Window("UFTAM Vaadin Sample Application", rootViewComponent);
 		setMainWindow(mainWindow);
 
-		Presenter p = new Presenter();
+		SampleAppPresenter p = new SampleAppPresenter();
 		p.mainView = mainDecoView;
 		mainDecoView.setPresenter(p);
 		firstView.setPresenter(p);
