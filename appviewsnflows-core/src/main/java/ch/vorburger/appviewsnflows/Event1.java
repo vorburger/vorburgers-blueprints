@@ -5,7 +5,7 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public abstract class Event1<T> extends EventAbstract implements Event {
+public abstract class Event1<T> extends AbstractEvent implements Event {
 
 	@SuppressWarnings("unchecked")
 	private final T[] data = (T[]) new Object[1];

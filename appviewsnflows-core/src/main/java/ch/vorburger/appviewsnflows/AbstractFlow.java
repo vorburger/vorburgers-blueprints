@@ -7,13 +7,13 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public abstract class FlowAbstract implements Flow {
+public abstract class AbstractFlow implements Flow {
 	
 	// TODO This currently may have mixed up "descriptor" and "instance", does it need to be tear apart later?
 	
 	private View currentView;
 
-	protected FlowAbstract() {
+	protected AbstractFlow() {
 		currentView = noView;
 	}
 

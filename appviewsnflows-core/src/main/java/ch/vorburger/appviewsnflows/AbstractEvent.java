@@ -5,7 +5,7 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public abstract class EventAbstract implements Event {
+public abstract class AbstractEvent implements Event {
 
 	@Override
 	public String getEventId() {

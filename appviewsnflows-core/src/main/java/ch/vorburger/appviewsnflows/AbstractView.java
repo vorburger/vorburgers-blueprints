@@ -6,13 +6,13 @@ package ch.vorburger.appviewsnflows;
  * 
  * @author Michael Vorburger
  */
-public abstract class ViewAbstract implements View {
+public abstract class AbstractView implements View {
 
 	// TODO ? protected dataModels
 	
 	private final Flow ofFlow;
 
-	protected ViewAbstract(Flow flow) {
+	protected AbstractView(Flow flow) {
 		this.ofFlow = flow;
 	}
 	

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ch.vorburger.appviewsnflows.Event;
-import ch.vorburger.appviewsnflows.FlowAbstract;
+import ch.vorburger.appviewsnflows.AbstractFlow;
 import ch.vorburger.appviewsnflows.FlowException;
 import ch.vorburger.appviewsnflows.View;
 import ch.vorburger.appviewsnflows.util.ReflectionUtil;
@@ -17,7 +17,7 @@ import ch.vorburger.appviewsnflows.util.ReflectionUtil;
  * 
  * @author Michael Vorburger
  */
-public class Flow extends FlowAbstract {
+public class Flow extends AbstractFlow {
 
 	private final String flowId;
 	private Map<Class<View>, Map<String, Class<View>>> map = new HashMap<Class<View>, Map<String,Class<View>>>();

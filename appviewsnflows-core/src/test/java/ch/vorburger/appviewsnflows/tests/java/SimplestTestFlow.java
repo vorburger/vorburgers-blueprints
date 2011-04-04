@@ -5,7 +5,7 @@ import java.util.List;
 import ch.vorburger.appviewsnflows.Event;
 import ch.vorburger.appviewsnflows.Event1;
 import ch.vorburger.appviewsnflows.Flow;
-import ch.vorburger.appviewsnflows.FlowAbstract;
+import ch.vorburger.appviewsnflows.AbstractFlow;
 import ch.vorburger.appviewsnflows.View;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 import ch.vorburger.appviewsnflows.tests.views.CustomerSummaryView;
@@ -16,7 +16,7 @@ import ch.vorburger.appviewsnflows.tests.views.CustomersListView;
  * 
  * @author Michael Vorburger
  */
-public class SimplestTestFlow extends FlowAbstract implements Flow {
+public class SimplestTestFlow extends AbstractFlow implements Flow {
 
 	@Override
 	public View handleEvent(Event event) {

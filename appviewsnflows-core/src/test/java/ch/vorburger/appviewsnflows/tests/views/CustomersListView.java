@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.vorburger.appviewsnflows.Event1;
 import ch.vorburger.appviewsnflows.Flow;
-import ch.vorburger.appviewsnflows.ViewAbstract;
+import ch.vorburger.appviewsnflows.AbstractView;
 import ch.vorburger.appviewsnflows.dyn.Event;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
 
@@ -13,7 +13,7 @@ import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
  * 
  * @author Michael Vorburger
  */
-public class CustomersListView extends ViewAbstract {
+public class CustomersListView extends AbstractView {
 
 	private final List<Customer> customers;
 	// TODO static public ? CUSTOMERS = ? 
