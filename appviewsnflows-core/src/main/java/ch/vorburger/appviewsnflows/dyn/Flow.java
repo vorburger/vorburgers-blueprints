@@ -10,6 +10,7 @@ import ch.vorburger.appviewsnflows.Event;
 import ch.vorburger.appviewsnflows.FlowAbstract;
 import ch.vorburger.appviewsnflows.FlowException;
 import ch.vorburger.appviewsnflows.View;
+import ch.vorburger.appviewsnflows.util.ReflectionUtil;
 
 /**
  * Flow implementation which can be configured dynamically at run-time.
@@ -60,33 +61,37 @@ public class Flow extends FlowAbstract {
 	public View handleEvent(Event event) {
 		Map<String, Class<View>> subMap = map.get(getCurrentView().getClass());
 		if (subMap == null)
-			throw new FlowException(message(event) + " but no matching rules for that view have been configured, only: " + map.keySet());
+			throw new FlowException(message(event) + " but no rules whatsoever for that view have been configured, I only know these views: " + map.keySet());
 		Class<View> viewClass = subMap.get(event.getEventId());
 		if (viewClass == null)
 			throw new FlowException(message(event) + " but no matching rules for that event have been configured, only: " + subMap.keySet());
 		Object[] params = event.getData();
 		
-		// TODO This could be cached?  Is it really needed?
 		Class<?>[] viewConstructorParameterTypes = new Class<?>[params.length + 1];
 		viewConstructorParameterTypes[0] = Flow.class;
 		for (int i = 1; i < viewConstructorParameterTypes.length; i++) {
 			Class<?> paramType = params[i - 1].getClass();
 			viewConstructorParameterTypes[i] = paramType;
 		}
+		
 		Constructor<View> c;
 		try {
-			c = viewClass.getConstructor(viewConstructorParameterTypes);
-		} catch (SecurityException e) {
-			throw new FlowException("SecurityException while finding Constructor to create next View" , e);
+			c = ReflectionUtil.findConstructor(viewClass, viewConstructorParameterTypes);
 		} catch (NoSuchMethodException e) {
 			throw new FlowException("NoSuchMethodException while finding Constructor to create next View; available constructors are: " + Arrays.asList(viewClass.getConstructors()), e);
 		}
 		
+		Object[] constructorParameters = new Object[params.length + 1];
+		constructorParameters[0] = this;
+		for (int i = 1; i < viewConstructorParameterTypes.length; i++) {
+			constructorParameters[i] = params[i - 1];
+		}
+		
 		View nextView;
 		try {
-			nextView = c.newInstance(this, params);
+			nextView = c.newInstance(constructorParameters);
 		} catch (IllegalArgumentException e) {
-			throw new FlowException("IllegalArgumentException from newInstance() for next View" , e);
+			throw new FlowException("IllegalArgumentException from newInstance() for next View with constructor " + c + " for args " + Arrays.asList(params) + ", types: " + Arrays.asList(viewConstructorParameterTypes), e);
 		} catch (InstantiationException e) {
 			throw new FlowException("InstantiationException from newInstance() for next View" , e);
 		} catch (IllegalAccessException e) {

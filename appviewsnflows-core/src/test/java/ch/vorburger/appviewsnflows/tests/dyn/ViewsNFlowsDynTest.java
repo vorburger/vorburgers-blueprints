@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import ch.vorburger.appviewsnflows.FlowException;
 import ch.vorburger.appviewsnflows.dyn.Event;
 import ch.vorburger.appviewsnflows.dyn.Flow;
 import ch.vorburger.appviewsnflows.tests.dataobjects.Customer;
@@ -40,7 +41,11 @@ public class ViewsNFlowsDynTest {
 		CustomerSummaryView customerSummaryView = flow.getCurrentView();
 		Assert.assertThat(customerSummaryView.getCustomer(), equalTo(firstCustomer));
 
-		// TODO Test that the correct thing happens when an Event with the req. param is fired
-		flow.onEvent(new Event("start" /* NO customers */));
+		try {
+			flow.onEvent(new Event("start" /* NO customers */));
+			Assert.fail("Should have failed");
+		} catch (FlowException e) {
+			// Expected
+		}
 	}
 }
