@@ -6,8 +6,10 @@ import ch.vorburger.blueprint.ui.vaadin.Table;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.Order;
 
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.BaseTheme;
 
 /**
  * View showing a list of Orders for a given Customer.
@@ -18,14 +20,20 @@ import com.vaadin.ui.VerticalLayout;
 public class CustomerOrders extends VerticalLayout {
 	// TODO CssLayout?
 
-	private final Label customerInfoLabel;
+	private final Label customerInfo;
 	private final Table<Order> ordersTable;
 	
 	public CustomerOrders() {
 		super();
 		
-		customerInfoLabel = new Label();
-		addComponent(customerInfoLabel);
+		Button customersLink = new Button("Customers");
+		customersLink.setStyleName(BaseTheme.BUTTON_LINK);
+		customersLink.setDescription("Back to Customers List");
+		// ?? customerInfoLink.addListener(this); // react to clicks
+		addComponent(customersLink);
+	        
+		customerInfo = new Label();
+		addComponent(customerInfo);
 		
 		ordersTable = new Table<Order>() {
 			@Override
@@ -38,11 +46,9 @@ public class CustomerOrders extends VerticalLayout {
 	
 	public void setModel(Customer customer) {
 		// TODO Support using an EL later
-		customerInfoLabel.setCaption("Orders for Customer '" + customer.name + "'");
-		
+		customerInfo.setCaption("Orders for Customer: " + customer.name);
 		Set<Order> orders = customer.getOrders();
 		ordersTable.setModel(Order.class, orders);
-		
 		// configureAfterSetModel();
 	}
 

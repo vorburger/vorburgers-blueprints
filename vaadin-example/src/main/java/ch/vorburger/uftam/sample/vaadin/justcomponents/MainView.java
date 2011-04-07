@@ -32,7 +32,7 @@ public class MainView extends VerticalLayout {
 		
 		Component logo = new Label("ACME Inc.");
 		top.addComponent(logo);
-		top.setComponentAlignment(logo , Alignment.TOP_RIGHT);
+		top.setComponentAlignment(logo, Alignment.TOP_RIGHT);
 		// ? lo.setExpandRatio(em, 1);
 
 		top.setWidth("100%");
