@@ -2,6 +2,8 @@ package ch.vorburger.uftam.sample.vaadin;
 
 import java.util.Collection;
 
+import com.vaadin.event.ItemClickEvent;
+
 import ch.vorburger.appviewsnflows.dyn.Event;
 import ch.vorburger.appviewsnflows.dyn.Flow;
 import ch.vorburger.appviewsnflows.vaadin.AbstractPresenter;

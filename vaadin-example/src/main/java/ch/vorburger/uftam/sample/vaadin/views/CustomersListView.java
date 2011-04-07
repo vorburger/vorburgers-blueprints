@@ -20,7 +20,8 @@ import com.vaadin.ui.Table;
  * @author Michael Vorburger
  */
 public class CustomersListView extends AbstractListView<Customer> {
-
+	// TODO Would be better if it could simply extend Table (because that's what it is), instead containing one?  Unfortunately can't mix-in - need to decide which one is "stronger"... I'd now probably prefer Table
+	
 	private Table customersTable;
 
 	public CustomersListView(Presenter presenter) {
@@ -44,7 +45,7 @@ public class CustomersListView extends AbstractListView<Customer> {
 				BeanItem<Customer> item = (BeanItem<Customer>) event.getItem();
 				Customer customer = item.getBean();
 
-				send(new ItemClickedEvent(customer));
+				// TODO send(new ItemClickedEvent(customer));
 			}
 		});
 

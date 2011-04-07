@@ -27,7 +27,7 @@ public class CustomersRepository {
 		List<Customer> list = new ArrayList<Customer>(10);
 		Iterable<Customer> iterable = customerIterable();
 		Iterator<Customer> iterator = iterable.iterator();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			list.add(iterator.next());
 		}
 		return list;

@@ -15,7 +15,7 @@ public abstract class AbstractView<T> extends ch.vorburger.appviewsnflows.Abstra
 	abstract protected Component createRootComponent();
 
 	public AbstractView(Presenter presenter) {
-		super(presenter.getFlow());
+		super(null/* presenter.getFlow() */); // TODO !
 		this.presenter = presenter;
 		root = createRootComponent();
 	}
