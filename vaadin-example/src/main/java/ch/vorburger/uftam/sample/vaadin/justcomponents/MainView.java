@@ -14,7 +14,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 public class MainView extends VerticalLayout {
-	// TODO CssLayou!
+	// TODO CssLayout!
 
 	private Component body;
 	
@@ -42,8 +42,8 @@ public class MainView extends VerticalLayout {
 		body.setSizeFull();
 		addComponent(body);
 		
-		HorizontalLayout footer = new HorizontalLayout();
-		footer.setCaption("Vaadin Example Application created by Michael Vorburger");
+		Label footer = new Label("Vaadin Example Application created by <a href=\"http://www.vorburger.ch\">Michael Vorburger</a>", Label.CONTENT_XHTML);
+		footer.setWidth(100, UNITS_PERCENTAGE);
 		addComponent(footer);
 		setComponentAlignment(footer, Alignment.BOTTOM_CENTER);
 	}

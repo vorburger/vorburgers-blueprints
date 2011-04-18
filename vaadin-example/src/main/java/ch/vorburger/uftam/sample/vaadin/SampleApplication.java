@@ -6,24 +6,25 @@ import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerList;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerOrders;
-import ch.vorburger.uftam.sample.vaadin.justcomponents.MainView;
+import ch.vorburger.uftam.sample.vaadin.justcomponents.MainViewWithCustomLayout;
 
 import com.vaadin.Application;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Window;
 
 public class SampleApplication extends Application implements ItemClickListener {
 	private static final long serialVersionUID = 1L;
 
 	// TODO Later when the Flow creates the Views then this will be dynamic
-	private MainView mainView;
+	private MainViewWithCustomLayout mainView;
 	private CustomerList customerList;
 	
 	@Override
 	public void init() {
+		setTheme("mytheme");
+		
 		// Presenter p = new SampleAppPresenter();
 
 		// TODO Later this won't be here be in the SampleAppPresenter Flow, only
@@ -36,7 +37,7 @@ public class SampleApplication extends Application implements ItemClickListener 
 		customerList.addListener(this);
 		
 		// MainRootWindowView mainView = new MainRootWindowView(p);
-		mainView = new MainView(customerList);
+		mainView = new MainViewWithCustomLayout(customerList);
 		// mainView.setMainView(firstView);
 		
 		// Component component = mainDecoView.getRootComponent();
