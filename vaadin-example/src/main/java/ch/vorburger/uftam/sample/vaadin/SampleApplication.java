@@ -6,6 +6,7 @@ import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerList;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerOrders;
+import ch.vorburger.uftam.sample.vaadin.justcomponents.MainView;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.MainViewWithCustomLayout;
 
 import com.vaadin.Application;
@@ -18,7 +19,7 @@ public class SampleApplication extends Application implements ItemClickListener 
 	private static final long serialVersionUID = 1L;
 
 	// TODO Later when the Flow creates the Views then this will be dynamic
-	private MainViewWithCustomLayout mainView;
+	private MainView/*WithCustomLayout*/ mainView;
 	private CustomerList customerList;
 	
 	@Override
@@ -37,7 +38,7 @@ public class SampleApplication extends Application implements ItemClickListener 
 		customerList.addListener(this);
 		
 		// MainRootWindowView mainView = new MainRootWindowView(p);
-		mainView = new MainViewWithCustomLayout(customerList);
+		mainView = new MainView/*WithCustomLayout*/(customerList);
 		// mainView.setMainView(firstView);
 		
 		// Component component = mainDecoView.getRootComponent();

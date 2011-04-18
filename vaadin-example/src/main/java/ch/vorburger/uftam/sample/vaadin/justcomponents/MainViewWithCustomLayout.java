@@ -10,20 +10,15 @@ import com.vaadin.ui.CustomLayout;
  */
 public class MainViewWithCustomLayout extends CustomLayout {
 
-	private Component body;
-	
 	public MainViewWithCustomLayout(Component firstBody) {
 		super("rootLayout");
 		
-		body = firstBody; 
-		body.setSizeFull();
-		addComponent(body, "body");
+		setBody(firstBody);
 	}
 
 	public void setBody(Component newBody) {
 		newBody.setSizeFull();
-		replaceComponent(body, newBody);
-		body = newBody;
+		addComponent(newBody, "body");
 	}
 
 }
