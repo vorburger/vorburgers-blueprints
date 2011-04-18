@@ -13,14 +13,19 @@ import com.vaadin.Application;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Window;
 
-public class SampleApplication extends Application implements ItemClickListener {
+public class SampleApplication extends Application implements ItemClickListener, ClickListener {
 	private static final long serialVersionUID = 1L;
 
 	// TODO Later when the Flow creates the Views then this will be dynamic
 	private MainView/*WithCustomLayout*/ mainView;
 	private CustomerList customerList;
+
+	private Button goToCustomers;
 	
 	@Override
 	public void init() {
@@ -59,8 +64,18 @@ public class SampleApplication extends Application implements ItemClickListener 
 			Customer customer = item.getBean();
 
 			CustomerOrders customerOrders = new CustomerOrders();
+			goToCustomers = customerOrders.goToCustomers();
+			goToCustomers .addListener(this);
 			customerOrders.setModel(customer);
 			mainView.setBody(customerOrders);
+		}
+		
+	}
+
+	@Override
+	public void buttonClick(ClickEvent event) {
+		if (event.getComponent() == goToCustomers) {
+			mainView.setBody(customerList);
 		}
 		
 	}
