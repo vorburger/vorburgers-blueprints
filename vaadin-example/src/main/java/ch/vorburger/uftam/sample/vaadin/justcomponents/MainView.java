@@ -1,5 +1,7 @@
 package ch.vorburger.uftam.sample.vaadin.justcomponents;
 
+import ch.vorburger.uftam.sample.model.representation.UserInfo;
+
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
@@ -17,6 +19,7 @@ public class MainView extends VerticalLayout {
 	// TODO CssLayout!
 
 	private Component body;
+	private Component userInfoBlock;
 	
 	public MainView(Component firstBody) {
 		super();
@@ -38,6 +41,9 @@ public class MainView extends VerticalLayout {
 		top.setWidth("100%");
 		addComponent(top);
 
+		userInfoBlock = new Label();
+		addComponent(userInfoBlock);
+		
 		body = firstBody; 
 		body.setSizeFull();
 		addComponent(body);
@@ -52,6 +58,10 @@ public class MainView extends VerticalLayout {
 		newBody.setSizeFull();
 		replaceComponent(body, newBody);
 		body = newBody;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		userInfoBlock.setCaption("User: " + userInfo.getUID());
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
+import ch.vorburger.uftam.sample.model.representation.UserInfo;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerList;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerOrders;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.MainView;
@@ -42,9 +43,18 @@ public class SampleApplication extends Application implements ItemClickListener,
 		
 		customerList.addListener(this);
 		
+		UserInfo userInfo = new UserInfo() {
+			@Override
+			public String getUID() {
+				return "michael.vorburger";
+			}
+		};
+		
 		// MainRootWindowView mainView = new MainRootWindowView(p);
 		mainView = new MainView/*WithCustomLayout*/(customerList);
 		// mainView.setMainView(firstView);
+		
+		mainView.setUserInfo(userInfo);
 		
 		// Component component = mainDecoView.getRootComponent();
 		// ComponentContainer rootViewComponent = (ComponentContainer) component;
