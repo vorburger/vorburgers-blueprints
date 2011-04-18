@@ -6,6 +6,7 @@ import ch.vorburger.uftam.sample.model.representation.UserInfo;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -22,7 +23,7 @@ public class MainView extends VerticalLayout implements View<MainView>, ViewCont
 
 	public static final ModelSlot<UserInfo, MainView> USER_INFO = new ModelSlot<UserInfo, MainView>() {
 	};
-	public static final ViewSlot<Component, MainView> BODY = new ViewSlot<Component, MainView>() {
+	public static final ViewSlot<ComponentContainer, MainView> BODY = new ViewSlot<ComponentContainer, MainView>() {
 	};
 
 	private Component body;
@@ -70,7 +71,7 @@ public class MainView extends VerticalLayout implements View<MainView>, ViewCont
 	}
 
 	@Override
-	public <T> void setView(ViewSlot<T, MainView> slot, T view) {
+	public <T extends ComponentContainer> void setView(ViewSlot<T, MainView> slot, T view) {
 		if (slot.equals(BODY)) {
 			setBody((Component) view);
 		} else {
@@ -90,5 +91,6 @@ public class MainView extends VerticalLayout implements View<MainView>, ViewCont
 			throw new IllegalArgumentException(slot.toString());
 		}
 	}
+
 
 }

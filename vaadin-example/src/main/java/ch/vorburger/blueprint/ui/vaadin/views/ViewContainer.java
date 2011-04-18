@@ -1,5 +1,7 @@
 package ch.vorburger.blueprint.ui.vaadin.views;
 
+import com.vaadin.ui.ComponentContainer;
+
 import ch.vorburger.blueprint.common.Thing;
 
 /**
@@ -7,11 +9,11 @@ import ch.vorburger.blueprint.common.Thing;
  * 
  * @author Michael Vorburger
  */
-public interface ViewContainer<ViewT> extends View<ViewT> {
+public interface ViewContainer<ViewT> {
 
-	interface ViewSlot<T, ViewT> extends Thing<T> {
+	interface ViewSlot<T extends ComponentContainer, ViewT> extends Thing<T> {
 	}
 
-	<T> void setView(ViewSlot<T, ViewT> slot, T view);
+	<T extends ComponentContainer> void setView(ViewSlot<T, ViewT> slot, T view);
 
 }
