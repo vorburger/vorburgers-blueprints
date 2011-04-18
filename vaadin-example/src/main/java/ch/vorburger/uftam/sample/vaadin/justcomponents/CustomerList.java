@@ -15,6 +15,7 @@ public class CustomerList extends Table<Customer> {
 	public CustomerList() {
 		super();
 		setCaption("Customers"); // TODO ?
+		setPageLength(20);
 	}
 
 	@Override

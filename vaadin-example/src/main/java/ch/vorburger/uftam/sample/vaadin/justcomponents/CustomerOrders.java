@@ -9,6 +9,7 @@ import ch.vorburger.uftam.sample.model.domain.Order;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.AbstractSelect.MultiSelectMode;
 import com.vaadin.ui.themes.BaseTheme;
 
 /**
@@ -35,6 +36,9 @@ public class CustomerOrders extends VerticalLayout {
 	        
 		customerInfo = new Label();
 		addComponent(customerInfo);
+
+		addComponent(new Label("<i>Table is editable, and multi-select enabled! Ctrl-click, and delete!</i>", Label.CONTENT_XHTML));
+		addComponent(new Button("Delete"));
 		
 		ordersTable = new Table<Order>() {
 			@Override
@@ -42,6 +46,9 @@ public class CustomerOrders extends VerticalLayout {
 				setVisibleColumns(new Object[] { "date", "notes", "rebate" });
 			}
 		};
+		// ordersTable.setSizeFull();
+		ordersTable.setMultiSelect(true);
+		ordersTable.setEditable(true);
 		addComponent(ordersTable);
 	}
 
