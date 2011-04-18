@@ -39,7 +39,7 @@ public class CustomerOrders extends VerticalLayout {
 		ordersTable = new Table<Order>() {
 			@Override
 			protected void configureAfterSetModel() {
-				setVisibleColumns(new Object[] { "date" });
+				setVisibleColumns(new Object[] { "date", "notes", "rebate" });
 			}
 		};
 		addComponent(ordersTable);

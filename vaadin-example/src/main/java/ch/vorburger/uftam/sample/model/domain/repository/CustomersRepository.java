@@ -72,6 +72,7 @@ public class CustomersRepository {
 			order.customer = customer;
 			order.date = new Date();
 			order.rebate = 0.5;
+			order.notes = "Hurry up, it's for Christmas!";
 			order.items = newLineItems(); 
 			orders.add(order);
 		}

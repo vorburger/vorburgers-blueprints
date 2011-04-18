@@ -6,10 +6,11 @@ import java.util.List;
 public class Order {
 
 	public Date date;
+	public String notes;
 	public Customer customer; // inverse of Customer.orders
 	public List<LineItem> items;
-	
 	public double rebate;
+
 	// TODO status enum (OPEN, CLOSED)
 
 	public Date getDate() {
@@ -43,4 +44,13 @@ public class Order {
 	public void setRebate(double rebate) {
 		this.rebate = rebate;
 	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 }
