@@ -55,6 +55,7 @@ public class MainView extends VerticalLayout implements View<MainView>, ViewCont
 		body = firstBody;
 		body.setSizeFull();
 		addComponent(body);
+		this.setExpandRatio(body, 1);
 
 		Label footer = new Label(
 				"Vaadin Example Application created by <a href=\"http://www.vorburger.ch\">Michael Vorburger</a>",
@@ -67,6 +68,7 @@ public class MainView extends VerticalLayout implements View<MainView>, ViewCont
 	public void setBody(Component newBody) {
 		newBody.setSizeFull();
 		replaceComponent(body, newBody);
+		this.setExpandRatio(newBody, 1);
 		body = newBody;
 	}
 
