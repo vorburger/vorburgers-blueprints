@@ -19,7 +19,8 @@ public class CustomersRepository {
 	// TODO Paging, via DataService! Boo... ;-)
 	static public Collection<Customer> getAllCustomers() {
 		Iterable<Customer> it = customerIterable();
-		Set<Customer> s = Sets.newLinkedHashSet(it); // TODO not sure this is smart? No idea now, just demo anyway..
+		Set<Customer> s = Sets.newLinkedHashSet(it); // TODO not sure this is smart? No idea now,
+														// just demo anyway..
 		return s;
 	}
 
@@ -32,7 +33,7 @@ public class CustomersRepository {
 		}
 		return list;
 	}
-	
+
 	private static Iterable<Customer> customerIterable() {
 		Iterable<Customer> it = new Iterable<Customer>() {
 			@Override
@@ -40,7 +41,7 @@ public class CustomersRepository {
 				return new Iterator<Customer>() {
 
 					long i = 1;
-					
+
 					@Override
 					public boolean hasNext() {
 						return true;
@@ -64,7 +65,7 @@ public class CustomersRepository {
 		};
 		return it;
 	}
-	
+
 	static private Collection<Order> newOrders(Customer customer) {
 		Collection<Order> orders = new LinkedList<Order>();
 		for (int i = 0; i < 10; i++) {
@@ -73,7 +74,7 @@ public class CustomersRepository {
 			order.date = new Date();
 			order.rebate = 0.5;
 			order.notes = "Hurry up, it's for Christmas!";
-			order.items = newLineItems(); 
+			order.items = newLineItems();
 			orders.add(order);
 		}
 		return orders;

@@ -14,9 +14,8 @@ public interface OrderView {
 	void setDate(Date date);
 
 	/**
-	 * Line Items sub-elements. contrary to CustomerShort, the first page (or
-	 * all if few) LineItems are "in-lined" (not just linked) in this
-	 * representation.
+	 * Line Items sub-elements. contrary to CustomerShort, the first page (or all if few) LineItems
+	 * are "in-lined" (not just linked) in this representation.
 	 */
 	DataList<LineItem> getFirstOrders(/* NO DataListRequest argument here! */);
 }

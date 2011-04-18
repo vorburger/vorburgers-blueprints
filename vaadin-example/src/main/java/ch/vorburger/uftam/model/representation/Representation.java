@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * TODO Doc!
- *
+ * 
  * ... REST XML (ATOM-based)... or JSON ... or just Java Serializable.
  * 
  * @author Michael Vorburger (MVO)

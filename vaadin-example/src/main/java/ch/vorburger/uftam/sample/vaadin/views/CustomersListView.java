@@ -16,12 +16,14 @@ import com.vaadin.ui.Table;
 
 /**
  * View showing a list of Customers.
- *
+ * 
  * @author Michael Vorburger
  */
 public class CustomersListView extends AbstractListView<Customer> {
-	// TODO Would be better if it could simply extend Table (because that's what it is), instead containing one?  Unfortunately can't mix-in - need to decide which one is "stronger"... I'd now probably prefer Table
-	
+	// TODO Would be better if it could simply extend Table (because that's what it is), instead
+	// containing one? Unfortunately can't mix-in - need to decide which one is "stronger"... I'd
+	// now probably prefer Table
+
 	private Table customersTable;
 
 	public CustomersListView(Presenter presenter) {

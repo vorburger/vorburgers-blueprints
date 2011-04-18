@@ -14,7 +14,7 @@ import com.vaadin.ui.Table;
 
 /**
  * View showing a list of Orders for a given Customer.
- *
+ * 
  * @author Michael Vorburger
  */
 public class CustomerOrdersView extends AbstractView<Customer> {

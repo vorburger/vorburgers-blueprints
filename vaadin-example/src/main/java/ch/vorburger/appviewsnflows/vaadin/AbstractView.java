@@ -4,12 +4,12 @@ import com.vaadin.ui.Component;
 
 /**
  * Abstract base class with typical implementation of Event interface.
- *
+ * 
  * @author Michael Vorburger
  */
 public abstract class AbstractView<T> extends ch.vorburger.appviewsnflows.AbstractView implements View<T> {
 
-	private /* final */ Presenter presenter;
+	private/* final */Presenter presenter;
 	private final Component root;
 
 	abstract protected Component createRootComponent();

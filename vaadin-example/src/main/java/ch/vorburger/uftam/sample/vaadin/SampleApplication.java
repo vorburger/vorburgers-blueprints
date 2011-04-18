@@ -23,47 +23,49 @@ public class SampleApplication extends Application implements ItemClickListener,
 	private static final long serialVersionUID = 1L;
 
 	// TODO Later when the Flow creates the Views then this will be dynamic
-	private MainView/*WithCustomLayout*/ mainView;
+	private MainView/* WithCustomLayout */mainView;
 	private CustomerList customerList;
 
 	private Button goToCustomers;
-	
+
 	@Override
 	public void init() {
 		setTheme("mytheme");
-		
+
 		// Presenter p = new SampleAppPresenter();
 
 		// TODO Later this won't be here be in the SampleAppPresenter Flow, only
 		Collection<Customer> customers = CustomersRepository.getAFewCustomers();
-		
+
 		// AbstractView<Collection<Customer>> firstView = new CustomersListView(p);
 		customerList = new CustomerList();
 		customerList.setModel(Customer.class, customers);
-		
+
 		customerList.addListener(this);
-		
+
 		UserInfo userInfo = new UserInfo() {
 			@Override
 			public String getUID() {
 				return "michael.vorburger";
 			}
 		};
-		
+
 		// MainRootWindowView mainView = new MainRootWindowView(p);
-		mainView = new MainView/*WithCustomLayout*/(customerList);
+		mainView = new MainView/* WithCustomLayout */(customerList);
 		// mainView.setMainView(firstView);
-		
-		mainView.setUserInfo(userInfo);
-		
+
+		mainView.setModel(MainView.USER_INFO, userInfo); // = mainView.setUserInfo(userInfo);
+
+		// mainView = customerList;
+
 		// Component component = mainDecoView.getRootComponent();
 		// ComponentContainer rootViewComponent = (ComponentContainer) component;
-		// final Window mainWindow = new Window("UFTAM Vaadin Sample Application", rootViewComponent);
+		// final Window mainWindow = new Window("UFTAM Vaadin Sample Application",
+		// rootViewComponent);
 		final Window mainWindow = new Window("UFTAM Vaadin Sample Application", mainView);
-		
+
 		setMainWindow(mainWindow);
 	}
-
 
 	@Override
 	public void itemClick(ItemClickEvent event) {
@@ -75,11 +77,11 @@ public class SampleApplication extends Application implements ItemClickListener,
 
 			CustomerOrders customerOrders = new CustomerOrders();
 			goToCustomers = customerOrders.goToCustomers();
-			goToCustomers .addListener(this);
+			goToCustomers.addListener(this);
 			customerOrders.setModel(customer);
 			mainView.setBody(customerOrders);
 		}
-		
+
 	}
 
 	@Override
@@ -87,7 +89,7 @@ public class SampleApplication extends Application implements ItemClickListener,
 		if (event.getComponent() == goToCustomers) {
 			mainView.setBody(customerList);
 		}
-		
+
 	}
 
 }

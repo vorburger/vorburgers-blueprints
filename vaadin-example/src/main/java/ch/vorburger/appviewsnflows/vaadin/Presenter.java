@@ -4,7 +4,7 @@ import ch.vorburger.appviewsnflows.Flow;
 
 /**
  * TODO Doc.
- *
+ * 
  * @author Michael Vorburger
  */
 public interface Presenter {

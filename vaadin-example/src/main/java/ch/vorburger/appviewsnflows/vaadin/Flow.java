@@ -21,7 +21,7 @@ public class Flow implements ch.vorburger.appviewsnflows.Flow {
 	@Override
 	public void onEvent(Event event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

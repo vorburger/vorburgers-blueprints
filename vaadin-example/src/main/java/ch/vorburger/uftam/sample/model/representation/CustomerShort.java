@@ -8,7 +8,7 @@ public interface CustomerShort extends Representation {
 
 	// Attributes
 	// ----------
-	
+
 	String getName();
 
 	// Note: E.g. country & state are not transfered!
@@ -17,8 +17,8 @@ public interface CustomerShort extends Representation {
 	// -----------
 
 	/**
-	 * Navigation to Orders. Note that there is no in-line data in this
-	 * representation (contrary to OrderView).
+	 * Navigation to Orders. Note that there is no in-line data in this representation (contrary to
+	 * OrderView).
 	 */
 	DataList<OrderView> goToOrders(DataListRequest<OrderView> req);
 

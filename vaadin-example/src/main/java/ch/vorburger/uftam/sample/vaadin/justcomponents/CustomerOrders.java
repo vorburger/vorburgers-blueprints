@@ -24,22 +24,23 @@ public class CustomerOrders extends VerticalLayout {
 	private final Button goToCustomers;
 	private final Label customerInfo;
 	private final Table<Order> ordersTable;
-	
+
 	public CustomerOrders() {
 		super();
-		
+
 		goToCustomers = new Button("Customers");
 		goToCustomers.setStyleName(BaseTheme.BUTTON_LINK);
 		goToCustomers.setDescription("Back to Customers List");
 		// ?? customerInfoLink.addListener(this); // react to clicks
 		addComponent(goToCustomers);
-	        
+
 		customerInfo = new Label();
 		addComponent(customerInfo);
 
-		addComponent(new Label("<i>Table is editable, and multi-select enabled! Ctrl-click, and delete!</i>", Label.CONTENT_XHTML));
+		addComponent(new Label("<i>Table is editable, and multi-select enabled! Ctrl-click, and delete!</i>",
+				Label.CONTENT_XHTML));
 		addComponent(new Button("Delete"));
-		
+
 		ordersTable = new Table<Order>() {
 			@Override
 			protected void configureAfterSetModel() {
@@ -49,6 +50,7 @@ public class CustomerOrders extends VerticalLayout {
 		// ordersTable.setSizeFull();
 		ordersTable.setMultiSelect(true);
 		ordersTable.setEditable(true);
+		ordersTable.setWidth(75, UNITS_PERCENTAGE);
 		addComponent(ordersTable);
 	}
 
@@ -61,7 +63,8 @@ public class CustomerOrders extends VerticalLayout {
 	}
 
 	/**
-	 * Expose the internal "go to customers" components, so that an external Controler (Flow) can attach a Listener to it.
+	 * Expose the internal "go to customers" components, so that an external Controler (Flow) can
+	 * attach a Listener to it.
 	 */
 	public Button goToCustomers() {
 		return goToCustomers;

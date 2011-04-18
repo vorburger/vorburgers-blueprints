@@ -9,9 +9,9 @@ import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * Application Main Window View.
- * This is the "frame" shown around other views with e.g. menu and header/logo stuff.
- *
+ * Application Main Window View. This is the "frame" shown around other views with e.g. menu and
+ * header/logo stuff.
+ * 
  * @author Michael Vorburger
  */
 public class MainRootWindowView extends AbstractView<Void> {
@@ -44,7 +44,7 @@ public class MainRootWindowView extends AbstractView<Void> {
 			} else {
 				rootLayout.addComponent(subView.getRootComponent());
 			}
-	        currentMainComponent = subView.getRootComponent();
+			currentMainComponent = subView.getRootComponent();
 		} else {
 			throw new IllegalArgumentException("No such subview slot on this view: " + slotName);
 		}

@@ -4,7 +4,7 @@ import ch.vorburger.appviewsnflows.Flow;
 
 /**
  * MVP Presenter.
- *
+ * 
  * @author Michael Vorburger
  */
 public abstract class AbstractPresenter implements Presenter {

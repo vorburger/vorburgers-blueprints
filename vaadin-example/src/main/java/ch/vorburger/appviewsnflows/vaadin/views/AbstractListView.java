@@ -8,9 +8,9 @@ import ch.vorburger.appviewsnflows.vaadin.Presenter;
 
 /**
  * List View.
- *
+ * 
  * @param <T> Java Class Type of the Model of this View
- *
+ * 
  * @author Michael Vorburger
  */
 public abstract class AbstractListView<T> extends AbstractView<Collection<T>> {

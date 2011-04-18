@@ -4,9 +4,9 @@ import com.vaadin.ui.Component;
 
 /**
  * TODO
- *
+ * 
  * @param <T> Java Class Type of the Model of this View
- *
+ * 
  * @author Michael Vorburger
  */
 public interface View<T> {
