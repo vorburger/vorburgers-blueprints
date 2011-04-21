@@ -1,0 +1,2 @@
+
+* using some Grapher tool (Eclipse's?), gen. an (auto-layouted, not an Editor) "class diagram" (showing relationships)
