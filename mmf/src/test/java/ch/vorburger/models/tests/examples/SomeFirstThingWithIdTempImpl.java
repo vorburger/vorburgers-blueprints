@@ -6,7 +6,7 @@ package ch.vorburger.models.tests.examples;
  *
  * @author Michael Vorburger
  */
-public class SomethingWithIdTempImpl implements SomethingWithId {
+public class SomeFirstThingWithIdTempImpl implements SomeFirstThingWithId {
 	// TODO remove this when I have created the thing which creates bytecode from interfaces on the fly
 	
 	private long id1;
@@ -23,7 +23,7 @@ public class SomethingWithIdTempImpl implements SomethingWithId {
 		return id1;
 	}
 
-	public SomethingWithId id1(long id1) {
+	public SomeFirstThingWithId id1(long id1) {
 		this.id1 = id1;
 		return this;
 	}
@@ -32,7 +32,7 @@ public class SomethingWithIdTempImpl implements SomethingWithId {
 		return id2;
 	}
 
-	public SomethingWithId id2(String id2) {
+	public SomeFirstThingWithId id2(String id2) {
 		this.id2 = id2;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class SomethingWithIdTempImpl implements SomethingWithId {
 		return name;
 	}
 
-	public SomethingWithId name(String name) {
+	public SomeFirstThingWithId name(String name) {
 		this.name = name;
 		return this;
 	}

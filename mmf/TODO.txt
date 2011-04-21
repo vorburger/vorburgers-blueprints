@@ -3,9 +3,11 @@
 
 * handle reverseness!!
 
+* Class.new !!
+
 
 * Annotations... really needed?!  isn't that a work-around because in Java classes (java.lang.Class) cannot be extended (e.g. via mix-in) - here I could!  May be remove later.
 
 * using some Grapher tool (Eclipse's?), gen. an (auto-layouted, not an Editor) "class diagram" (showing relationships)
 
-* Viewer could be configure tree-wise, to exploit 'parent' properties
+* Viewer could be configured tree-wise, to exploit 'parent' properties

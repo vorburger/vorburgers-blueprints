@@ -1,0 +1,72 @@
+
+common.data
+	can, but doesn't have to, use classical Java Bean-like strongly-typed interfaces (which may be hand-written or created by some code generator)
+	Self bootstraped - its metamodel is based on being a model itself!
+	basically something quite similar to like an EMF, if you know that.
+	
+
+Back-End API
+	The 'REST-to-Messaging' mapping is NOT part of this.  An IMPLEMENTATION may decide to create
+		back-end messages for resource requests and updates, but it can well be just a simple in-memory impl.
+	I AM UNCLEAR IF THIS ISN'T SIMPLY PART OF THE Interaction Framework Core - or a separate component which the IFC depends on.
+	
+	 
+Interaction Framework Core
+	Model of types of resources, relationships between them, and actions available on them.
+	At its core a very light-weight completely HTTP & Servlet independent simple in-memory framework.
+	Voilà:
+		Model
+			Resource
+		API
+			
+	Qs:
+		Entry point?? Is there like the one (and only) "Home" resource?
+		Security must be handled here already? So it must have a sense of (User/Agent) identity?
+		information on whether a resource is editable must be exposed?
+		Must have Context with a Locale?!  Better not explicitly, just provide for "a (any) context" - which include Locale
+		Labels & Co. must be handled & provided here already? or not necessarily?  or is that a set of (mix-in??) default resource definitions?!
+		e.g. available choices for a drop-down exposed here already, for editable resources? 
+		  
+
+Interaction Framework Remoting	
+	Creates remoteable representations of exposed resources, on requests.
+	Provides, for example, a Servlet/Filter which:
+		provides (X)HTML representation - a kind of built-in default agent: 
+			That's a simpler & not puristic REST XML - catered for Web browser-baseed human exploration.
+			Must already support "edit" actions though - rendered as simple HTML forms?  
+			Dependent fields or 'progressive disclosure' etc. must already be supported!  That's just a resource refresh.  Something must indicate if it's 'immediate'
+				Implementation based on Vaadin or only as a simple Velocity or similar templating framework sufficient?
+			Looks, intentionally, ugly - no styling here (just a default CSS - not changeable).
+			Is, intentionally, one request is one page which shows one resource. Aggregating resources into views not supported in this Agent, it's the job of e.g. the Vaadin Agent. 
+		provides XML REST access (making choices such as whether pageable lists are exposed as Atom feeds or whatnot, that relationships are XLink or Atom, etc.)
+		provides something very close to the REST model as a JSON model 
+		could provide e.g. PDF or XLS or other representations in theory, but IMHO that makes a lot less sense, and typically such transformations will happen down in the Agent, not here. 
+			
+
+Sample Back-End: Customers & Orders
+	Defines a concrete example Interaction model,
+	and implements its sample (dummy) back-end data access services.
+
+	
+Agent CLI - OPTIONAL
+	basically like the XHTML UI but for CLI.  Just a concept to keep in mind & mention - don't actually waste time building it.
+
+
+Sample Agent Vaadin Hard-Coded
+	uses 'Sample Back-End: Customers & Orders' 
+	hard-coded Vaadin Views Classes with intermixed Controller (addListener & onEvent)
+
+
+util.vaadin.viewsnflows
+	A View manager for the Vaadin UI toolkit.
+	
+	
+Sample Agent Vaadin dynamic flows, hard-coded views
+	uses hard-coded Vaadin Views Classes with a generic Controller driven off a flow model using generic Actions
+
+
+Sample Agent Vaadin dynamic flows, dynamic views
+	builds the Views dynamically at runtime, from a Views Descriptor Model
+		these could EITHER be serialized from a design-time workbench editor, OR built dynamically by 'introspecting' the resource model!
+
+	 

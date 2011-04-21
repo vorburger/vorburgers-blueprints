@@ -2,14 +2,18 @@ package ch.vorburger.models.tests;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import ch.vorburger.models.core.id.Id;
 import ch.vorburger.models.core.id.MapOfThingsWithIds;
 import ch.vorburger.models.core.id.MapOfThingsWithIdsUtil;
+import ch.vorburger.models.core.id.ThingWithId;
+import ch.vorburger.models.tests.examples.SomeSecondOtherThingWithId;
 import ch.vorburger.models.tests.examples.SomethingId;
-import ch.vorburger.models.tests.examples.SomethingWithId;
-import ch.vorburger.models.tests.examples.SomethingWithIdTempImpl;
+import ch.vorburger.models.tests.examples.SomeFirstThingWithId;
+import ch.vorburger.models.tests.examples.SomeFirstThingWithIdTempImpl;
 
 /**
  * TODO Doc
@@ -20,7 +24,7 @@ public class IdTest {
 
 	@Test
 	public void testSomethingWithId() {
-		SomethingWithId somethingWithId = new SomethingWithIdTempImpl();
+		SomeFirstThingWithId somethingWithId = new SomeFirstThingWithIdTempImpl();
 		somethingWithId.id1(123).id2("AN-ID").name("Mondpacxo");
 		
 		SomethingId somethingId = somethingWithId._id();
@@ -30,9 +34,9 @@ public class IdTest {
 	
 	@Test
 	public void testMapOfThingsWithIds() {
-		MapOfThingsWithIds<SomethingId, SomethingWithId> map = MapOfThingsWithIdsUtil.newMap();
+		MapOfThingsWithIds<SomethingId, SomeFirstThingWithId> map = MapOfThingsWithIdsUtil.newMap();
 		
-		SomethingWithId somethingWithId = new SomethingWithIdTempImpl();
+		SomeFirstThingWithId somethingWithId = new SomeFirstThingWithIdTempImpl();
 		somethingWithId.id1(123).id2("AN-ID").name("Mondpacxo");
 		map.put(somethingWithId);
 		
@@ -42,4 +46,19 @@ public class IdTest {
 		assertThat(somethingWithId.name(), equalTo("Mondpacxo"));
 	}
 
+	// TODO Implement this, later - when dyn. impl. is available
+	@Test(expected=IllegalArgumentException.class)
+	public void testMapOfThingsWithDifferentKindsOfIds() {
+		fail("implement me!");
+		MapOfThingsWithIds<Id, ThingWithId<Id>> map = MapOfThingsWithIdsUtil.newMap();
+		
+//		ThingWithId<Id> somethingWithId = new SomeFirstThingWithIdTempImpl();
+//		map.put(somethingWithId);
+//		
+//		SomeSecondOtherThingWithId someSecondOtherThingWithId;
+		// This should fail because it's not the right type:
+//		map.put(someSecondOtherThingWithId);
+
+	}
+	
 }
