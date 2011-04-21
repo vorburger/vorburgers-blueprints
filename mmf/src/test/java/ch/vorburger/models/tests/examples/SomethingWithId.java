@@ -7,15 +7,13 @@ import ch.vorburger.models.core.id.ThingWithId;
  *
  * @author Michael Vorburger
  */
-public interface SomethingWithId extends ThingWithId<SomethingId>, SomethingId {
+public interface SomethingWithId extends ThingWithId<SomethingId> {
 	
 	String name();
 	SomethingWithId name(String name);
 	
-	@Override
 	SomethingWithId id1(long id1);
 	
-	@Override
 	SomethingWithId id2(String id2);
 
 }

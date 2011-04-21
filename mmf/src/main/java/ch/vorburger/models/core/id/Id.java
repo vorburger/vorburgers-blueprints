@@ -1,12 +1,14 @@
 package ch.vorburger.models.core.id;
 
+import java.io.Serializable;
+
 
 /**
  * Id of something.
  *
  * @author Michael Vorburger
  */
-public interface Id {
+public interface Id extends Serializable {
 
 	/**
 	 * String-ified (externalizable) version of the ID of this object.

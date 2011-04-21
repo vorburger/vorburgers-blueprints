@@ -5,7 +5,7 @@ package ch.vorburger.models.core.id;
  * 
  * @author Michael Vorburger
  */
-public interface ThingWithId<T extends Id> extends Id {
+public interface ThingWithId<T extends Id> {
 
 	/**
 	 * ID of this object.

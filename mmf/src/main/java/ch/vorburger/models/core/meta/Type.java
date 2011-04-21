@@ -5,6 +5,6 @@ package ch.vorburger.models.core.meta;
  * 
  * @author Michael Vorburger
  */
-public interface Type extends NamedAnnotatedThing {
+public interface Type extends NamedAnnotatedThingInPackage {
 
 }

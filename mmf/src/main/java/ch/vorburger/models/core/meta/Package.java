@@ -1,6 +1,6 @@
 package ch.vorburger.models.core.meta;
 
-import java.util.Map;
+import ch.vorburger.models.core.id.MapOfThingsWithIds;
 
 /**
  * TODO Doc
@@ -9,5 +9,10 @@ import java.util.Map;
  */
 public interface Package extends NamedAnnotatedThing {
 
-	// TODO Map<K, Class> classes();
+	MapOfThingsWithIds<NamedAnnotatedThingInPackageId, Class> classes();
+
+	MapOfThingsWithIds<NamedAnnotatedThingInPackageId, SimpleType> simpleTypes();
+
+	MapOfThingsWithIds<NamedAnnotatedThingInPackageId, AnnotationType> annotationTypes();
+
 }

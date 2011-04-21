@@ -8,7 +8,6 @@ import ch.vorburger.models.core.id.Id;
  * @author Michael Vorburger
  */
 public interface SomethingId extends Id {
-	// TODO could this be an inner interface of SomethingWithId somehow?
 	
 	long id1();
 	SomethingId id1(long id1);

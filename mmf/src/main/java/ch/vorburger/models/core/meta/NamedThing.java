@@ -6,7 +6,6 @@ package ch.vorburger.models.core.meta;
  * @author Michael Vorburger
  */
 public interface NamedThing {
-
 	
 	String name();
 	NamedThing name(String name);

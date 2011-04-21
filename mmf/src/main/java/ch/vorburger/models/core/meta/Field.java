@@ -7,8 +7,12 @@ import ch.vorburger.models.plus.CoreSimpleTypes;
  * 
  * @author Michael Vorburger
  */
-public interface Field extends NamedAnnotatedThing {
+public interface Field extends NamedAnnotatedThingInClass {
 
+	Type type();
+	
+	boolean isMultiple();
+	
 	/**
 	 * Field name is a {@link CoreSimpleTypes#MID} - it cannot start with an underscore (that's
 	 * reserved for built-in field names, e.g. _id).
