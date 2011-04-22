@@ -1,9 +1,9 @@
 package ch.vorburger.models.plus;
 
-import ch.vorburger.models.core.meta.NamedAnnotatedThingInPackageId;
-import ch.vorburger.models.core.meta.NamedThing;
-import ch.vorburger.models.core.meta.Package;
-import ch.vorburger.models.core.meta.SimpleType;
+import ch.vorburger.models.core.meta.gen.NamedAnnotatedThingInPackageId;
+import ch.vorburger.models.core.meta.gen.NamedThing;
+import ch.vorburger.models.core.meta.gen.Package;
+import ch.vorburger.models.core.meta.gen.SimpleType;
 
 /**
  * TODO Doc

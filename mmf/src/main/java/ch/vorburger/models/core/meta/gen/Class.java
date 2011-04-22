@@ -1,4 +1,4 @@
-package ch.vorburger.models.core.meta;
+package ch.vorburger.models.core.meta.gen;
 
 import ch.vorburger.models.core.id.MapOfThingsWithIds;
 
@@ -13,5 +13,5 @@ public interface Class extends Type {
 
 	MapOfThingsWithIds<NamedAnnotatedThingInClassId, Method> methods();
 	
-	// TODO ??? newObject();
+	Object newObject();
 }

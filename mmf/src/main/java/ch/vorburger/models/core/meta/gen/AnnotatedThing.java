@@ -1,4 +1,4 @@
-package ch.vorburger.models.core.meta;
+package ch.vorburger.models.core.meta.gen;
 
 import java.util.Collection;
 

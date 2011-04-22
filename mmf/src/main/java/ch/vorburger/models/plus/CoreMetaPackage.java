@@ -1,12 +1,12 @@
 package ch.vorburger.models.plus;
 
 import ch.vorburger.models.core.id.MapOfThingsWithIds;
-import ch.vorburger.models.core.meta.AnnotationType;
-import ch.vorburger.models.core.meta.Class;
-import ch.vorburger.models.core.meta.NamedAnnotatedThingInPackageId;
-import ch.vorburger.models.core.meta.NamedThing;
-import ch.vorburger.models.core.meta.Package;
-import ch.vorburger.models.core.meta.SimpleType;
+import ch.vorburger.models.core.meta.gen.AnnotationType;
+import ch.vorburger.models.core.meta.gen.Class;
+import ch.vorburger.models.core.meta.gen.NamedAnnotatedThingInPackageId;
+import ch.vorburger.models.core.meta.gen.NamedThing;
+import ch.vorburger.models.core.meta.gen.Package;
+import ch.vorburger.models.core.meta.gen.SimpleType;
 
 // TODO remove this when I have created the thing which creates bytecode from interfaces on the fly, this is just an instance, which code should create!
 final class CoreMetaPackage implements Package {
