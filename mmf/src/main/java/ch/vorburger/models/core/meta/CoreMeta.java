@@ -14,7 +14,7 @@ import ch.vorburger.models.core.meta.gen.impl.FieldImpl;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class CoreMeta {
 
-	static ch.vorburger.models.core.meta.gen.Class<NamedThing> NAMEDTHING_CLASS = new ClassImpl().name("NamedThing");
+	public static ch.vorburger.models.core.meta.gen.Class<NamedThing> NAMEDTHING_CLASS = new ClassImpl().name("NamedThing");
 	
 //	static ch.vorburger.models.core.meta.gen.Class<Package> PACKAGE_CLASS = new ClassImpl();
 //	static Package PACKAGE = PACKAGE_CLASS.newObject();
@@ -29,8 +29,8 @@ public class CoreMeta {
 		((CoreMetaClassClass)FIELD_CLASS).javaTypeClass = FieldImpl.class;
 		
 		Field namedThing_Class_name_Field = FIELD_CLASS.newObject().name("name");
+		NAMEDTHING_CLASS.fields().put(namedThing_Class_name_Field);
 		// TODO who'll set parent of Field to NAMEDTHING_CLASS ?
-		// TODO NAMEDTHING_CLASS.fields().put(namedThing_Class_name_Field);
 		// TODO Intro a new (general) 'convenience shortcut' API metho on Map (and Collection) fields to create a new Element.  In thse case of Map the Q is how to decide (and update!) the Key of the Map...
 	}
 	

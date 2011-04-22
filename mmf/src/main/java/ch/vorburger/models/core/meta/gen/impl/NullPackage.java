@@ -1,5 +1,6 @@
-package ch.vorburger.models.core.meta;
+package ch.vorburger.models.core.meta.gen.impl;
 
+import ch.vorburger.models.core.NullModelsObject;
 import ch.vorburger.models.core.id.MapOfThingsWithIds;
 import ch.vorburger.models.core.meta.gen.Class;
 import ch.vorburger.models.core.meta.gen.NamedThing;
@@ -8,41 +9,41 @@ import ch.vorburger.models.core.meta.gen.SimpleType;
 import ch.vorburger.models.core.meta.gen.id.NamedThingInPackageId;
 import ch.vorburger.models.core.meta.mixins.annotated.gen.AnnotationType;
 
-// TODO remove this when I have created the thing which creates bytecode from interfaces on the fly, this is just an instance, which code should create!
-final class CoreMetaPackage implements Package {
-	private CoreMetaPackage() {
+/* NOT public */
+class NullPackage implements Package, NullModelsObject {
+	private NullPackage() {
 	}
-	
-	static CoreMetaPackage INSTANCE = new CoreMetaPackage(); 
-	
+	static NullPackage INSTANCE = new NullPackage(); 
+
+	@Override
+	public boolean isNull() {
+		return true;
+	}
+
 	@Override
 	public String name() {
-		return "_Core.Meta";
+		// This is OK (because it's a field of a native Java type) - we can't do any better 
+		return null;
 	}
 
 	@Override
 	public NamedThing name(String name) {
-		throw new UnsupportedOperationException("Cannot change name of built-in core meta package to " + name);
+		throw new IllegalStateException();
 	}
 
 	@Override
 	public MapOfThingsWithIds<NamedThingInPackageId, Class> classes() {
-		throw new UnsupportedOperationException("Cannot list classes yet - TODO");
+		throw new IllegalStateException();
 	}
 
 	@Override
 	public MapOfThingsWithIds<NamedThingInPackageId, SimpleType> simpleTypes() {
-		throw new UnsupportedOperationException("Cannot list simpleTypes yet - TODO");
+		throw new IllegalStateException();
 	}
 
 	@Override
 	public MapOfThingsWithIds<NamedThingInPackageId, AnnotationType> annotationTypes() {
-		throw new UnsupportedOperationException("Cannot list annotationTypes yet - TODO");
-	}
-
-	@Override
-	public boolean isNull() {
-		return false;
+		throw new IllegalStateException();
 	}
 
 }

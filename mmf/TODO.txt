@@ -1,9 +1,33 @@
 
+* interface generation 0.1
+
+* perf. test index-based vs. holding a reflection.Method
+
+* impl generation 0.1
+
+* all gen. interfaces should extends Object (or something else) - they can be used dynamically as well!
+
+* in-memory compilation of impl
+
 * handle ID class, can't mix! E.g. subtypes.
 
 * handle reverseness!!
 
-* Class.new !!
+* these should be code syntax style gen options (ONLY RELEVANT IF GEN CODE - AS LONG AS INVISIBLE INTERNAL, NOT RELEVANT)
+** modern getter and setters or classical getters and setters
+** setter chaining  
+
+* these behaviour options (RELEVANT EVEN IF PURE dyn and no code gen!)
+** nulll interfaces and implementation classes should be an OPTION (which for meta I want) - on by default, but not everybody may like it
+*** choice could be made per Type/Class.. add it to the meta as a mixin, not just an generator option! 
+
+* support gen. code alternative to current Nullable.. the Scala-like Option approach, also see e.g. http://msdn.microsoft.com/en-us/library/1t3y8s4s.aspx
+
+** find out if FindBugs annotations @NonNull & CheckForNull are actuallyuseful, and add them! (http://findbugs.sourceforge.net/manual/annotations.html)
+*** https://bugs.eclipse.org/bugs/show_bug.cgi?id=186342
+*** IntelliJ http://robaustin.wikidot.com/annotations-and-notnull 
+*** http://www.google.ch/search?sourceid=chrome&ie=UTF-8&q=eclipse+JSR+305
+*** http://groups.google.com/group/jsr-305?pli=1
 
 
 * Annotations... really needed?!  isn't that a work-around because in Java classes (java.lang.Class) cannot be extended (e.g. via mix-in) - here I could!  May be remove later.

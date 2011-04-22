@@ -1,4 +1,4 @@
-package ch.vorburger.models.core.meta.gen;
+package ch.vorburger.models.core.meta.gen.id;
 
 import ch.vorburger.models.core.id.Id;
 
@@ -9,7 +9,6 @@ import ch.vorburger.models.core.id.Id;
  */
 public interface NamedThingInClassId extends Id {
 
-	String className();
+	// no String name() & String className() / ClassId class needed
 	
-	String name();
 }

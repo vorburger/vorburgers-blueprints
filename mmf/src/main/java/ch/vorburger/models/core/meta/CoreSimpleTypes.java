@@ -1,9 +1,10 @@
 package ch.vorburger.models.core.meta;
 
-import ch.vorburger.models.core.meta.gen.NamedThingInPackageId;
 import ch.vorburger.models.core.meta.gen.NamedThing;
+import ch.vorburger.models.core.meta.gen.NamedThingInPackage;
 import ch.vorburger.models.core.meta.gen.Package;
 import ch.vorburger.models.core.meta.gen.SimpleType;
+import ch.vorburger.models.core.meta.gen.id.NamedThingInPackageId;
 
 /**
  * TODO Doc
@@ -39,33 +40,18 @@ public enum CoreSimpleTypes implements SimpleType {
 
 	@Override
 	public NamedThingInPackageId _id() {
-		return new NamedThingInPackageId() {
-			
-			@Override
-			public String packageName() {
-				return inPackage().name();
-			}
-			
-			@Override
-			public String name() {
-				return name();
-			}
-			
-			@Override
-			public int hashCode() { // TODO
-				throw new UnsupportedOperationException("I AM NOT YET IMPLEMENTED - FIX ME!");
-			}
-			
-			@Override
-			public boolean equals(Object obj) {
-				throw new UnsupportedOperationException("I AM NOT YET IMPLEMENTED - FIX ME!");
-			}
+		throw new UnsupportedOperationException("Implement me! (or rather, remove this class ;)");
+		// TODO use IdImpl
+	}
 
-			@Override
-			public String toString() {
-				throw new UnsupportedOperationException("I AM NOT YET IMPLEMENTED - FIX ME!");
-			}
-		};
+	@Override
+	public NamedThingInPackage inPackage(Package inPackage) {
+		throw new UnsupportedOperationException("Cannot change packge");
+	}
+
+	@Override
+	public boolean isNull() {
+		return false;
 	}
 	
 }

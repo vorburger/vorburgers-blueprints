@@ -1,9 +1,12 @@
 package ch.vorburger.models.core.meta.gen.impl;
 
+import ch.vorburger.models.core.id.IdImpl;
 import ch.vorburger.models.core.meta.gen.Class;
 import ch.vorburger.models.core.meta.gen.Field;
-import ch.vorburger.models.core.meta.gen.NamedThingInClassId;
 import ch.vorburger.models.core.meta.gen.Type;
+import ch.vorburger.models.core.meta.gen.id.FieldId;
+import ch.vorburger.models.core.meta.gen.id.NamedThingInClassId;
+import ch.vorburger.models.core.meta.gen.impl.id.FieldIdImpl;
 
 /**
  * TODO Doc
@@ -14,7 +17,7 @@ import ch.vorburger.models.core.meta.gen.Type;
 // TODO remove public - but then how do I build CoreMetaPackage ?! 
 public class FieldImpl extends NamedThingImpl implements Field {
 	
-	private @SuppressWarnings("rawtypes") Class klass;
+	private @SuppressWarnings("rawtypes") Class klass = NullClass.INSTANCE;
 	private Type type;
 
 	@Override
@@ -23,9 +26,18 @@ public class FieldImpl extends NamedThingImpl implements Field {
 		return klass;
 	}
 
+	public Field parent(Class newKlass) {
+		if (klass == null) {
+			this.klass = NullClass.INSTANCE;
+		} else {
+			this.klass = newKlass;
+		}
+		return this;
+	}
+	
 	@Override
-	public NamedThingInClassId _id() {
-		throw new IllegalStateException("IMPLEMENT ME");
+	public FieldId _id() {
+		return new FieldIdImpl(parent().inPackage().name(), parent().name(), name());
 	}
 
 	@Override
