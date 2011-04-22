@@ -5,6 +5,6 @@ package ch.vorburger.models.core.meta.gen;
  * 
  * @author Michael Vorburger
  */
-public interface Method extends NamedAnnotatedThingInClass {
+public interface Method extends NamedThingInClass {
 
 }

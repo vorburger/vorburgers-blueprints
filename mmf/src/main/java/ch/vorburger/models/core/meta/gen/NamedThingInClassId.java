@@ -7,7 +7,7 @@ import ch.vorburger.models.core.id.Id;
  *
  * @author Michael Vorburger
  */
-public interface NamedAnnotatedThingInClassId extends Id {
+public interface NamedThingInClassId extends Id {
 
 	String className();
 	

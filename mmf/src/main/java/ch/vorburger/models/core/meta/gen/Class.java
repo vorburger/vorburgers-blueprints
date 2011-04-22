@@ -7,11 +7,11 @@ import ch.vorburger.models.core.id.MapOfThingsWithIds;
  * 
  * @author Michael Vorburger
  */
-public interface Class extends Type {
+public interface Class<T> extends Type {
 
-	MapOfThingsWithIds<NamedAnnotatedThingInClassId, Field> fields();
+	MapOfThingsWithIds<NamedThingInClassId, Field> fields();
 
-	MapOfThingsWithIds<NamedAnnotatedThingInClassId, Method> methods();
+	MapOfThingsWithIds<NamedThingInClassId, Method> methods();
 	
-	Object newObject();
+	T newObject();
 }

@@ -1,4 +1,6 @@
-package ch.vorburger.models.core.meta.gen;
+package ch.vorburger.models.core.meta.mixins.annotated.gen;
+
+import ch.vorburger.models.core.meta.gen.NamedThing;
 
 /**
  * TODO Doc

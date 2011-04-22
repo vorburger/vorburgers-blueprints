@@ -1,6 +1,6 @@
-package ch.vorburger.models.plus;
+package ch.vorburger.models.core.meta;
 
-import ch.vorburger.models.core.meta.gen.NamedAnnotatedThingInPackageId;
+import ch.vorburger.models.core.meta.gen.NamedThingInPackageId;
 import ch.vorburger.models.core.meta.gen.NamedThing;
 import ch.vorburger.models.core.meta.gen.Package;
 import ch.vorburger.models.core.meta.gen.SimpleType;
@@ -13,13 +13,12 @@ import ch.vorburger.models.core.meta.gen.SimpleType;
 public enum CoreSimpleTypes implements SimpleType {
 	// TODO remove this when I have created the thing which creates bytecode from interfaces on the fly, this is just an instance, which code should create!
 
-	// TODO not sure which package this should be in, and what/how it's going to be used for..
-
-	// TODO build something into the framework which enforces this?!  RegExp shouldn't be Doc only, but in annotation!!
+	// TODO not sure is this will still be needed - this will (also?!) be in CoreMeta later..
 
 	/**
 	 * An ID is a type which corresponds to the following regexp ...
 	 */
+	// TODO build something into the framework which enforces this?!  RegExp shouldn't be Doc only, but in annotation!!
 	// TODO Define exact Regexp in doc above!
 	ID,
 	
@@ -39,8 +38,8 @@ public enum CoreSimpleTypes implements SimpleType {
 	}
 
 	@Override
-	public NamedAnnotatedThingInPackageId _id() {
-		return new NamedAnnotatedThingInPackageId() {
+	public NamedThingInPackageId _id() {
+		return new NamedThingInPackageId() {
 			
 			@Override
 			public String packageName() {

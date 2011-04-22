@@ -1,4 +1,4 @@
-package ch.vorburger.models.core.meta.gen;
+package ch.vorburger.models.core.meta.mixins.annotated.gen;
 
 /**
  * TODO Doc
