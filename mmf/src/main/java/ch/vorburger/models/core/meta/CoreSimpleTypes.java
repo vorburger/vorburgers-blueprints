@@ -33,7 +33,7 @@ public enum CoreSimpleTypes implements SimpleType {
 	}
 
 	@Override
-	public Package parent() {
+	public Package inPackage() {
 		return CoreMetaPackage.INSTANCE;
 	}
 
@@ -43,7 +43,7 @@ public enum CoreSimpleTypes implements SimpleType {
 			
 			@Override
 			public String packageName() {
-				return parent().name();
+				return inPackage().name();
 			}
 			
 			@Override

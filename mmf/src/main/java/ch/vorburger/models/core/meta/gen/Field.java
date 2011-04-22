@@ -11,7 +11,7 @@ public interface Field extends NamedThingInClass {
 
 	Type type();
 	
-	boolean isMultiple();
+	// TODO boolean isMultiple();
 	
 	/**
 	 * Field name is a {@link CoreSimpleTypes#MID} - it cannot start with an underscore (that's

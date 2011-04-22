@@ -10,6 +10,6 @@ import ch.vorburger.models.core.meta.mixins.annotated.gen.NamedAnnotatedThing;
  */
 public interface NamedThingInPackage extends NamedThing, ThingWithId<NamedThingInPackageId> {
 
-	Package parent();
+	Package inPackage();
 	
 }

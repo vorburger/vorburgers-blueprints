@@ -7,7 +7,6 @@ import ch.vorburger.models.core.meta.gen.Field;
 import ch.vorburger.models.core.meta.gen.Method;
 import ch.vorburger.models.core.meta.gen.NamedThingInClassId;
 import ch.vorburger.models.core.meta.gen.NamedThingInPackageId;
-import ch.vorburger.models.core.meta.gen.NamedThing;
 import ch.vorburger.models.core.meta.gen.Package;
 
 /**
@@ -21,9 +20,10 @@ public class ClassImpl extends CoreMetaClassClass implements Class {
 
 	private Package _package;
 	private String name;
+	private Class parentClass;
 	
 	@Override
-	public Package parent() {
+	public Package inPackage() {
 		return _package;
 	}
 
@@ -33,14 +33,13 @@ public class ClassImpl extends CoreMetaClassClass implements Class {
 	}
 
 	@Override
-	public ClassImpl name(String name) {
+	public Class name(String name) {
 		this.name = name;
 		return this;
 	}
 
 	@Override
 	public NamedThingInPackageId _id() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -54,6 +53,17 @@ public class ClassImpl extends CoreMetaClassClass implements Class {
 	public MapOfThingsWithIds<NamedThingInClassId, Method> methods() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Class parentClass() {
+		return parentClass;
+	}
+
+	@Override
+	public Class parentClass(Class parentClass) {
+		this.parentClass = parentClass;
+		return this;
 	}
 
 }
