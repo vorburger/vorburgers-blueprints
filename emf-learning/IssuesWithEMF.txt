@@ -1,6 +1,15 @@
 
 OPEN
 
+* how-to: run interfaces code generator outside of Eclipse, just from a main?  Maven plug-in?
+
+* conceptual: ID support, of classes
+* conceptual: path support (may be available in SDO ?)
+* conceptual: 'mixins' - kinda multiple inheritance (just for properties may be, not for operations)
+* conceptual: Null Object pattern, for unset attributes (features)
+
+* perf/impl-detail: dynamic bytecode generation
+
 * perf: approx. 1s start-up cost for even the simplest test?!
 
 * style: something the Resource stuff shouldn't be part of a core/common API - that's on top (IMHO)
