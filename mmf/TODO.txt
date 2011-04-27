@@ -2,6 +2,7 @@
 * interface generation 0.1
 
 * perf. test index-based vs. holding a reflection.Method
+* best perf. would be if *Impl had an Object[] and dyn used index-based into that and gen. e.g. String getName() { return (String) fields[3] }
 
 * impl generation 0.1
 
@@ -12,6 +13,10 @@
 * handle ID class, can't mix! E.g. subtypes.
 
 * handle reverseness!!
+
+* create in-memory meta-model from (may be slightly annotated) interface definitions
+
+* on the fly changes to the metamodel - add fields or even remove - existing instances should remain valid
 
 * these should be code syntax style gen options (ONLY RELEVANT IF GEN CODE - AS LONG AS INVISIBLE INTERNAL, NOT RELEVANT)
 ** modern getter and setters or classical getters and setters
