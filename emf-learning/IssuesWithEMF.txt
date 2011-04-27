@@ -1,0 +1,30 @@
+
+OPEN
+
+* perf: approx. 1s start-up cost for even the simplest test?!
+
+* style: something the Resource stuff shouldn't be part of a core/common API - that's on top (IMHO)
+
+* gen.java: no method chaining via return this from setters
+* gen.java: fluent API with getters/setters without get/set prefix
+
+* https://bugs.eclipse.org/bugs/show_bug.cgi?id=271253
+	http://abstratt.com/blog/2009/04/05/eclipse-without-osgi-textuml-compiler-as-a-stand-alone-java-application/ : "EMF has long been advertised as being mostly functional when running in non-managed mode. However, when running in an standalone app, EMF does not process extensions to its extension points (such as resource factories, metamodel packages and URI mappings), so a standard Java application needs to explicitly initialize EMF, which is clearly suboptimal.  That is because EMF only processes contributions to its extension points right during bundle activation. There is no alternative way to trigger processing of the registry (see bug #271253), which sucks, given that the registry is there just waiting to be used. With no OSGi, there is no such thing as bundle activation, and thus EMF goes into autistic mode."
+
+* non-Equinox OSGi not supported
+	http://njbartlett.name/2011/02/07/emf-in-osgi.html
+	https://github.com/njbartlett/emf-osgi
+
+
+CLOSED
+
+* standalone: not on Maven
+	OK; http://maven.eclipse.org/nexus/content/repositories/testing/
+
+* standalone: org.eclipse.emf.ecore brings along way too many dependencies!
+	OK; <exclusion><artifactId>org.eclipse.core.runtime</artifactId>
+					
+* standalone: EMF Runtime ZIP download has plugins/ & features/ -- some of us out there don't want no OSGi (sometimes)	
+	IGNORE; as Maven-based works
+
+	
