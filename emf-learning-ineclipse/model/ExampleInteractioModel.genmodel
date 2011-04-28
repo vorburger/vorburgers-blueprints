@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/emf-learning-ineclipse/src"
+    modelPluginID="emf-learning-ineclipse" modelName="ExampleInteractioModel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>ExampleInteractionModel.ecore</foreignModel>
+  <genPackages prefix="Exampleinteractionmodel" basePackage="ch.vorburger.blueprint.example.interaction.model"
+      disposableProviderFactory="true" ecorePackage="ExampleInteractionModel.ecore#/">
+    <genDataTypes ecoreDataType="ExampleInteractionModel.ecore#//Email"/>
+    <genClasses ecoreClass="ExampleInteractionModel.ecore#//Home">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExampleInteractionModel.ecore#//Home/EReference0"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExampleInteractionModel.ecore#//Home/currentUser"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExampleInteractionModel.ecore#//Home/customers"/>
+    </genClasses>
+    <genClasses ecoreClass="ExampleInteractionModel.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExampleInteractionModel.ecore#//User/uid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExampleInteractionModel.ecore#//User/fullName"/>
+    </genClasses>
+    <genClasses ecoreClass="ExampleInteractionModel.ecore#//Order"/>
+    <genClasses ecoreClass="ExampleInteractionModel.ecore#//LineItem"/>
+    <genClasses ecoreClass="ExampleInteractionModel.ecore#//UserFull">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExampleInteractionModel.ecore#//UserFull/email"/>
+      <genOperations ecoreOperation="ExampleInteractionModel.ecore#//UserFull/changePassword"/>
+    </genClasses>
+    <genClasses ecoreClass="ExampleInteractionModel.ecore#//Customer"/>
+  </genPackages>
+</genmodel:GenModel>
