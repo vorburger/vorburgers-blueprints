@@ -1,4 +1,6 @@
 
+* JMI
+
 * interface generation 0.1
 
 * perf. test index-based vs. holding a reflection.Method
@@ -29,8 +31,17 @@
 *** http://www.google.ch/search?sourceid=chrome&ie=UTF-8&q=eclipse+JSR+305
 *** http://groups.google.com/group/jsr-305?pli=1
 
-
 * Annotations... really needed?!  isn't that a work-around because in Java classes (java.lang.Class) cannot be extended (e.g. via mix-in) - here I could!  May be remove later.
+
+---
+
+* define interaction metamodel; build an interactionmodel for the core metamodel, build a Web UI
+
+* peer review? POS, SZ, DAG, CVE, KKR, YAN.  Sven & similiar?  Day David? 
+  
+* propose this as a JSR ?!  After peer review, if others think this could be of interest.
+
+---
 
 * using some Grapher tool (Eclipse's?), gen. an (auto-layouted, not an Editor) "class diagram" (showing relationships)
 
