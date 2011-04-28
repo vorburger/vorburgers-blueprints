@@ -37,6 +37,7 @@ OPEN
 
 * gen.java: Exposing int-based accessors unnecessarily clutters the API IMHO, e.g. both EList<EStructuralFeature> getEStructuralFeatures() AND int getFeatureCount() with a EStructuralFeature getEStructuralFeature(int featureID) - looks redundant, overloading the interface.
 
+* https://bugs.eclipse.org/bugs/show_bug.cgi?id=245014 Java Serialization of EMF models (not Serializable currently)
 
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=271253
 	http://abstratt.com/blog/2009/04/05/eclipse-without-osgi-textuml-compiler-as-a-stand-alone-java-application/ : "EMF has long been advertised as being mostly functional when running in non-managed mode. However, when running in an standalone app, EMF does not process extensions to its extension points (such as resource factories, metamodel packages and URI mappings), so a standard Java application needs to explicitly initialize EMF, which is clearly suboptimal.  That is because EMF only processes contributions to its extension points right during bundle activation. There is no alternative way to trigger processing of the registry (see bug #271253), which sucks, given that the registry is there just waiting to be used. With no OSGi, there is no such thing as bundle activation, and thus EMF goes into autistic mode."
