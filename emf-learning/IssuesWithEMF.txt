@@ -1,0 +1,67 @@
+
+OPEN
+
+* learn: what are adapters?
+* learn/try: on the fly changes to the metamodel - add fields or even remove - existing instances should remain valid? see freeze() & isFrozen() stuff...
+
+* how-to: run interfaces code generator outside of Eclipse, just from a main?  Maven plug-in?
+* how-to: String field name based access, easy convenience method?   (appears to be available in SDO; how done?)
+  	EClass's EStructuralFeature getEStructuralFeature(String featureName) ?
+* how-to: all 'multiple' attributes are Lists, not Collection?  A M:N is NOT a List (it's not ordered), can it be gen. as an unordered collection?  If not, -> style/design.
+* how-to: add code to impl. operations - hopefully in an abstract class implementing the gen. interface, not a mixed gen/hand class?!
+
+* conceptual: ID support, of classes
+** LEARN ID Attribute in EClass.getEIDAttribute() - used how?
+** multiple IDs not supported? EClass.getEIDAttribute() returns ONE EAttribute?  Is it hierarchical then, a Path, with uniqueness only within the contained object?
+** Map type attributes supported? EMap (which is NOT a java.util.Map, because it can't be both a List and a Map; I ran into that as well ;) ?! -- for look-up by ID.. useful e.g. for EClass features (attributes).  Is FeatureMap (specific to Feature, not applicable to other classes?) for that?
+* conceptual: path support (may be available in SDO ?)
+* conceptual: 'mixins' - kinda multiple inheritance (just for properties may be, not for operations)
+* conceptual: Null Object pattern, for unset attributes (features)
+
+* perf/impl-detail: dynamic bytecode generation
+** impl should be gen. at runtime, no need to EVER see (and depend on...) that kind of code
+
+* perf: approx. 1s start-up cost for even the simplest test?!
+
+* style: something the Resource stuff (EObject.getResource()) shouldn't be part of a core/common API - that's on top (IMHO)
+* style/design: EObject IS-A Notifier, any/all of them?!  Shouldn't that be an optional Aspect/Wrapper?
+
+* style/design: old Java 1.4 style API; examples:
+** Notification has int constants instead of enum
+** org.eclipse.emf.common.util.URI vs. java.net.URI
+** WrappedException (no longer needed)
+
+* gen.java: EList instead of List could be a problem e.g. for ORM (can it be switched off?)
+* gen.java: no method chaining via return this from setters
+* gen.java: fluent API with getters/setters without get/set prefix
+
+* gen.java: Exposing int-based accessors unnecessarily clutters the API IMHO, e.g. both EList<EStructuralFeature> getEStructuralFeatures() AND int getFeatureCount() with a EStructuralFeature getEStructuralFeature(int featureID) - looks redundant, overloading the interface.
+
+
+* https://bugs.eclipse.org/bugs/show_bug.cgi?id=271253
+	http://abstratt.com/blog/2009/04/05/eclipse-without-osgi-textuml-compiler-as-a-stand-alone-java-application/ : "EMF has long been advertised as being mostly functional when running in non-managed mode. However, when running in an standalone app, EMF does not process extensions to its extension points (such as resource factories, metamodel packages and URI mappings), so a standard Java application needs to explicitly initialize EMF, which is clearly suboptimal.  That is because EMF only processes contributions to its extension points right during bundle activation. There is no alternative way to trigger processing of the registry (see bug #271253), which sucks, given that the registry is there just waiting to be used. With no OSGi, there is no such thing as bundle activation, and thus EMF goes into autistic mode."
+
+* non-Equinox OSGi not supported
+	http://njbartlett.name/2011/02/07/emf-in-osgi.html
+	https://github.com/njbartlett/emf-osgi
+
+
+NICE
+
+* XSD (useful for what I have in mind; may be directly usable)
+* Code Generation Using Annotated Java Interfaces with @model (still used?!)
+* Operation
+
+
+CLOSED
+
+* standalone: not on Maven
+	OK; http://maven.eclipse.org/nexus/content/repositories/testing/
+
+* standalone: org.eclipse.emf.ecore brings along way too many dependencies!
+	OK; <exclusion><artifactId>org.eclipse.core.runtime</artifactId>
+					
+* standalone: EMF Runtime ZIP download has plugins/ & features/ -- some of us out there don't want no OSGi (sometimes)	
+	IGNORE; as Maven-based works
+
+	
