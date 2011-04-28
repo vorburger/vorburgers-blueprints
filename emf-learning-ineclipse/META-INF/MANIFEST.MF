@@ -11,5 +11,6 @@ Export-Package: ch.vorburger.blueprint.example.interaction.model.exampleinteract
  ch.vorburger.blueprint.example.interaction.model.exampleinteractionmodel.impl,
  ch.vorburger.blueprint.example.interaction.model.exampleinteractionmodel.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.junit
 Bundle-ActivationPolicy: lazy
