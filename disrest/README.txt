@@ -3,6 +3,8 @@ disrest = Di's REST ;)
 
 	
 TODO
+	write test.. for all Operations!
+	 
 	flesh out dyn API, impl; get test to pass, complete it
 
 	impl.statcbean, impl.dyn
@@ -12,9 +14,7 @@ TODO
 	build REST front-end, use 2-3 REST frameworks..
 	
 -
-
-	write test.. for all Operations! 
-	extend test to assert that 'back-end' is not called when it shouldn't
+	? extend test to assert that 'back-end' is not called when it shouldn't ?
 
 	is a get-by-id on Resources needed?
 

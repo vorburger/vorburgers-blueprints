@@ -1,5 +1,6 @@
 package ch.vorburger.blueprint.disrest.sampletest.statc;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -9,8 +10,6 @@ import org.junit.Test;
 
 import ch.vorburger.blueprint.disrest.core.MultiReferenceList;
 import ch.vorburger.blueprint.disrest.core.OperationReturn;
-import ch.vorburger.blueprint.disrest.core.Property.PropertyValueUnavailableException;
-import ch.vorburger.blueprint.disrest.core.RootResourceFactory;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.Author;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.Book;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.Library;
@@ -35,13 +34,12 @@ public class LibraryTest {
 		assertThat(library.users().isAvailable(), is(false));
 		assertThat(library.hasMadeBackEndAccess(), is(false));
 
-		MultiReferenceList<Book> books = library.availableBooks();
+		MultiReferenceList<Book> booksRef = library.availableBooks();
 		assertThat(library.hasMadeBackEndAccess(), is(false));
 		
-		List<Book> firstThreeBooks = books.value().page(0, 3).asList();
-		
-		Book firstBook;
-		// TODO firstBook.author().value()
+		List<Book> books = booksRef.value().pageSize(10);
+		Book firstBook = books.get(0);
+		assertThat(firstBook.author().value().name().value(), equalTo("Divvya"));
 		
 		// TODO Login authentication security!
 		// library.login();
