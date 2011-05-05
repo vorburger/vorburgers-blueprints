@@ -6,13 +6,19 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import ch.vorburger.blueprint.disrest.core.ReferenceRemotingType;
+
 /**
- * TODO Doc
+ * Annotation specifying the ReferenceRemotingType for Reference Properties.
  *
+ * @see ReferenceRemotingType
+ * 
  * @author Michael Vorburger
  */
 @Target(METHOD) 
 @Retention(RUNTIME)
-public @interface Id {
+public @interface ReferenceRemoting {
 
+	ReferenceRemotingType value();
+	 
 }

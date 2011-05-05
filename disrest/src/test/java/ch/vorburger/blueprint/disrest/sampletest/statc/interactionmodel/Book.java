@@ -1,10 +1,13 @@
 package ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel;
 
+import static ch.vorburger.blueprint.disrest.core.ReferenceRemotingType.EMBED;
+import static ch.vorburger.blueprint.disrest.core.ReferenceRemotingType.ONLY_REFERENCE;
 import ch.vorburger.blueprint.disrest.core.OperationReturn;
 import ch.vorburger.blueprint.disrest.core.Property;
 import ch.vorburger.blueprint.disrest.core.Resource;
 import ch.vorburger.blueprint.disrest.core.SingleReference;
 import ch.vorburger.blueprint.disrest.core.statc.Id;
+import ch.vorburger.blueprint.disrest.core.statc.ReferenceRemoting;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.datatypes.ISBN;
 
 /**
@@ -21,9 +24,11 @@ public interface Book extends Resource {
 	
 	Property<String> title();
 	
-	// real-life books have many authors, but just to illustrate multiplicity many vs. single here we'll say a Book has only one Author 
+	// real-life books have many authors, but just to illustrate multiplicity many vs. single here we'll say a Book has only one Author
+	@ReferenceRemoting(EMBED)
 	SingleReference<Author> author();
 	
+	@ReferenceRemoting(ONLY_REFERENCE)
 	SingleReference<Reservation> currentReservation();
 	
 	OperationReturn<Reservation> borrow();

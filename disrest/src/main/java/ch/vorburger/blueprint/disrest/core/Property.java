@@ -21,7 +21,11 @@ public interface Property<T> extends Serializable {
 
 	/**
 	 * Is this property actually available? It may not (currently or anymore) be, for reasons
-	 * including e.g. access control security (to the the current user), or schema evolution, etc.
+	 * including e.g. access control security (to the the current user), or schema evolution (if
+	 * e.g. a statically typed interface still exposes a property from a previous meta model
+	 * version, which has since been removed), etc.
+	 * 
+	 * In an e.g. XML marshaled instance, a non-available property may not even be part of (some of) the wire-level serialization. 
 	 * 
 	 * Note that the 'null' value and availability are distinct concepts.
 	 * 
@@ -36,16 +40,21 @@ public interface Property<T> extends Serializable {
 	 */
 	void value(T newValue) throws PropertyValueUnchangeableException;
 
+	/**
+	 * Can this property actually be changed? It may not (currently or never) be, for reasons
+	 * including ready-only or access control security (to the the current user), or schema
+	 * evolution (if it's a property still existing in an instance from a previous meta model
+	 * version, which has since been removed), etc.
+	 */
 	boolean isChangeable();
 
-	
 	// ---
-	
-	
+
 	public class PropertyValueUnavailableException extends Exception {
 
 		/**
-		 * Constructs a new <code>PropertyValueUnavailableException</code> with the specified detail message.
+		 * Constructs a new <code>PropertyValueUnavailableException</code> with the specified detail
+		 * message.
 		 * 
 		 * @param msg the detail message
 		 */
@@ -57,7 +66,8 @@ public interface Property<T> extends Serializable {
 	public class PropertyValueUnchangeableException extends Exception {
 
 		/**
-		 * Constructs a new <code>PropertyValueUnchangeableException</code> with the specified detail message.
+		 * Constructs a new <code>PropertyValueUnchangeableException</code> with the specified
+		 * detail message.
 		 * 
 		 * @param msg the detail message
 		 */

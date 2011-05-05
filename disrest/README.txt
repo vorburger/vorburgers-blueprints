@@ -8,10 +8,11 @@ TODO
 
 	flesh out dyn API, write test
 	
-	multiple... not "representations" (as that's binary vs. XML vs. JSON vs. XHTML) but "views", e.g. a UserInfo & UserFull
-	
 	impl.statcbean, impl.dyn
 
 	build REST front-end, use 2-3 REST frameworks..
 		
 	study SDO!  mostly interesting for its change tracking for writing, not so relevant for read-only?
+
+	API to dynamically overload ReferenceRemotingType (in URL)
+	

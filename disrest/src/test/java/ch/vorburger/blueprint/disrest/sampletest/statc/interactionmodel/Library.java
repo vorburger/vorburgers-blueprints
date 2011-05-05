@@ -1,8 +1,10 @@
 package ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel;
 
+import static ch.vorburger.blueprint.disrest.core.ReferenceRemotingType.ONLY_REFERENCE;
 import ch.vorburger.blueprint.disrest.core.MultiReferenceList;
 import ch.vorburger.blueprint.disrest.core.OperationReturn;
 import ch.vorburger.blueprint.disrest.core.Resource;
+import ch.vorburger.blueprint.disrest.core.statc.ReferenceRemoting;
 
 /**
  * Library Resource (Sample/Test).
@@ -19,13 +21,17 @@ public interface Library extends Resource {
 	 * available to borrow.  If a book is in principle available to borrow but not right now
 	 * because somebody else has it, it will still show up in this list though.
 	 */
+	@ReferenceRemoting(ONLY_REFERENCE)
+	// TODO use @ReferenceRemoting(ReferenceRemotingType.EMBED_SOME) instead as an example & test
 	MultiReferenceList<Book> availableBooks();
 
+	@ReferenceRemoting(ONLY_REFERENCE)
 	MultiReferenceList<Author> allAuthors();
 
 	/**
 	 * Administrative User Management. 
 	 */
+	@ReferenceRemoting(ONLY_REFERENCE)
 	MultiReferenceList<User> users();
 
 	// TODO is login just another operation, or some kind of special system property?!
