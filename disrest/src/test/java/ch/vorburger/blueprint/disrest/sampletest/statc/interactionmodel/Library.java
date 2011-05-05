@@ -4,6 +4,7 @@ import static ch.vorburger.blueprint.disrest.core.ReferenceRemotingType.ONLY_REF
 import ch.vorburger.blueprint.disrest.core.MultiReferenceList;
 import ch.vorburger.blueprint.disrest.core.OperationReturn;
 import ch.vorburger.blueprint.disrest.core.Resource;
+import ch.vorburger.blueprint.disrest.core.Resources;
 import ch.vorburger.blueprint.disrest.core.statc.ReferenceRemoting;
 
 /**
@@ -36,7 +37,11 @@ public interface Library extends Resource {
 
 	// TODO is login just another operation, or some kind of special system property?!
 	// Property<User> loggedInUser();
-	// TODO if its an operation, does it have no arg (as in, that's handled out-of-band), or does it
 	// tak. uid/pwd, and a second method signature variant with OAuth/OpenID token/info?
+	// TODO if its an operation, does it have no arg (as in, that's handled out-of-band), or does it
 	OperationReturn<User> login();
+	
+	// TODO @ReferenceRemoting(ReferenceRemotingType.EMBED_SOME) should be implicit here!
+	Resources<Book> searchBooks(String somethingToSearchFirstInBookTitleAndThenContent);
+	
 }

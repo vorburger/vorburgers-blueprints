@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import ch.vorburger.blueprint.disrest.core.MultiReferenceList;
 import ch.vorburger.blueprint.disrest.core.OperationReturn;
+import ch.vorburger.blueprint.disrest.core.Resources;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.Author;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.Book;
 import ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel.Library;
@@ -75,6 +76,12 @@ public class LibraryTest {
 
 		@Override
 		public OperationReturn<User> login() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+			@Override
+		public Resources<Book> searchBooks(String somethingToSearchFirstInBookTitleAndThenContent) {
 			// TODO Auto-generated method stub
 			return null;
 		}
