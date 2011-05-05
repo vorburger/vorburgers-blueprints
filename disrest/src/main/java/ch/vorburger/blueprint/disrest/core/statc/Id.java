@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * TODO Doc
  *
- * @author Michael Vorburger
+ * @author Michael Vorburger <mike@vorburger.ch>
  */
 @Target(METHOD) 
 @Retention(RUNTIME)

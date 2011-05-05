@@ -5,6 +5,7 @@ package ch.vorburger.blueprint.disrest.core;
  *
  * @author Michael Vorburger
  */
-public interface OperationReturn<T extends Resource> extends SingleReference<T> {
+public interface ResourcesPager {
+	// TODO remove?
 
 }

@@ -8,6 +8,7 @@ package ch.vorburger.uftam.model.representation;
  * @author Michael Vorburger (MVO)
  */
 public interface DataList<T> extends Representation {
+	// TODO remove & replace with new Resources.page() infra!
 
 	DataList<T> getMore(DataListRequest<T> req);
 

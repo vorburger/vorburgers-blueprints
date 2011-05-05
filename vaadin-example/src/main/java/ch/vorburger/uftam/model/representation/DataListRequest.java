@@ -1,7 +1,8 @@
 package ch.vorburger.uftam.model.representation;
 
 public class DataListRequest<T> {
-
+	// TODO remove & replace with new Resources.page() infra!
+	
 	// TODO REST GET with this as parameter.
 	// TODO How to make default parameters?
 

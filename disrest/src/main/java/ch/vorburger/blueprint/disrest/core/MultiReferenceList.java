@@ -1,6 +1,5 @@
 package ch.vorburger.blueprint.disrest.core;
 
-import java.util.List;
 
 /**
  * TODO Doc
@@ -8,6 +7,8 @@ import java.util.List;
  * @author Michael Vorburger
  * @param <E>
  */
-public interface MultiReferenceList<E> extends Property<MultiReferenceList<E>>, List<E> {
-
+public interface MultiReferenceList<E extends Resource /* , T_ID - no?! */> extends Property<Resources<E>> {
+	// TODO naming... MultiReferenceList is not good! just MultiReference may be?
+	
+	
 }

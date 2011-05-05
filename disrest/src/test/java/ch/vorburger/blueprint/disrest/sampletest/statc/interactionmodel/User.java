@@ -1,6 +1,5 @@
 package ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel;
 
-import ch.vorburger.blueprint.disrest.core.OperationReturn;
 import ch.vorburger.blueprint.disrest.core.Property;
 import ch.vorburger.blueprint.disrest.core.Resource;
 import ch.vorburger.blueprint.disrest.core.statc.Id;
@@ -20,7 +19,7 @@ public interface User extends Resource {
 	Property<Email> id();
 
 	// NOTE Password is not a property of this kind of User...
-	OperationReturn<Void> changePassword(UserPasswordChange userPasswordChange);
+	void changePassword(UserPasswordChange userPasswordChange);
 
 	/**
 	 * User Password Change Resource (Sample/Test).

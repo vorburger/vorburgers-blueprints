@@ -5,6 +5,6 @@ package ch.vorburger.blueprint.disrest.core;
  *
  * @author Michael Vorburger
  */
-public interface SingleReference<T> extends Property<SingleReference<T>> {
-
+public interface SingleReference<T extends Resource> extends Property<T> {
+	// TODO keep or throw this and just use Property<Book> in Resources directly - what value does this add?!
 }
