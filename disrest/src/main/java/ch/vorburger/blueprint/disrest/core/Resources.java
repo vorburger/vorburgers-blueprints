@@ -26,15 +26,15 @@ public interface Resources<E extends Resource> {
 	 */
 	long size();
 
-	/**
-	 * Get to the data, in a paged fashion (only). The sort order is some kind of back-end
-	 * determined default sort order.
-	 * 
-	 * @param pageSize how many items to return
-	 * 
-	 * @return a Page
-	 */
-	ResourcesPage<E> pageSize(int pageSize);
+//	/**
+//	 * Get to the data, in a paged fashion (only). The sort order is some kind of back-end
+//	 * determined default sort order.
+//	 * 
+//	 * @param pageSize how many items to return
+//	 * 
+//	 * @return a Page
+//	 */
+//	ResourcesPage<E> page(int pageSize);
 
 	/**
 	 * Like above, but specify starting page number.

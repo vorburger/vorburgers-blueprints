@@ -53,6 +53,7 @@ public interface Property<T> extends Serializable {
 	// ---
 
 	public class PropertyValueUnavailableException extends Exception {
+		private static final long serialVersionUID = -5564665540818979297L;
 
 		/**
 		 * Constructs a new <code>PropertyValueUnavailableException</code> with the specified detail
@@ -66,6 +67,7 @@ public interface Property<T> extends Serializable {
 	}
 
 	public class PropertyValueUnchangeableException extends Exception {
+		private static final long serialVersionUID = 5676102879040503192L;
 
 		/**
 		 * Constructs a new <code>PropertyValueUnchangeableException</code> with the specified
