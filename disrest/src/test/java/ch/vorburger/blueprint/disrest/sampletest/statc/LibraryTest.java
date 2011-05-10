@@ -38,9 +38,9 @@ public class LibraryTest {
 		MultiReferenceList<Book> booksRef = library.availableBooks();
 		assertThat(library.hasMadeBackEndAccess(), is(false));
 		
-		List<Book> books = booksRef.value().pageSize(10);
+		List<Book> books = booksRef.get().pageSize(10);
 		Book firstBook = books.get(0);
-		assertThat(firstBook.author().value().name().value(), equalTo("Divvya"));
+		assertThat(firstBook.author().get().name().get(), equalTo("Divvya"));
 		
 		// TODO Login authentication security!
 		// library.login();

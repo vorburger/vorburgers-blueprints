@@ -11,13 +11,15 @@ public interface Property<T> extends Serializable {
 
 	// TODO Use Scala-like Option pattern instad? (Java-ified via Iterable like in playframework?)
 
+	// TODO could have method here to access the "structural feature", the "property descriptor" (from where you could get e.g. its name and further metadata)
+	
 	/**
 	 * Getter to obtain the Property's value.
 	 * 
 	 * @throws PropertyValueUnavailableException if this property not {@link #isAvailable()}
 	 * @return value, or null (if the property has no value, but is available)
 	 */
-	T value() throws PropertyValueUnavailableException;
+	T get() throws PropertyValueUnavailableException;
 
 	/**
 	 * Is this property actually available? It may not (currently or anymore) be, for reasons
@@ -38,7 +40,7 @@ public interface Property<T> extends Serializable {
 	 * 
 	 * @param newValue the new value
 	 */
-	void value(T newValue) throws PropertyValueUnchangeableException;
+	void set(T newValue) throws PropertyValueUnchangeableException;
 
 	/**
 	 * Can this property actually be changed? It may not (currently or never) be, for reasons
