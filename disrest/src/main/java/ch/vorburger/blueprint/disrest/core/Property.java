@@ -11,7 +11,7 @@ public interface Property<T> extends Serializable {
 
 	// TODO Use Scala-like Option pattern instead? (Java-ified via Iterable like in playframework?)
 
-	// TODO getter for PropertyType (or EMF EAttribute)
+	// TODO getter method here for PropertyType (or EMF EAttribute), to access the "structural feature", the "property descriptor" (from where you could get e.g. its name and further metadata)
 	
 	/**
 	 * Getter to obtain the Property's value.
@@ -19,7 +19,7 @@ public interface Property<T> extends Serializable {
 	 * @throws PropertyValueUnavailableException if this property not {@link #isAvailable()}
 	 * @return value, or null (if the property has no value, but is available)
 	 */
-	T value() throws PropertyValueUnavailableException;
+	T get() throws PropertyValueUnavailableException;
 
 	/**
 	 * Is this property actually available? It may not (currently or anymore) be, for reasons
@@ -40,7 +40,7 @@ public interface Property<T> extends Serializable {
 	 * 
 	 * @param newValue the new value
 	 */
-	void value(T newValue) throws PropertyValueUnchangeableException;
+	void set(T newValue) throws PropertyValueUnchangeableException;
 
 	/**
 	 * Can this property actually be changed? It may not (currently or never) be, for reasons
@@ -53,6 +53,7 @@ public interface Property<T> extends Serializable {
 	// ---
 
 	public class PropertyValueUnavailableException extends Exception {
+		private static final long serialVersionUID = -5564665540818979297L;
 
 		/**
 		 * Constructs a new <code>PropertyValueUnavailableException</code> with the specified detail
@@ -66,6 +67,7 @@ public interface Property<T> extends Serializable {
 	}
 
 	public class PropertyValueUnchangeableException extends Exception {
+		private static final long serialVersionUID = 5676102879040503192L;
 
 		/**
 		 * Constructs a new <code>PropertyValueUnchangeableException</code> with the specified
