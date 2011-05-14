@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>x</groupId>
+	<artifactId>restlet-learning</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<restlet.version><!-- 2.0.1 -->
+			2.1-SNAPSHOT
+		</restlet.version>
+	</properties>
+
+	<dependencies> 
+		<!-- <dependency> <groupId>org.restlet.jee</groupId> <artifactId>org.restlet</artifactId> 
+			<version>${restlet.version}</version> </dependency> -->
+		<dependency>
+			<groupId>org.restlet.jee</groupId>
+			<artifactId>org.restlet.ext.servlet</artifactId>
+			<version>${restlet.version}</version>
+		</dependency>
+		
+<!--  Can't get this to work:
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet.example</artifactId>
+			<version>${restlet.version}</version>
+		</dependency>
+ --> 
+		
+<!--
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet.ext.simple</artifactId>
+			<version>${restlet.version}</version>
+		</dependency>
+ -->		
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>maven-restlet</id>
+			<name>Public online Restlet repository</name>
+			<url>http://maven.restlet.org</url>
+		</repository>
+	</repositories>
+
+</project>
