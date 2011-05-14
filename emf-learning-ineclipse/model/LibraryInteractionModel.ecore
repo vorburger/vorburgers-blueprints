@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="libraryinteractionmodel"
+    nsURI="http://libraryinteractionmodel/1.0" nsPrefix="libraryinteractionmodel">
+  <eClassifiers xsi:type="ecore:EClass" name="Library"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Book">
+    <eOperations name="borrow" eType="#//Reservation">
+      <eParameters name="newReservation" eType="#//Reservation"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isbn" lowerBound="1" eType="#//ISBN"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
+        eType="#//Author" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentReservation" eType="#//Reservation"
+        eOpposite="#//Reservation/book"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Books"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Authors"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Author"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Client"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Clients"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Reservation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//ReservationRequest"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="client" lowerBound="1"
+        eType="#//Client"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="book" lowerBound="1" eType="#//Book"
+        eOpposite="#//Book/currentReservation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClientReservations"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ISBN" instanceClassName="java.lang.Long"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReservationRequest" eSuperTypes="#//Reservation"/>
+</ecore:EPackage>

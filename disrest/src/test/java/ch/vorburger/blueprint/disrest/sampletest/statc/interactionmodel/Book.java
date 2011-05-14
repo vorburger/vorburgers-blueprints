@@ -2,6 +2,7 @@ package ch.vorburger.blueprint.disrest.sampletest.statc.interactionmodel;
 
 import static ch.vorburger.blueprint.disrest.core.ReferenceRemotingType.EMBED;
 import static ch.vorburger.blueprint.disrest.core.ReferenceRemotingType.ONLY_REFERENCE;
+import ch.vorburger.blueprint.disrest.core.Operation;
 import ch.vorburger.blueprint.disrest.core.OperationReturn;
 import ch.vorburger.blueprint.disrest.core.Property;
 import ch.vorburger.blueprint.disrest.core.Resource;
@@ -23,6 +24,11 @@ public interface Book extends Resource {
 	Property<ISBN> isbn();
 	
 	Property<String> title();
+/* OR:	
+	String getTitle();
+	void setTitle(String title);
+	boolean isTitleAvailable();
+*/
 	
 	// real-life books have many authors, but just to illustrate multiplicity many vs. single here we'll say a Book has only one Author
 	@ReferenceRemoting(EMBED)
@@ -31,7 +37,7 @@ public interface Book extends Resource {
 	@ReferenceRemoting(ONLY_REFERENCE)
 	SingleReference<Reservation> currentReservation();
 	
-	OperationReturn<Reservation> borrow();
+	Operation<Reservation> borrow();
 	
 	// TODO how to model 'exceptions' - e.g. if a book is already borrowed() then the operation won't succeed...
 	

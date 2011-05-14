@@ -9,8 +9,10 @@ import java.io.Serializable;
  */
 public interface Property<T> extends Serializable {
 
-	// TODO Use Scala-like Option pattern instad? (Java-ified via Iterable like in playframework?)
+	// TODO Use Scala-like Option pattern instead? (Java-ified via Iterable like in playframework?)
 
+	// TODO getter for PropertyType (or EMF EAttribute)
+	
 	/**
 	 * Getter to obtain the Property's value.
 	 * 
