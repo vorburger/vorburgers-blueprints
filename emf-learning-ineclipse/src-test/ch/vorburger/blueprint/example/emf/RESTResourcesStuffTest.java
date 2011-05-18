@@ -1,10 +1,16 @@
 package ch.vorburger.blueprint.example.emf;
 
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import libraryinteractionmodel.Author;
+import libraryinteractionmodel.AuthorShort;
 import libraryinteractionmodel.Book;
 import libraryinteractionmodel.Books;
+import libraryinteractionmodel.impl.AuthorImpl;
+import libraryinteractionmodel.impl.AuthorShortImpl;
+import libraryinteractionmodel.impl.AuthorsImpl;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -28,12 +34,25 @@ public class RESTResourcesStuffTest {
 		ResourceSet rs = new ResourceSetImpl();
 		rs.setURIConverter(new RESTURIConverter());
 
-		URI uri = URI.createURI("/library/books/12345");
-		Resource aBookResource = rs.createResource(uri);
-		
+		URI aBookURI = URI.createURI("/library/books/12345");
+		Resource aBookResource = rs.getResource(aBookURI, true);
 		Book aBook = (Book) aBookResource.getContents().get(0);
 		assertThat(aBook.getIsbn(), is(12345L));
 		
+		// This is "embedded", so full object already
+		AuthorShort authorShort = aBook.getAuthor();
+		assertThat(authorShort.eIsProxy(), is(false));
+		assertThat(authorShort.getName(), equalTo("Disney"));
+		
+		// This is a "link" - so only a reference (for now)
+		Author authorProxy = ((AuthorShortImpl) authorShort).basicGetSelf();
+		// NOTE: Instead of *Impl cast, could also use eGet(..., false); 
+		assertThat(authorProxy.eIsProxy(), is(true));
+		
+		Author author = authorShort.getSelf();
+		assertThat(author.getName(), equalTo("Disney"));
+		assertThat(author.getFullBio(), equalTo("Disney was born..."));
+		assertThat(author.eIsProxy(), is(false));
 		
 // TODO /books - paging?!		
 //		URI uri = URI.createURI("/library/books");
