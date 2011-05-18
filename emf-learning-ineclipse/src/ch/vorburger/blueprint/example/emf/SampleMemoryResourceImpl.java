@@ -48,6 +48,7 @@ public class SampleMemoryResourceImpl extends ResourceImpl {
 				author.setFullBio("Disney was born...");
 				getContents().add(author);
 			} else if (getURI().path().startsWith("/library/books")) {
+				throw new UnsupportedOperationException();
 				// TODO !!!!
 			} else {
 				// TODO Error handling? see super()...

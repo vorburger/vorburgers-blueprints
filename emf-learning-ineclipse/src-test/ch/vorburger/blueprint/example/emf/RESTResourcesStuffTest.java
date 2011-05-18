@@ -16,24 +16,28 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
 /**
- * 
  * TODO Doc
  *
  * @author Kai Kreuzer & Michael Vorburger
  */
 public class RESTResourcesStuffTest {
 
-	@Test
-	public void testRESTResources() {
+	private static ResourceSet rs;
+	
+	@BeforeClass
+	public static void setUp() {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new RESTResourceFactoryImpl());
-		
-		ResourceSet rs = new ResourceSetImpl();
+		rs = new ResourceSetImpl();
 		rs.setURIConverter(new RESTURIConverter());
+	}
 
+	@Test
+	public void testGetBookAndItsLinkedAuthor() {
 		URI aBookURI = URI.createURI("/library/books/12345");
 		Resource aBookResource = rs.getResource(aBookURI, true);
 		Book aBook = (Book) aBookResource.getContents().get(0);
@@ -53,12 +57,14 @@ public class RESTResourcesStuffTest {
 		assertThat(author.getName(), equalTo("Disney"));
 		assertThat(author.getFullBio(), equalTo("Disney was born..."));
 		assertThat(author.eIsProxy(), is(false));
-		
-// TODO /books - paging?!		
-//		URI uri = URI.createURI("/library/books");
-//		Resource booksResource = rs.createResource(uri);
-//		
-//		Books books = (Books) booksResource.getContents();
-		
+	}
+	
+	@Test
+	public void testGetBooks() {
+		URI uri = URI.createURI("/library/books?start=1&size=20");
+		Resource booksResource = rs.createResource(uri);
+		Books books = (Books) booksResource.getContents().get(0);
+		assertThat(books.getItems().size(), is(20));
+		assertThat(books.getItems().get(1).getIsbn() * 1000, is(2000L));
 	}
 }
