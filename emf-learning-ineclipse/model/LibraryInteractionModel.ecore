@@ -26,7 +26,6 @@
         eType="#//Reservations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Books">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="items" eType="#//Book"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
         eType="#//BookShort" containment="true"/>
   </eClassifiers>
@@ -49,12 +48,10 @@
         eType="#//Client" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reservation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="client" lowerBound="1"
         eType="#//Client"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="book" lowerBound="1" eType="#//Book"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="book" eType="#//Book"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ISBN" instanceClassName="java.lang.Long"/>

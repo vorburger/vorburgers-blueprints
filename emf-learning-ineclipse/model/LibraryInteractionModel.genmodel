@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/emf-learning-ineclipse/src"
+    modelPluginID="emf-learning-ineclipse" modelName="LibraryInteractionModel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>LibraryInteractionModel.ecore</foreignModel>
+  <genPackages prefix="Libraryinteractionmodel" disposableProviderFactory="true" ecorePackage="LibraryInteractionModel.ecore#/">
+    <genDataTypes ecoreDataType="LibraryInteractionModel.ecore#//ISBN"/>
+    <genDataTypes ecoreDataType="LibraryInteractionModel.ecore#//EMail"/>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Library">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Library/availableBooks"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Library/authors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Library/clients"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Book">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Book/isbn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Book/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Book/author"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Book/currentReservation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Book/reservations"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Books">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Books/items"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Authors">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Authors/items"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//AuthorShort">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//AuthorShort/self"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//AuthorShort/nationality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//AuthorShort/name"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Client">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Client/self"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Client/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Client/email"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Clients">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Clients/items"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Reservation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Reservation/to"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Reservation/client"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Reservation/book"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Reservation/from"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Author">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Author/books"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Author/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Author/nationality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//Author/fullBio"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//BookShort">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//BookShort/self"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//BookShort/isbn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LibraryInteractionModel.ecore#//BookShort/title"/>
+    </genClasses>
+    <genClasses ecoreClass="LibraryInteractionModel.ecore#//Reservations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference LibraryInteractionModel.ecore#//Reservations/items"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
