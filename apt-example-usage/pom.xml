@@ -4,21 +4,34 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ch.vorburger.learnapt</groupId>
-	<artifactId>aptexample</artifactId>
+	<artifactId>aptexample-usage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<!-- http://code.google.com/p/acris/wiki/AnnotationProcessing_Maven
+		describes usage of http://maven-annotation-plugin.googlecode.com/svn/docs/usage.html,
+		but for (at least a simple) example that doesn't actually appear to be needed!!!
+		maven-compiler-plugin (javac?) does it all by itself...  -->
+
+	<dependencies>
+		<dependency>
+			<groupId>ch.vorburger.learnapt</groupId>
+			<artifactId>aptexample</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<!-- Needed as during build of this Processor, META-INF/services look-up shouldn't kick in -->
-				 	<compilerArgument>-proc:none</compilerArgument>
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
