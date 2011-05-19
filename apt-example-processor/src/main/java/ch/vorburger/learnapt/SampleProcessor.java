@@ -66,7 +66,11 @@ public class SampleProcessor extends AbstractProcessor {
 //                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Not a field", e);
 //                continue;
 //            }
-            this.processingEnv.getMessager().printMessage(Kind.WARNING, "Aha: " + e.toString());
+            this.processingEnv.getMessager().printMessage(Kind.WARNING, "Aha: " + e.toString(), e);
+            this.processingEnv.getMessager().printMessage(Kind.ERROR, "Test Error", e);
+            this.processingEnv.getMessager().printMessage(Kind.MANDATORY_WARNING, "Test Mandatory Warning", e);
+            this.processingEnv.getMessager().printMessage(Kind.NOTE, "Test Note", e);
+            this.processingEnv.getMessager().printMessage(Kind.OTHER, "Test Other", e);
             TypeElement clazz = (TypeElement) e; // NOT .getEnclosingElement();
             String name = capitalize(e.getSimpleName().toString());
             
