@@ -9,9 +9,9 @@ import java.io.Serializable;
  */
 public interface Property<T> extends Serializable {
 
-	// TODO Use Scala-like Option pattern instad? (Java-ified via Iterable like in playframework?)
+	// TODO Use Scala-like Option pattern instead? (Java-ified via Iterable like in playframework?)
 
-	// TODO could have method here to access the "structural feature", the "property descriptor" (from where you could get e.g. its name and further metadata)
+	// TODO getter method here for PropertyType (or EMF EAttribute), to access the "structural feature", the "property descriptor" (from where you could get e.g. its name and further metadata)
 	
 	/**
 	 * Getter to obtain the Property's value.

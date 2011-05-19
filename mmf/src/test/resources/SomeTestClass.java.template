@@ -1,0 +1,10 @@
+package <% input.packageName %>;
+
+public class SomeTest_LeBut {
+	
+	static final int i = 1234;
+	
+	public String greet() {
+		return "Saluton! " + i;
+	}
+}

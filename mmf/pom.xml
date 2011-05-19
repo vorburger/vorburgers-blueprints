@@ -11,6 +11,8 @@
 	</properties>
 
 	<dependencies>
+		<!-- If at all possible, I'd love to keep MMF "pure JDK" - no dependencies at all! -->
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

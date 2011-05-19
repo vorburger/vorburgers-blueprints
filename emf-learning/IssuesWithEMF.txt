@@ -1,6 +1,10 @@
 
 OPEN
 
+* CHECK Proxy are full *Impl (but could be more light-weight implementations of the Interface)
+* Proxy resolution happens in Reference getter already, instead of only on access of fields of referenced object 
+
+
 * learn: what are adapters?
 * learn/try: on the fly changes to the metamodel - add fields or even remove - existing instances should remain valid? see freeze() & isFrozen() stuff...
 

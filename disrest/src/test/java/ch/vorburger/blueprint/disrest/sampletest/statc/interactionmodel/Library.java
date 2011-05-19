@@ -29,6 +29,10 @@ public interface Library extends Resource {
 	@ReferenceRemoting(ONLY_REFERENCE)
 	MultiReferenceList<Author> allAuthors();
 
+	// TODO @ReferenceRemoting(ReferenceRemotingType.EMBED_SOME) should be implicit here!
+	Resources<Book> searchBooks(String somethingToSearchFirstInBookTitleAndThenContent);
+
+	
 	/**
 	 * Administrative User Management. 
 	 */
@@ -41,7 +45,5 @@ public interface Library extends Resource {
 	// TODO if its an operation, does it have no arg (as in, that's handled out-of-band), or does it
 	OperationReturn<User> login();
 	
-	// TODO @ReferenceRemoting(ReferenceRemotingType.EMBED_SOME) should be implicit here!
-	Resources<Book> searchBooks(String somethingToSearchFirstInBookTitleAndThenContent);
 	
 }

@@ -11,7 +11,7 @@ import ch.vorburger.blueprint.disrest.core.statc.ReferenceRemoting;
  * 
  * @author Michael Vorburger
  */
-public interface AuthorFull extends Resource {
+public interface AuthorFull extends Author {
 
 	/**
 	 * Full Author Biography. May be quite long.
