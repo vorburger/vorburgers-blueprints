@@ -9,6 +9,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Completion;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedOptions;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
@@ -33,6 +34,7 @@ import javax.tools.JavaFileObject;
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 @SupportedAnnotationTypes("ch.vorburger.learnapt.SomeAnnotation")
+// ? @SupportedOptions()
 // TODO @SupportedAnnotationTypes("*") is it called for EVERYTHING?
 //		"Set of elements which comes as first parameter holds all the java classes which are annotated with supported annotation (note: if the supportedAnnotationType is asterix "*" then the input set is empty and you have to fetch annotated java classes in your own)"
 public class SampleProcessor extends AbstractProcessor {
@@ -56,7 +58,7 @@ public class SampleProcessor extends AbstractProcessor {
 
 		for (TypeElement element : annotations){
             System.out.println(element.getQualifiedName());
-            this.processingEnv.getMessager().printMessage(Kind.WARNING, "Got you: ", element);
+            this.processingEnv.getMessager().printMessage(Kind.WARNING, "Got you: " + element.getQualifiedName(), element);
         }
 		
 		for (Element e : roundEnv.getElementsAnnotatedWith(SomeAnnotation.class)) {
@@ -64,8 +66,9 @@ public class SampleProcessor extends AbstractProcessor {
 //                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Not a field", e);
 //                continue;
 //            }
+            this.processingEnv.getMessager().printMessage(Kind.WARNING, "Aha: " + e.toString());
+            TypeElement clazz = (TypeElement) e; // NOT .getEnclosingElement();
             String name = capitalize(e.getSimpleName().toString());
-            TypeElement clazz = (TypeElement) e.getEnclosingElement();
             
 			try {
 				// NOTE additional arg. to createSourceFile for originatingElements

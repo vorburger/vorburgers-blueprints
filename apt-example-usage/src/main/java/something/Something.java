@@ -9,5 +9,5 @@ import ch.vorburger.learnapt.SomeAnnotation;
  */
 @SomeAnnotation
 public class Something {
-
+    
 }
