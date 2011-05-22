@@ -13,6 +13,8 @@ import java.nio.CharBuffer;
 // TODO self-bootstrap me, and generate this via a previous version of this generator!
 public class GeneratorGenerator implements Generator<Template> {
 
+	// Don't need this?  static enum LexerState { PASSING_THROUGH, IN_EXPRESSION, IN_CODE }
+	
 	static public void generateIt(Writer w, Template t) throws IOException {
 		w.write("package ");
 		w.write(t.dottedPackageName);
@@ -28,39 +30,56 @@ public class GeneratorGenerator implements Generator<Template> {
 		w.write("public class ");
 		w.write(t.className);
 		w.write(" {\n\n");
-		w.write(t.className);
 
 		w.write("\tstatic public void generate(java.io.Writer w, ");
 		w.write(t.parameterClass.getCanonicalName());
 		w.write(' ');
 		w.write(t.parameterVariableName);
-		w.write(") throws IOException {\n");
-		
+		w.write(") throws java.io.IOException {\n");
+
+		boolean streamingThroughNonEscapedCharacters = false;
 		while(hasMore(t.reader)) {
+			// TODO Should check that there are no embedded escapes !!
+			// NOTE: MUST check the 'longer' escape tag before the shorter one!
 			if(check(t.reader, t.expressionEscapeStartTag)) {
+				if (streamingThroughNonEscapedCharacters)
+					w.write("\");\n");
+				w.write("\t\tw.write(");
+				streamingThroughNonEscapedCharacters = true;
 				
 			} else if (check(t.reader, t.expressionEscapeEndTag)) {
-			} else if (check(t.reader, t.codeEscapeStartTag)) {
-				// NOTE: MUST check the 'longer' escape tag before the shorter one!
+				if (streamingThroughNonEscapedCharacters)
+					w.write(");\n");
+				streamingThroughNonEscapedCharacters = false;
 				
-				// TODO Should check that there are no embedded escapes
+			} else if (check(t.reader, t.codeEscapeStartTag)) {
+				if (streamingThroughNonEscapedCharacters)
+					w.write("\");\n");
+				streamingThroughNonEscapedCharacters = true;
+
 			} else if (check(t.reader, t.codeEscapeEndTag)) {
+//				if (streamingThroughNonEscapedCharacters)
+//					w.write("\");\n");
+				w.write('\n');
+				streamingThroughNonEscapedCharacters = false;
+				
 			} else {
 				// OK so it's just plain text to pass through
+				if (!streamingThroughNonEscapedCharacters) {
+					w.write("\t\tw.write(\"");
+					streamingThroughNonEscapedCharacters = true;
+				}
+				char c = (char) t.reader.read();
+				if (c == '\n')
+					w.write("\\n");
+				else 
+					w.write(c);
 			}
-			
 		}
 		
-		int i;
-		while ((i = t.reader.read()) != -1) {
-			char c = (char) i;
-			
-			w.write("\tw.write(\"");
-			w.write(c);
+		if (streamingThroughNonEscapedCharacters)
 			w.write("\");\n");
-		}
-		
-		w.write("\t}\n\n");
+		w.write("\t}\n}\n");
 	}
 
 	/**

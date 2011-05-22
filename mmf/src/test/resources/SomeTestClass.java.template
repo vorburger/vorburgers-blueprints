@@ -1,4 +1,4 @@
-package <% input.packageName %>;
+package <%= input.packageName =%>;
 
 public class SomeTest_LeBut {
 	

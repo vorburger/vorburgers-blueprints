@@ -7,10 +7,10 @@ package ch.vorburger.mtemplating;
  */
 public class SomeTestTemplateInput {
 
-	String packageName;
-	String className;
+	public String packageName;
+	public String className;
 	
-	int someNumber;
-	String helloMessage;
+	public int someNumber;
+	public String helloMessage;
 	
 }
