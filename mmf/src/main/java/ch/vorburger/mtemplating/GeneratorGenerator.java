@@ -3,7 +3,6 @@ package ch.vorburger.mtemplating;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.CharBuffer;
 
 /**
  * Generator for Template Generators.
@@ -44,7 +43,8 @@ public class GeneratorGenerator implements Generator<Template> {
 			if(check(t.reader, t.expressionEscapeStartTag)) {
 				if (streamingThroughNonEscapedCharacters)
 					w.write("\");\n");
-				w.write("\t\tw.write(");
+				// NOTE: The '"" + expression' trick is used to allow non-Object (e.g. int) in expressions
+				w.write("\t\tw.write(\"\" + ");
 				streamingThroughNonEscapedCharacters = true;
 				
 			} else if (check(t.reader, t.expressionEscapeEndTag)) {
@@ -79,7 +79,7 @@ public class GeneratorGenerator implements Generator<Template> {
 		
 		if (streamingThroughNonEscapedCharacters)
 			w.write("\");\n");
-		w.write("\t}\n}\n");
+		w.write("\t\tw.flush();\n\t}\n}\n");
 	}
 
 	/**

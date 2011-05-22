@@ -7,9 +7,6 @@ package ch.vorburger.mtemplating;
  */
 public class SomeTestTemplateInput {
 
-	public String packageName;
-	public String className;
-	
 	public int someNumber;
 	public String helloMessage;
 	
