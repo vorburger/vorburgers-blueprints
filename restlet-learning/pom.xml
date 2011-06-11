@@ -36,6 +36,13 @@
 			<version>${restlet.version}</version>
 		</dependency>
  -->		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<repositories>
