@@ -2,10 +2,10 @@ package ch.vorburger.blueprint.interactionframework.resources;
 
 import java.util.Collection;
 
-import ch.vorburger.blueprint.interactionframework.data.Entity;
-import ch.vorburger.blueprint.interactionframework.data.Property;
-import ch.vorburger.blueprint.interactionframework.data.meta.EntityType;
-import ch.vorburger.blueprint.interactionframework.data.meta.PropertyType;
+import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.Property;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 
 public class CollectionResourceImpl implements CollectionResource /* TODO extends ResourceImpl */ { 
 

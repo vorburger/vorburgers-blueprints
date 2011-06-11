@@ -2,7 +2,7 @@ package ch.vorburger.blueprint.interactionframework.resources;
 
 import java.util.Collection;
 
-import ch.vorburger.blueprint.interactionframework.data.Entity;
+import ch.vorburger.blueprint.interactionframework.model.Entity;
 
 /**
  * //TODO Doc

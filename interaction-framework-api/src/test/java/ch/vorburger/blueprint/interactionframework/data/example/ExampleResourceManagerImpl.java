@@ -2,15 +2,15 @@ package ch.vorburger.blueprint.interactionframework.data.example;
 
 import java.util.Collection;
 
-import ch.vorburger.blueprint.interactionframework.data.Entity;
-import ch.vorburger.blueprint.interactionframework.data.Property;
-import ch.vorburger.blueprint.interactionframework.data.PropertyImpl;
-import ch.vorburger.blueprint.interactionframework.data.meta.EntityType;
-import ch.vorburger.blueprint.interactionframework.data.meta.EntityTypeImpl;
-import ch.vorburger.blueprint.interactionframework.data.meta.PropertyType;
-import ch.vorburger.blueprint.interactionframework.data.meta.PropertyTypeImpl;
-import ch.vorburger.blueprint.interactionframework.data.meta.DataType;
-import ch.vorburger.blueprint.interactionframework.data.meta.DataTypeImpl;
+import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.Property;
+import ch.vorburger.blueprint.interactionframework.model.impl.simple.PropertyImpl;
+import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.DataTypeImpl;
+import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.EntityTypeImpl;
+import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.PropertyTypeImpl;
+import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.CollectionResource;
 import ch.vorburger.blueprint.interactionframework.resources.Resource;
 import ch.vorburger.blueprint.interactionframework.resources.ResourceManager;

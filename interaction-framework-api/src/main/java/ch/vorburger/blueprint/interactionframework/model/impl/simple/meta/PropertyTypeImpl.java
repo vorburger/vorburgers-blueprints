@@ -1,4 +1,7 @@
-package ch.vorburger.blueprint.interactionframework.data.meta;
+package ch.vorburger.blueprint.interactionframework.model.impl.simple.meta;
+
+import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
+import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 
 public class PropertyTypeImpl implements PropertyType {
 

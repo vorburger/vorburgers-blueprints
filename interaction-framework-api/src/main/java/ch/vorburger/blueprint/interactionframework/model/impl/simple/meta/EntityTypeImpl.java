@@ -1,7 +1,10 @@
-package ch.vorburger.blueprint.interactionframework.data.meta;
+package ch.vorburger.blueprint.interactionframework.model.impl.simple.meta;
 
 import java.util.Collection;
 import java.util.HashSet;
+
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 
 public class EntityTypeImpl implements EntityType {
 

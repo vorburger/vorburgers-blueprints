@@ -1,4 +1,6 @@
-package ch.vorburger.blueprint.interactionframework.data;
+package ch.vorburger.blueprint.interactionframework.model.impl.simple;
+
+import ch.vorburger.blueprint.interactionframework.model.Property;
 
 public class PropertyImpl<T> implements Property<T> {
 

@@ -1,4 +1,6 @@
-package ch.vorburger.blueprint.interactionframework.data.meta;
+package ch.vorburger.blueprint.interactionframework.model.impl.simple.meta;
+
+import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
 
 public class DataTypeImpl implements DataType {
 

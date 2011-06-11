@@ -1,4 +1,4 @@
-package ch.vorburger.blueprint.interactionframework.data;
+package ch.vorburger.blueprint.interactionframework.model;
 
 // TODO Doc
 public interface Property<T> {

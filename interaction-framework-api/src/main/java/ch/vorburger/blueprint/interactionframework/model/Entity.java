@@ -1,7 +1,7 @@
-package ch.vorburger.blueprint.interactionframework.data;
+package ch.vorburger.blueprint.interactionframework.model;
 
-import ch.vorburger.blueprint.interactionframework.data.meta.EntityType;
-import ch.vorburger.blueprint.interactionframework.data.meta.PropertyType;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 
 // TODO Doc
 public interface Entity {

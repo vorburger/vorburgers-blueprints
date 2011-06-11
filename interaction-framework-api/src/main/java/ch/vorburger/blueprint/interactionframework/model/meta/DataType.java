@@ -1,4 +1,4 @@
-package ch.vorburger.blueprint.interactionframework.data.meta;
+package ch.vorburger.blueprint.interactionframework.model.meta;
 
 //TODO Doc
 /**
