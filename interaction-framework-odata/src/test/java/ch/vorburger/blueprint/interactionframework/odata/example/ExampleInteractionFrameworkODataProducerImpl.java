@@ -1,7 +1,0 @@
-package ch.vorburger.blueprint.interactionframework.odata.example;
-import ch.vorburger.blueprint.interactionframework.odata.AbstractInteractionFrameworkODataProducerImpl;
-
-
-public class ExampleInteractionFrameworkODataProducerImpl extends AbstractInteractionFrameworkODataProducerImpl {
-
-}

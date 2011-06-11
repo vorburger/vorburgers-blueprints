@@ -1,4 +1,4 @@
-package ch.vorburger.blueprint.interactionframework.odata;
+package ch.vorburger.blueprint.interactionframework.odata4j;
 
 import org.odata4j.core.OEntity;
 import org.odata4j.core.OEntityKey;
