@@ -22,6 +22,7 @@ public interface CollectionResource<E extends Entity> extends Resource {
 	// provide for both access models?!
 
 	// Properties
+	// TODO Collection? Set? rather List, really..
 	Collection<E> getEntries();
 
 	/**

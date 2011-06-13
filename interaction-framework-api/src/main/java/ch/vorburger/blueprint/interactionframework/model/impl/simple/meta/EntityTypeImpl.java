@@ -1,7 +1,7 @@
 package ch.vorburger.blueprint.interactionframework.model.impl.simple.meta;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
@@ -10,7 +10,7 @@ import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 public class EntityTypeImpl implements EntityType {
 
 	private final String name;
-	private final Collection<PropertyType> properties;
+	private final Set<PropertyType> properties;
 
 	public EntityTypeImpl(String name) {
 		super();
@@ -24,7 +24,7 @@ public class EntityTypeImpl implements EntityType {
 	}
 
 	@Override
-	public Collection<PropertyType> getProperties() {
+	public Set<PropertyType> getProperties() {
 		return properties;
 	}
 

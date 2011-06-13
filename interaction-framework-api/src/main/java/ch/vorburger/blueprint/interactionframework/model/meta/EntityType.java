@@ -1,6 +1,6 @@
 package ch.vorburger.blueprint.interactionframework.model.meta;
 
-import java.util.Collection;
+import java.util.Set;
 
 import ch.vorburger.blueprint.interactionframework.model.Entity;
 
@@ -15,6 +15,6 @@ public interface EntityType extends Entity {
 
 	// TODO EntityType getParentEntityType()
 	
-	Collection<PropertyType> getProperties();
+	Set<PropertyType> getProperties();
 
 }

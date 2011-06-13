@@ -1,6 +1,6 @@
 package ch.vorburger.blueprint.interactionframework.model.meta;
 
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Type descriptor of an EntityWithIdentity.
@@ -9,6 +9,6 @@ import java.util.Collection;
  */
 public interface EntityWithIdentityType extends EntityType {
 
-	Collection<PropertyType> getIdentityProperties();
+	Set<PropertyType> getIdentityProperties();
 
 }
