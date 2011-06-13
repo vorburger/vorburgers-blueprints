@@ -12,6 +12,7 @@ import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 public interface ResourceRepository {
 
 	Resource getHomepage(); // TODO ???
+	
 	MetadataResource getMetadata(); // TODO ???
 	
 	/**

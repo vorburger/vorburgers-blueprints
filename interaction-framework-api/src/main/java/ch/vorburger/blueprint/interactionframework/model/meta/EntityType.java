@@ -9,6 +9,8 @@ public interface EntityType extends Entity {
 
 	String getName();
 
+	// TODO EntityType getParentEntityType()
+	
 	Collection<PropertyType> getProperties();
 
 }

@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.odata4j.consumer.ODataConsumer;
 import org.odata4j.core.OEntity;
+import org.odata4j.edm.EdmDataServices;
 import org.odata4j.examples.BaseExample;
 import org.odata4j.producer.server.JerseyServer;
 
@@ -85,7 +86,9 @@ public class ExampleLibraryConsumerTest extends BaseExample {
 	@Test
 	public void testReportMetadata() throws Exception {
 		// take a look at the service edm
-		reportMetadata(consumer.getMetadata());
+		EdmDataServices meta = consumer.getMetadata();
+		reportMetadata(meta);
+		meta.getEdmEntitySet("Books");
 	}
 
 	@Test

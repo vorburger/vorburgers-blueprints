@@ -1,9 +1,10 @@
 package ch.vorburger.blueprint.interactionframework.odata4j;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
-import org.core4j.Enumerable;
 import org.odata4j.core.ODataConstants;
 import org.odata4j.edm.EdmAssociation;
 import org.odata4j.edm.EdmAssociationSet;
@@ -12,11 +13,16 @@ import org.odata4j.edm.EdmDataServices;
 import org.odata4j.edm.EdmEntityContainer;
 import org.odata4j.edm.EdmEntitySet;
 import org.odata4j.edm.EdmEntityType;
+import org.odata4j.edm.EdmNavigationProperty;
+import org.odata4j.edm.EdmProperty;
 import org.odata4j.edm.EdmSchema;
+import org.odata4j.edm.EdmType;
 import org.odata4j.producer.inmemory.InMemoryProducer;
 import org.odata4j.producer.jpa.JPAEdmGenerator;
 
+import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
+import ch.vorburger.blueprint.interactionframework.resources.ResourceType;
 
 /**
  * EdmDataServices builder.
@@ -30,14 +36,15 @@ import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
  */
 class EdmBuilder {
 
-	private static final String CONTAINER_NAME = EdmBuilder.class.getName() + "_GeneratedDefaultContainer"; // TODO
-																												// Huh?
-	private final String namespace;
+	// TODO Hmmm, what's this name for? Hard-code for now, but get back to it...
+	private static final String CONTAINER_NAME = EdmBuilder.class.getName() + "_GeneratedDefaultContainer";
+
+	private final String ns;
 	private final ResourceRepository repo;
 
 	public EdmBuilder(ResourceRepository repo, String namespace) {
 		super();
-		this.namespace = namespace;
+		this.ns = namespace;
 		this.repo = repo;
 	}
 
@@ -49,23 +56,87 @@ class EdmBuilder {
 		List<EdmAssociation> associations = new ArrayList<EdmAssociation>();
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
-		// Add all the Resource Types as Entity Types:
-		
+		// Now add all the Resource Types as Entity Types:
+		Collection<ResourceType> allResourceTypes = repo.getMetadata().getEntries();
+		for (ResourceType resourceType : allResourceTypes) {
+			String resourceName = resourceType.getName();
+
+			// TODO ID/Keys! For now, just properties...
+			List<String> keyNames = new LinkedList<String>();
+
+			List<EdmProperty> edmProperties = new LinkedList<EdmProperty>();
+			Collection<PropertyType> properties = resourceType.getProperties();
+			for (PropertyType propertyType : properties) {
+				EdmProperty edmProperty = toEdmProperty(propertyType);
+				edmProperties.add(edmProperty);
+			}
+
+			// TODO Associations!
+
+			// TODO Reverse Associations?
+
+			List<EdmNavigationProperty> edmNavProperties = null;
+
+			Boolean hasStream = false; // TODO Support streaming; e.g. attributes holding an Image!
+
+			EdmEntityType eet = new EdmEntityType(ns, null, resourceName, hasStream, keyNames, edmProperties, edmNavProperties);
+			entityTypes.add(eet);
+			EdmEntitySet ees = new EdmEntitySet(resourceName, eet);
+			entitySets.add(ees);
+		}
+
 		// Now stitch it all together appropriately:
+		return createEdmDataServices(entitySets, associationSets, entityTypes, complexTypes, associations);
+	}
+
+	private EdmProperty toEdmProperty(PropertyType propertyType) {
+		String name = propertyType.getName();
+		EdmType type = toEdmType(propertyType);
+		
+		boolean nullable = false;    // TODO later, if required; from a isRequired() in PropertyType?
+		Integer maxLength = null;    // TODO later, if required; from a getMaxLength() in PropertyType?
+		Boolean fixedLength = false; // Nah, non-sense.
+		Boolean unicode = true;      // Always, in Java
+		
+		// TODO What are these?! I can't even find any doc about this on odata.org...
+		String storeGeneratedPattern = null;
+		String fcTargetPath = null;
+		String fcContentKind = null;
+		String fcKeepInContent = null;
+		String fcEpmContentKind = null;
+		String fcEpmKeepInContent = null;
+		
+		return new EdmProperty(name, type, nullable, maxLength, unicode, fixedLength, storeGeneratedPattern,
+				fcTargetPath, fcContentKind, fcKeepInContent, fcEpmContentKind, fcEpmKeepInContent);
+	}
+
+	// @see http://code.google.com/p/odata4j/issues/detail?id=46
+	private EdmType toEdmType(PropertyType propertyType) {
+		Class<?> javaType = propertyType.getValueType().getJavaType();
+		EdmType type = EdmType.forJavaType(javaType);
+		if (type == null) {
+			throw new IllegalArgumentException("Could not find the EDM-Type for Java type: " + javaType);
+		}
+		return type;
+	}
+
+	private EdmDataServices createEdmDataServices(List<EdmEntitySet> entitySets,
+			List<EdmAssociationSet> associationSets, List<EdmEntityType> entityTypes,
+			List<EdmComplexType> complexTypes, List<EdmAssociation> associations) {
 		List<EdmSchema> schemas = new ArrayList<EdmSchema>();
 		List<EdmEntityContainer> containers = new ArrayList<EdmEntityContainer>();
-		
+
 		EdmEntityContainer container = new EdmEntityContainer(CONTAINER_NAME, true, null, entitySets, associationSets,
 				null /* EDM Function Import List<EdmFunctionImport> */);
-        containers.add(container);
+		containers.add(container);
 
-		EdmSchema modelSchema = new EdmSchema(namespace, null, entityTypes, complexTypes, associations, null);
-        schemas.add(modelSchema);
+		EdmSchema modelSchema = new EdmSchema(ns, null, entityTypes, complexTypes, associations, null);
+		schemas.add(modelSchema);
 
-        EdmSchema containerSchema = new EdmSchema(namespace + "Container", null, null, null, null, containers);
-        schemas.add(containerSchema);
-        
-        EdmDataServices services = new EdmDataServices(ODataConstants.DATA_SERVICE_VERSION, schemas);
-        return services;
+		EdmSchema containerSchema = new EdmSchema(ns + "Container", null, null, null, null, containers);
+		schemas.add(containerSchema);
+
+		EdmDataServices services = new EdmDataServices(ODataConstants.DATA_SERVICE_VERSION, schemas);
+		return services;
 	}
 }
