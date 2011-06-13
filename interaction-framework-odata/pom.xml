@@ -6,7 +6,9 @@
 	<artifactId>interaction-framework-osgi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-
+	<properties>
+		<odata4j.version>0.5-SNAPSHOT</odata4j.version>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -20,8 +22,17 @@
 		<dependency>
 			<groupId>org.odata4j</groupId>
 			<artifactId>odata4j</artifactId>
-			<version>0.4</version>
+			<version>${odata4j.version}</version>
 		</dependency>
+ <!-- @see http://code.google.com/p/odata4j/issues/detail?id=45
+		<dependency>
+			<groupId>org.odata4j</groupId>
+			<artifactId>odata4j</artifactId>
+			<version>${odata4j.version}</version>
+			<type>test-jar</type> 
+			<scope>test</scope>
+		</dependency>
+ -->
 		
 		<dependency>
 			<groupId>junit</groupId>

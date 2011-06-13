@@ -1,10 +1,12 @@
 package ch.vorburger.blueprint.interactionframework.odata4j;
 
 import org.odata4j.core.OEntity;
+import org.odata4j.core.OEntityId;
 import org.odata4j.core.OEntityKey;
 import org.odata4j.edm.EdmDataServices;
 import org.odata4j.producer.BaseResponse;
 import org.odata4j.producer.EntitiesResponse;
+import org.odata4j.producer.EntityIdResponse;
 import org.odata4j.producer.EntityResponse;
 import org.odata4j.producer.ODataProducer;
 import org.odata4j.producer.QueryInfo;
@@ -34,7 +36,7 @@ public abstract class AbstractInteractionFrameworkODataProducerImpl implements O
 	}
 
 	@Override
-	public EntityResponse getEntity(String entitySetName, OEntityKey entityKey) {
+	public EntityResponse getEntity(String entitySetName, OEntityKey entityKey, QueryInfo queryInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -73,6 +75,31 @@ public abstract class AbstractInteractionFrameworkODataProducerImpl implements O
 	public void updateEntity(String entitySetName, OEntity entity) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public EntityIdResponse getLinks(OEntityId sourceEntity, String targetNavProp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createLink(OEntityId sourceEntity, String targetNavProp, OEntityId targetEntity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateLink(OEntityId sourceEntity, String targetNavProp, OEntityKey oldTargetEntityKey,
+			OEntityId newTargetEntity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteLink(OEntityId sourceEntity, String targetNavProp, OEntityKey targetEntityKey) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
