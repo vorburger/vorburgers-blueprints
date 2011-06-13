@@ -2,6 +2,8 @@ package ch.vorburger.blueprint.interactionframework.odata4j.example;
 
 import org.odata4j.producer.ODataProducer;
 
+import ch.vorburger.blueprint.interactionframework.data.example.ExampleResourceRepositoryImpl;
+
 /**
  * Example Server Launcher.
  *
@@ -13,7 +15,8 @@ public class ExampleServer {
 	static final String ENDPOINT_URI = "http://localhost:8887/InMemoryProducerExample.svc/";
 	
 	public static ODataProducer newExampleProducer() {
-        return new ExampleInteractionFrameworkODataProducerImpl();
+		ExampleResourceRepositoryImpl repo = new ExampleResourceRepositoryImpl();
+        return new ExampleInteractionFrameworkODataProducerImpl(repo, "LibraryExample");
 	}
 	
 	public static void main(String[] args) {

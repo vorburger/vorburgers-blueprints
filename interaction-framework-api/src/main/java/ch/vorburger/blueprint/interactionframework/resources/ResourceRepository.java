@@ -2,16 +2,17 @@ package ch.vorburger.blueprint.interactionframework.resources;
 
 import ch.vorburger.blueprint.interactionframework.model.Entity;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
 /**
  * TODO Doc
  *
  * @author Michael Vorburger & Kai Kreuzer
  */
-public interface ResourceManager {
+public interface ResourceRepository {
 
 	Resource getHomepage(); // TODO ???
-	/* TODO Metadata*/Resource getMetadata(); // TODO ???
+	MetadataResource getMetadata(); // TODO ???
 	
 	/**
 	 * AKA HTTP GET, JPA find(), RDBMS SQL SELECT, etc.
@@ -40,6 +41,5 @@ public interface ResourceManager {
 	Entity newEntity(EntityType type);
 	// TODO no? Resource newResource(EntityType type);
 	
-
 	// Add is on the CollectionResource
 }

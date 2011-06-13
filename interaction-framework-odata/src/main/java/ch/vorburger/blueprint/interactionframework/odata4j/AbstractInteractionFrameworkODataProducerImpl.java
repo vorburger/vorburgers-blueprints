@@ -9,12 +9,22 @@ import org.odata4j.producer.EntityResponse;
 import org.odata4j.producer.ODataProducer;
 import org.odata4j.producer.QueryInfo;
 
+import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
+
 public abstract class AbstractInteractionFrameworkODataProducerImpl implements ODataProducer {
+
+	private final ResourceRepository repo;
+	private EdmBuilder edmBuilder;
+	
+	public AbstractInteractionFrameworkODataProducerImpl(ResourceRepository repo, String namespace) {
+		super();
+		this.repo = repo;
+		this.edmBuilder = new EdmBuilder(repo, namespace);
+	}
 
 	@Override
 	public EdmDataServices getMetadata() {
-		// TODO Auto-generated method stub
-		return null;
+		return edmBuilder.buildEdm();
 	}
 
 	@Override

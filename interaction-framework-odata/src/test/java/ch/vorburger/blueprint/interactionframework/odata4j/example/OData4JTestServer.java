@@ -20,6 +20,8 @@ import com.sun.jersey.api.container.filter.LoggingFilter;
 public class OData4JTestServer {
 
 	public static JerseyServer startODataServer(String baseUri, ODataProducer producer) {
+        // register the producer as the static instance, then launch the http server
+		// TODO hoha - what is this, why does it have to be static?
 		ODataProducerProvider.setInstance(producer);
 		
         JerseyServer server = new JerseyServer(baseUri);

@@ -12,11 +12,12 @@ import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.CollectionResource;
+import ch.vorburger.blueprint.interactionframework.resources.MetadataResource;
 import ch.vorburger.blueprint.interactionframework.resources.Resource;
-import ch.vorburger.blueprint.interactionframework.resources.ResourceManager;
-import ch.vorburger.blueprint.interactionframework.resources.URI;
+import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
+import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
-class ExampleResourceManagerImpl implements ResourceManager {
+public class ExampleResourceRepositoryImpl implements ResourceRepository {
 
 	private static final DataType isbnDataType = new DataTypeImpl(Long.class);
 	private static final EntityType bookType = new EntityTypeImpl("Book");
@@ -54,6 +55,7 @@ class ExampleResourceManagerImpl implements ResourceManager {
 			return new URI() {
 				@Override
 				public String toString() {
+					// TODO this is wrong - only relative URL should be here, final URI must be composed outside
 					return "http://localhost/books/{1}";
 				}
 			};
@@ -110,7 +112,7 @@ class ExampleResourceManagerImpl implements ResourceManager {
 	};
 
 	@Override
-	public Resource getMetadata() {
+	public MetadataResource getMetadata() {
 		// TODO Auto-generated method stub
 		return null;
 	}

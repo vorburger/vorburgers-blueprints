@@ -6,6 +6,7 @@ import ch.vorburger.blueprint.interactionframework.model.Entity;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
+import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
 public class CollectionResourceImpl implements CollectionResource /* TODO extends ResourceImpl */ { 
 
