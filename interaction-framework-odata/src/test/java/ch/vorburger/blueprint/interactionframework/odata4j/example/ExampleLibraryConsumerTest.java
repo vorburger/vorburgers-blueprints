@@ -3,6 +3,9 @@ package ch.vorburger.blueprint.interactionframework.odata4j.example;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.odata4j.consumer.ODataConsumer;
+import org.odata4j.core.OEntity;
+import org.odata4j.examples.BaseExample;
 import org.odata4j.producer.server.JerseyServer;
 
 import com.sun.jersey.api.client.Client;
@@ -15,14 +18,16 @@ import com.sun.jersey.api.client.filter.LoggingFilter;
  * 
  * @author Michael Vorburger
  */
-public class ExampleTest {
+public class ExampleLibraryConsumerTest extends BaseExample {
 
 	private static JerseyServer server;
 	private static Client client = Client.create();
 	private static final String URL = ExampleServer.ENDPOINT_URI;
+	private static ODataConsumer consumer = ODataConsumer.create(URL);
 
 	static {
 		client.addFilter(new LoggingFilter());
+		ODataConsumer.dump.all(true);
 	}
 
 	@BeforeClass
@@ -44,7 +49,7 @@ public class ExampleTest {
 	 * @return Page body (if the HTTP status was 200)
 	 * @throws Exception if the server returned something else than status 200
 	 */
-	private String get(String uri) throws Exception {
+	private String getRaw(String uri) throws Exception {
 		WebResource webResource = client.resource(uri);
 
 		// do NOT use .accept("text/plain") - else it will 406!
@@ -63,7 +68,7 @@ public class ExampleTest {
 	 */
 	@Test
 	public void testGetWADL() throws Exception {
-		get(URL + "application.wadl");
+		getRaw(URL + "application.wadl");
 	}
 
 	/**
@@ -74,6 +79,25 @@ public class ExampleTest {
 	 */
 	@Test
 	public void testGetRootServiceDocument() throws Exception {
-		get(URL + "");
+		getRaw(URL + "");
 	}
+
+	@Test
+	public void testReportMetadata() throws Exception {
+		// take a look at the service edm
+		reportMetadata(consumer.getMetadata());
+	}
+
+	@Test
+	public void testGetEntitiesAndEntity() throws Exception {
+		// retrieve a product entity with a known id
+		OEntity havinaCola = consumer.getEntity("Books", 3).execute();
+		reportEntity("Havina Cola", havinaCola);
+
+		// list all products
+		for (OEntity product : consumer.getEntities("Books").execute()) {
+			reportEntity("Book: " + product.getProperty("ISBN").getValue(), product);
+		}
+	}
+
 }

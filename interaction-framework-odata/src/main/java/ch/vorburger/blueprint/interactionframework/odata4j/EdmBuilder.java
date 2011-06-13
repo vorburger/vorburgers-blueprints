@@ -42,14 +42,19 @@ class EdmBuilder {
 	}
 
 	public EdmDataServices buildEdm() {
-		List<EdmSchema> schemas = new ArrayList<EdmSchema>();
-		List<EdmEntityContainer> containers = new ArrayList<EdmEntityContainer>();
+		// Create empty schemas/containers/entities/etc. lists:
 		List<EdmEntitySet> entitySets = new ArrayList<EdmEntitySet>();
 		List<EdmEntityType> entityTypes = new ArrayList<EdmEntityType>();
 		List<EdmComplexType> complexTypes = new ArrayList<EdmComplexType>();
 		List<EdmAssociation> associations = new ArrayList<EdmAssociation>();
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
+		// Add all the Resource Types as Entity Types:
+		
+		// Now stitch it all together appropriately:
+		List<EdmSchema> schemas = new ArrayList<EdmSchema>();
+		List<EdmEntityContainer> containers = new ArrayList<EdmEntityContainer>();
+		
 		EdmEntityContainer container = new EdmEntityContainer(CONTAINER_NAME, true, null, entitySets, associationSets,
 				null /* EDM Function Import List<EdmFunctionImport> */);
         containers.add(container);
