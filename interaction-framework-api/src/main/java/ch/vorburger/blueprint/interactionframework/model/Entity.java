@@ -11,11 +11,11 @@ import ch.vorburger.blueprint.interactionframework.resources.Resource;
  * AKA Data Transfer Object, etc.
  *
  * This does NOT have an Identity (no ID field),
- * and is not (necessarily) "externally addressable" - as opposed to {@link Resource}.
+ * and is not (necessarily) "externally addressable" - as opposed to an {@link EntityWithIdentity} or a {@link Resource}.
  *
- * @see http://commons.apache.org/beanutils/api/org/apache/commons/beanutils/DynaBean.html
  * @see org.eclipse.emf.ecore.EObject
  * @see com.vaadin.data.Item
+ * @see http://commons.apache.org/beanutils/api/org/apache/commons/beanutils/DynaBean.html
  * @see org.odata4j.producer.inmemory.PropertyModel
  * 
  * @author Michael Vorburger
@@ -23,7 +23,7 @@ import ch.vorburger.blueprint.interactionframework.resources.Resource;
 public interface Entity extends Serializable {
 	// TODO Rename... I'm not entirely happy naming this an Entity, because this can be sub-entity
 	// which doesn't have an ID, while in JPA an Entity is explicitly something with an ID, the
-	// others are just embedded beans
+	// others are just embedded beans.  How about... "DataObject" ?!
 
 	Property<?> getProperty(String name);
 
