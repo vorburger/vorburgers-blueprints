@@ -28,10 +28,10 @@ public interface CollectionResource<E extends Entity> extends Resource {
 	/**
 	 * Count number of Resources in this Resource Collection.
 	 * 
-	 * @return size, or Long.MAX_VALUE if unknown; 0 if empty (no Elements)
+	 * @return size, or 0 if empty (no Elements), or null if unknown
 	 */
-	// TODO better use Long.MAX_VALUE or -1 for unknown? Or Long and allow null?
-	long getCount();
+	// TODO how-to 'on-demand' contact server to fill in missing size (if not pre-fetched)
+	Long getCount();
 
 	// Links
 	// TODO Next/Previous!

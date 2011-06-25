@@ -6,24 +6,28 @@ import ch.vorburger.blueprint.interactionframework.model.Entity;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.PropertyImpl;
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.DataTypeImpl;
-import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.EntityTypeImpl;
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.PropertyTypeImpl;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.CollectionResource;
-import ch.vorburger.blueprint.interactionframework.resources.MetadataResource;
+import ch.vorburger.blueprint.interactionframework.resources.Metadata;
+import ch.vorburger.blueprint.interactionframework.resources.MetadataImpl;
 import ch.vorburger.blueprint.interactionframework.resources.Resource;
 import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
+import ch.vorburger.blueprint.interactionframework.resources.ResourceType;
+import ch.vorburger.blueprint.interactionframework.resources.ResourceTypeImpl;
 import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
 public class ExampleResourceRepositoryImpl implements ResourceRepository {
 
 	private static final DataType isbnDataType = new DataTypeImpl(Long.class);
-	private static final EntityType bookType = new EntityTypeImpl("Book");
 	private static final PropertyType bookISBNType = new PropertyTypeImpl("isbn", isbnDataType);
+	private static final ResourceType bookType = new ResourceTypeImpl("Book");
+	private static final Metadata metadata = new MetadataImpl();
 	static {
 		bookType.getProperties().add(bookISBNType);
+		metadata.getResourceTypes().add(bookType);
 	}
 
 	private Resource firstBookResource = new Resource() {
@@ -75,46 +79,39 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 
 		@Override
 		public Property<?> getProperty(String name) {
-			// TODO Auto-generated method stub
-			return null;
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public Property<?> getProperty(PropertyType propertyType) {
-			// TODO Auto-generated method stub
-			return null;
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public EntityType getEntityType() {
-			// TODO Auto-generated method stub
-			return null;
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public Resource addResource(Resource newResource) {
-			// TODO Auto-generated method stub
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public Collection<Entity> getEntries() {
-			// TODO Auto-generated method stub
-			return null;
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public long getCount() {
-			// TODO Auto-generated method stub
-			return 0;
+		public Long getCount() {
+			return 1L;
 		}
 
 	};
 
 	@Override
-	public MetadataResource getMetadata() {
-		// TODO Auto-generated method stub
-		return null;
+	public Metadata getMetadata() {
+		return metadata;
 	}
 
 	@Override

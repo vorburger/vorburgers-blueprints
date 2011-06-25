@@ -31,75 +31,63 @@ public abstract class AbstractInteractionFrameworkODataProducerImpl implements O
 
 	@Override
 	public EntitiesResponse getEntities(String entitySetName, QueryInfo queryInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public EntityResponse getEntity(String entitySetName, OEntityKey entityKey, QueryInfo queryInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public BaseResponse getNavProperty(String entitySetName, OEntityKey entityKey, String navProp, QueryInfo queryInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public EntityResponse createEntity(String entitySetName, OEntity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public EntityResponse createEntity(String entitySetName, OEntityKey entityKey, String navProp, OEntity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public void deleteEntity(String entitySetName, OEntityKey entityKey) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public void mergeEntity(String entitySetName, OEntity entity) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public void updateEntity(String entitySetName, OEntity entity) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public EntityIdResponse getLinks(OEntityId sourceEntity, String targetNavProp) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public void createLink(OEntityId sourceEntity, String targetNavProp, OEntityId targetEntity) {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException(); // TODO
 		
 	}
 
 	@Override
-	public void updateLink(OEntityId sourceEntity, String targetNavProp, OEntityKey oldTargetEntityKey,
-			OEntityId newTargetEntity) {
-		// TODO Auto-generated method stub
-		
+	public void updateLink(OEntityId sourceEntity, String targetNavProp, OEntityKey oldTargetEntityKey, OEntityId newTargetEntity) {
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override
 	public void deleteLink(OEntityId sourceEntity, String targetNavProp, OEntityKey targetEntityKey) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException(); // TODO
 	}
 
 	@Override

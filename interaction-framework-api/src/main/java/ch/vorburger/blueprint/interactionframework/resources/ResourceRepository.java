@@ -13,7 +13,7 @@ public interface ResourceRepository {
 
 	Resource getHomepage(); // TODO ???
 	
-	MetadataResource getMetadata(); // TODO ???
+	Metadata getMetadata(); // TODO ???
 	
 	/**
 	 * AKA HTTP GET, JPA find(), RDBMS SQL SELECT, etc.

@@ -57,7 +57,7 @@ class EdmBuilder {
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
 		// Now add all the Resource Types as Entity Types:
-		Collection<ResourceType> allResourceTypes = repo.getMetadata().getEntries();
+		Collection<ResourceType> allResourceTypes = repo.getMetadata().getResourceTypes();
 		for (ResourceType resourceType : allResourceTypes) {
 			String resourceName = resourceType.getName();
 
@@ -122,7 +122,8 @@ class EdmBuilder {
 
 	private EdmDataServices createEdmDataServices(List<EdmEntitySet> entitySets,
 			List<EdmAssociationSet> associationSets, List<EdmEntityType> entityTypes,
-			List<EdmComplexType> complexTypes, List<EdmAssociation> associations) {
+			List<EdmComplexType> complexTypes, List<EdmAssociation> associations) 
+	{
 		List<EdmSchema> schemas = new ArrayList<EdmSchema>();
 		List<EdmEntityContainer> containers = new ArrayList<EdmEntityContainer>();
 
