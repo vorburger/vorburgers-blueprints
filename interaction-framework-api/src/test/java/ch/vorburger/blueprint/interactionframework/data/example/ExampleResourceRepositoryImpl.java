@@ -9,6 +9,7 @@ import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.DataTy
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.PropertyTypeImpl;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.CollectionResource;
 import ch.vorburger.blueprint.interactionframework.resources.Metadata;
@@ -50,7 +51,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public DataStructType getEntityType() {
+		public EntityType getEntityType() {
 			return bookType;
 		}
 
@@ -88,7 +89,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public DataStructType getEntityType() {
+		public EntityType getEntityType() {
 			throw new UnsupportedOperationException();
 		}
 

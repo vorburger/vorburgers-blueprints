@@ -36,7 +36,10 @@ public abstract class AbstractInteractionFrameworkODataProducerImpl implements O
 
 	@Override
 	public EntityResponse getEntity(String entitySetName, OEntityKey entityKey, QueryInfo queryInfo) {
-		throw new UnsupportedOperationException(); // TODO
+		if (queryInfo != null)
+			throw new UnsupportedOperationException(); // TODO
+			
+		StringBuilder uri = new StringBuilder(entitySetName);
 	}
 
 	@Override
