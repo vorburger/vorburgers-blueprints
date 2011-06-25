@@ -1,13 +1,13 @@
 package ch.vorburger.blueprint.interactionframework.resources;
 
-import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 
 /**
  * 
  * 
  * @author Michael Vorburger
  */
-public interface ResourceType extends DataStructType {
+public interface ResourceType extends EntityType {
 
 	// TODO This is probably where we'll define what "Parameters" (URL Query Params?) a Resource
 	// has?!

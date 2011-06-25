@@ -61,8 +61,10 @@ class EdmBuilder {
 		for (ResourceType resourceType : allResourceTypes) {
 			String resourceName = resourceType.getName();
 
-			// TODO ID/Keys! For now, just properties...
 			List<String> keyNames = new LinkedList<String>();
+			for (PropertyType idPropertyType : resourceType.getIdentityProperties()) {
+				keyNames.add(idPropertyType.getName());
+			}
 
 			List<EdmProperty> edmProperties = new LinkedList<EdmProperty>();
 			Collection<PropertyType> properties = resourceType.getProperties();
