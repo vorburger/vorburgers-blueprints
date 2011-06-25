@@ -31,10 +31,8 @@ public class FilterTest {
 				FilterCriteriaExpression.FilterOperator.GREATER_THAN, 12);
 		FilterNotExpression notCriteria2 = new FilterNotExpression(criteria2);
 
-		FilterAndOrExpression criteria1OrCriteria2 = new FilterAndOrExpression();
-		criteria1OrCriteria2.lhs = criteria1;
+		FilterAndOrExpression criteria1OrCriteria2 = new FilterAndOrExpression(criteria1, notCriteria2);
 		criteria1OrCriteria2.operator = FilterAndOrExpression.FilterOperator.OR;
-		criteria1OrCriteria2.rhs = notCriteria2;
 	}
 
 	@Test

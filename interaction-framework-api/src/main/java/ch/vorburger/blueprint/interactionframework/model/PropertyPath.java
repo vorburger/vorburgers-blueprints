@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Access Path to nested Property.
+ * Access Path to a (possibly nested) Property.
  * 
  * This class is (intentionally) immutable.
  * 
@@ -63,6 +63,38 @@ public class PropertyPath {
 	@Override
 	public String toString() {
 		return propertyNamesString;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((finalUnmodifiablePropertyNames == null) ? 0 : finalUnmodifiablePropertyNames.hashCode());
+		result = prime * result + ((propertyNamesString == null) ? 0 : propertyNamesString.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PropertyPath other = (PropertyPath) obj;
+		if (finalUnmodifiablePropertyNames == null) {
+			if (other.finalUnmodifiablePropertyNames != null)
+				return false;
+		} else if (!finalUnmodifiablePropertyNames.equals(other.finalUnmodifiablePropertyNames))
+			return false;
+		if (propertyNamesString == null) {
+			if (other.propertyNamesString != null)
+				return false;
+		} else if (!propertyNamesString.equals(other.propertyNamesString))
+			return false;
+		return true;
 	}
 	
 }

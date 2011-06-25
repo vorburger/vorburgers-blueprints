@@ -20,15 +20,15 @@ public class FilterParserTest {
 
 	@Test
 	public void testFilterParser() {
-		FilterCriteriaExpression criteria1 = new FilterCriteriaExpression("a", FilterOperator.EQUALS, "Hello World");
-		FilterCriteriaExpression criteria2 = new FilterCriteriaExpression("b.x", FilterOperator.EQUALS, 12);
+		FilterCriteriaExpression criteria1 = new FilterCriteriaExpression("a", FilterOperator.EQUALS, "Hello \"World\"");
+		// TODO Note how the '12' albeit probably an Integer, is used as String literal for now... type conversion is for later...
+		FilterCriteriaExpression criteria2 = new FilterCriteriaExpression("b.x", FilterOperator.EQUALS, "12");
 
-		FilterAndOrExpression criteria1OrCriteria2 = new FilterAndOrExpression();
-		criteria1OrCriteria2.lhs = criteria1;
-		criteria1OrCriteria2.rhs = criteria2;
+		FilterAndOrExpression criteria1OrCriteria2 = new FilterAndOrExpression(criteria1, criteria2);
 		
 		String filterString = criteria1OrCriteria2.asString();
 		assertNotNull(filterString);
+		System.out.println(filterString);
 		FilterExpression filterTree = FilterParser.parse(filterString);
 		assertNotNull(filterTree);
 		assertEquals(criteria1OrCriteria2, filterTree);

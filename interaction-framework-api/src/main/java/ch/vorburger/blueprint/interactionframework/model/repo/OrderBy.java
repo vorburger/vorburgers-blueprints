@@ -40,4 +40,32 @@ public class OrderBy {
 			ordering = Ordering.ASCENDING;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ordering == null) ? 0 : ordering.hashCode());
+		result = prime * result + ((propertyPath == null) ? 0 : propertyPath.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderBy other = (OrderBy) obj;
+		if (ordering != other.ordering)
+			return false;
+		if (propertyPath == null) {
+			if (other.propertyPath != null)
+				return false;
+		} else if (!propertyPath.equals(other.propertyPath))
+			return false;
+		return true;
+	}
+
 }
