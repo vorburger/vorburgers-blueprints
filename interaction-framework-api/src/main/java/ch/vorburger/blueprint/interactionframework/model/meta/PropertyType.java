@@ -7,5 +7,7 @@ public interface PropertyType /* TODO extends Entity */ {
 	
 	DataType getValueType();
 	
+	// TODO boolean isMultiple();
+	
 	// TODO EntityType getOwningEntity();
 }

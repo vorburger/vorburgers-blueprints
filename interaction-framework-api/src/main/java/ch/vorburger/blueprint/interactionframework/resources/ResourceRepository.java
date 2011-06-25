@@ -15,12 +15,16 @@ public interface ResourceRepository {
 	
 	Metadata getMetadata(); // TODO ???
 	
+	// TODO ResourceType getMetadata(URI uri);
+	
 	/**
 	 * AKA HTTP GET, JPA find(), RDBMS SQL SELECT, etc.
 	 * @param uri
 	 * @return
 	 */
 	Resource getResource(URI uri);
+	
+	// TODO Cache-ability... boolean hasChanged(what-type-here?? ETag? TimeStamp? );
 	
 	/**
 	 * AKA HTTP PUT, JPA merge(), RDBMS SQL UPDATE, etc.

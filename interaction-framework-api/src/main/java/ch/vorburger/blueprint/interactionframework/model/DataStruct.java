@@ -19,6 +19,7 @@ import ch.vorburger.blueprint.interactionframework.resources.Resource;
  * @see org.odata4j.producer.inmemory.PropertyModel
  * @see org.springframework.data.mapping.model.PersistentEntity
  * @see javax.persistence.metamodel.EntityType
+ * @see JCR (TODO)
  * 
  * @author Michael Vorburger
  */
