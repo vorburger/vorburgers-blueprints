@@ -2,12 +2,28 @@ package ch.vorburger.blueprint.interactionframework.model.repo;
 
 import ch.vorburger.blueprint.interactionframework.model.PropertyPath;
 
-
-public interface OrderBy {
+/**
+ * Query Ordering information.
+ *
+ * @author Michael Vorburger
+ */
+public class OrderBy {
 	enum Ordering { ASCENDING, DESCENDING };
 	
-	Ordering getOrdering();
-	void setOrdering(Ordering ordering);
+	public Ordering ordering = Ordering.ASCENDING;
 	
-	void setPropertyPath(PropertyPath propertyPath);
+	public PropertyPath propertyPath;
+	
+	Ordering getOrdering() {
+		return ordering;
+	}
+	OrderBy setOrdering(Ordering ordering) {
+		this.ordering = ordering;
+		return this;
+	}
+	
+	OrderBy setPropertyPath(PropertyPath propertyPath) {
+		this.propertyPath = propertyPath;
+		return this;
+	}
 }
