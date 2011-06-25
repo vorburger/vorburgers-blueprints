@@ -40,7 +40,7 @@ public class DataStructTypeImpl implements DataStructType {
 	}
 
 	@Override
-	public DataStructType getEntityType() {
+	public DataStructType getDataStructType() {
         throw new UnsupportedOperationException();
 	}
 

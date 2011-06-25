@@ -25,7 +25,7 @@ public class DataStructImpl implements DataStruct {
 	}
 
 	@Override
-	public DataStructType getEntityType() {
+	public DataStructType getDataStructType() {
 		// TODO Auto-generated method stub
 		return null;
 	}

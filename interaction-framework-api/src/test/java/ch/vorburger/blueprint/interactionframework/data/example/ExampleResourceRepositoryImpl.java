@@ -51,7 +51,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public EntityType getEntityType() {
+		public EntityType getDataStructType() {
 			return bookType;
 		}
 
@@ -89,7 +89,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public EntityType getEntityType() {
+		public EntityType getDataStructType() {
 			throw new UnsupportedOperationException();
 		}
 

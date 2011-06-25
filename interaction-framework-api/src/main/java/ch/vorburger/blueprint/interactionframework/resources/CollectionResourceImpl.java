@@ -46,7 +46,7 @@ public class CollectionResourceImpl<E extends DataStruct> implements CollectionR
 	}
 
 	@Override
-	public EntityType getEntityType() {
+	public EntityType getDataStructType() {
 		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 

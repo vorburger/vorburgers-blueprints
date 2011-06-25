@@ -12,6 +12,6 @@ public interface Entity extends DataStruct {
 	// TODO When needed: Identity getIdentity();
 	
 	@Override
-	EntityType getEntityType();
+	EntityType getDataStructType();
 
 }

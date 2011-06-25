@@ -29,8 +29,10 @@ public interface DataStruct extends Serializable {
 
 	Property<?> getProperty(PropertyType propertyType);
 
+	// TODO Property<?> getProperty(PropertyPath propertyPath);
+	
 	// TODO References/Links, how-to? Or just properties?!
 
-	DataStructType getEntityType();
+	DataStructType getDataStructType();
 
 }

@@ -40,6 +40,7 @@ public abstract class AbstractInteractionFrameworkODataProducerImpl implements O
 			throw new UnsupportedOperationException(); // TODO
 			
 		StringBuilder uri = new StringBuilder(entitySetName);
+		return null;
 	}
 
 	@Override
