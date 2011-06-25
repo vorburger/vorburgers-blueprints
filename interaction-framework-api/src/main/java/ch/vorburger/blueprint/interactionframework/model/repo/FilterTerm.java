@@ -7,7 +7,8 @@ package ch.vorburger.blueprint.interactionframework.model.repo;
  */
 public interface FilterTerm {
 
-	String asString();
+	@Override
+	String toString();
 	
 	@Override
 	public int hashCode();

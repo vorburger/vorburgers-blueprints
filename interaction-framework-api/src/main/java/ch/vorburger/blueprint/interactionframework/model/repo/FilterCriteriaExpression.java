@@ -34,16 +34,16 @@ public class FilterCriteriaExpression implements FilterExpression {
 	}
 
 	@Override
-	public String asString() {
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(lhs.asString());
+		sb.append(lhs.toString());
 		
 		if (operator == FilterOperator.EQUALS)
 			sb.append('=');
 		else
 			throw new UnsupportedOperationException(operator.name()); // TODO
 		
-		sb.append(rhs.asString());
+		sb.append(rhs.toString());
 		return sb.toString();
 	}
 

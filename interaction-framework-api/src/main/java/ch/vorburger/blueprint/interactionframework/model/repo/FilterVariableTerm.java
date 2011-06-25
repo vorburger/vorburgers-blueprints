@@ -12,7 +12,7 @@ public class FilterVariableTerm implements FilterTerm {
 	}
 
 	@Override
-	public String asString() {
+	public String toString() {
 		return propertyPath.toString();
 	}
 

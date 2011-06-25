@@ -9,7 +9,7 @@ public class FilterLiteralTerm<T> implements FilterTerm {
 	}
 
 	@Override
-	public String asString() {
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append('"');
 		sb.append(literal.toString().replace("\"", "\\\""));

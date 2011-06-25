@@ -14,7 +14,7 @@ public class FilterNotExpression implements FilterExpression {
 	}
 
 	@Override
-	public String asString() {
+	public String toString() {
 		throw new UnsupportedOperationException(); // TODO
 	}
 

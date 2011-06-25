@@ -26,7 +26,7 @@ public class FilterParserTest {
 
 		FilterAndOrExpression criteria1OrCriteria2 = new FilterAndOrExpression(criteria1, criteria2);
 		
-		String filterString = criteria1OrCriteria2.asString();
+		String filterString = criteria1OrCriteria2.toString();
 		assertNotNull(filterString);
 		System.out.println(filterString);
 		FilterExpression filterTree = FilterParser.parse(filterString);
