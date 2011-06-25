@@ -1,11 +1,13 @@
 package ch.vorburger.blueprint.interactionframework.model.repo;
 
+import java.io.Serializable;
+
 /**
  * TODO Doc
  *
  * @author Michael Vorburger
  */
-public interface FilterTerm {
+public interface FilterTerm extends Serializable {
 
 	@Override
 	String toString();

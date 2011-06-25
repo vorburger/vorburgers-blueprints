@@ -1,5 +1,7 @@
 package ch.vorburger.blueprint.interactionframework.model.repo;
 
+import java.io.Serializable;
+
 import ch.vorburger.blueprint.interactionframework.model.PropertyPath;
 
 /**
@@ -7,7 +9,7 @@ import ch.vorburger.blueprint.interactionframework.model.PropertyPath;
  * 
  * @author Michael Vorburger
  */
-public class OrderBy {
+public class OrderBy implements Serializable {
 	enum Ordering {
 		ASCENDING, DESCENDING
 	};

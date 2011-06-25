@@ -1,6 +1,8 @@
 package ch.vorburger.blueprint.interactionframework.model.repo;
 
-public interface FilterExpression {
+import java.io.Serializable;
+
+public interface FilterExpression extends Serializable {
 
 	@Override
 	String toString();
