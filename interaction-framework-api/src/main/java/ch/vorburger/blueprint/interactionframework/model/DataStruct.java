@@ -26,6 +26,7 @@ public interface DataStruct extends Serializable {
 	// others are just embedded beans.  How about... "DataObject" ?!
 
 	Property<?> getProperty(String name);
+	// TODO Object getPropertyValue(String name), 
 
 	Property<?> getProperty(PropertyType propertyType);
 
@@ -33,6 +34,6 @@ public interface DataStruct extends Serializable {
 	
 	// TODO References/Links, how-to? Or just properties?!
 
-	DataStructType getDataStructType();
 
+	DataStructType getDataStructType();
 }

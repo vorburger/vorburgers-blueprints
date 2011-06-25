@@ -4,26 +4,40 @@ import ch.vorburger.blueprint.interactionframework.model.PropertyPath;
 
 /**
  * Query Ordering information.
- *
+ * 
  * @author Michael Vorburger
  */
 public class OrderBy {
-	enum Ordering { ASCENDING, DESCENDING };
-	
+	enum Ordering {
+		ASCENDING, DESCENDING
+	};
+
 	public Ordering ordering = Ordering.ASCENDING;
-	
+
 	public PropertyPath propertyPath;
-	
-	Ordering getOrdering() {
+
+	public Ordering getOrdering() {
 		return ordering;
 	}
-	OrderBy setOrdering(Ordering ordering) {
+
+	public OrderBy setOrdering(Ordering ordering) {
 		this.ordering = ordering;
 		return this;
 	}
-	
-	OrderBy setPropertyPath(PropertyPath propertyPath) {
+
+	public OrderBy setPropertyPath(PropertyPath propertyPath) {
 		this.propertyPath = propertyPath;
 		return this;
 	}
+
+	/**
+	 * Switch the ordering.
+	 */
+	public void reverse() {
+		if (ordering == Ordering.ASCENDING)
+			ordering = Ordering.DESCENDING;
+		else if (ordering == Ordering.DESCENDING)
+			ordering = Ordering.ASCENDING;
+	}
+
 }

@@ -31,5 +31,5 @@ public interface EntityRepository {
 	void deleteEntity(EntityId... ids);
 	
 	List<Entity> find(EntityType type, EntityRepositoryQuery query);
-	EntityRepositoryQuery newQuery();
+	//EntityRepositoryQuery newQuery();
 }

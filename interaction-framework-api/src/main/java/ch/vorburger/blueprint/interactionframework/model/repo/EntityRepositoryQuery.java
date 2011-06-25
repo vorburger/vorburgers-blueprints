@@ -18,6 +18,8 @@ public class EntityRepositoryQuery implements Serializable {
 	
 	public final List<OrderBy> ordering = new LinkedList<OrderBy>();
 
+	public FilterExpression filter;
+	
 	
 	// And just for convenience for die-hard getter/setter fans:
 	public EntityRepositoryQuery setStartPosition(int startPosition) {
