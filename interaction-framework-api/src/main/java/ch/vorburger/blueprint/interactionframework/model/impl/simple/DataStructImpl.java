@@ -1,8 +1,8 @@
 package ch.vorburger.blueprint.interactionframework.model.impl.simple;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 import ch.vorburger.blueprint.interactionframework.model.Property;
-import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 
 /**
@@ -10,7 +10,7 @@ import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
  *
  * @author Michael Vorburger
  */
-public class DynamicEntityImpl implements Entity {
+public class DataStructImpl implements DataStruct {
 
 	@Override
 	public Property<?> getProperty(String name) {
@@ -25,7 +25,7 @@ public class DynamicEntityImpl implements Entity {
 	}
 
 	@Override
-	public EntityType getEntityType() {
+	public DataStructType getEntityType() {
 		// TODO Auto-generated method stub
 		return null;
 	}

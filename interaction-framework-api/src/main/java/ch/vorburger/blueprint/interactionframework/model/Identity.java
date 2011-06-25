@@ -5,6 +5,6 @@ package ch.vorburger.blueprint.interactionframework.model;
  * 
  * @author Michael Vorburger
  */
-public interface Identity extends Entity {
+public interface Identity extends DataStruct {
 
 }

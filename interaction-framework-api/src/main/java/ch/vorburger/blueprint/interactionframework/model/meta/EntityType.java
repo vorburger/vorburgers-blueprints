@@ -2,19 +2,13 @@ package ch.vorburger.blueprint.interactionframework.model.meta;
 
 import java.util.Set;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
-
 /**
- * Type descriptor of an Entity.
+ * Type descriptor of an EntityWithIdentity.
  * 
  * @author Michael Vorburger
  */
-public interface EntityType extends Entity {
+public interface EntityType extends DataStructType {
 
-	String getName();
-
-	// TODO EntityType getParentEntityType()
-	
-	Set<PropertyType> getProperties();
+	Set<PropertyType> getIdentityProperties();
 
 }

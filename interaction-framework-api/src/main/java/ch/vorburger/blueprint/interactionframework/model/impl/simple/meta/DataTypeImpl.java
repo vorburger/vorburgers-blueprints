@@ -12,7 +12,7 @@ public class DataTypeImpl implements DataType {
 	}
 
 	@Override
-	public Class<?> getJavaType() {
+	public Class<?> getJavaClass() {
 		return javaType;
 	}
 

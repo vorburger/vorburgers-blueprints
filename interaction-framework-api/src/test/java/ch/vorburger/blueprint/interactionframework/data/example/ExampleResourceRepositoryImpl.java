@@ -2,13 +2,13 @@ package ch.vorburger.blueprint.interactionframework.data.example;
 
 import java.util.Collection;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.PropertyImpl;
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.DataTypeImpl;
 import ch.vorburger.blueprint.interactionframework.model.impl.simple.meta.PropertyTypeImpl;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataType;
-import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.CollectionResource;
 import ch.vorburger.blueprint.interactionframework.resources.Metadata;
@@ -50,7 +50,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public EntityType getEntityType() {
+		public DataStructType getEntityType() {
 			return bookType;
 		}
 
@@ -88,7 +88,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public EntityType getEntityType() {
+		public DataStructType getEntityType() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -98,7 +98,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 
 		@Override
-		public Collection<Entity> getEntries() {
+		public Collection<DataStruct> getEntries() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -126,7 +126,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 	}
 
 	@Override
-	public Entity newEntity(EntityType type) {
+	public DataStruct newEntity(DataStructType type) {
 		if (type.equals(bookType)) {
 			return firstBookResource;
 		}

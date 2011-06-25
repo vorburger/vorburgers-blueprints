@@ -112,7 +112,7 @@ class EdmBuilder {
 
 	// @see http://code.google.com/p/odata4j/issues/detail?id=46
 	private EdmType toEdmType(PropertyType propertyType) {
-		Class<?> javaType = propertyType.getValueType().getJavaType();
+		Class<?> javaType = propertyType.getValueType().getJavaClass();
 		EdmType type = EdmType.forJavaType(javaType);
 		if (type == null) {
 			throw new IllegalArgumentException("Could not find the EDM-Type for Java type: " + javaType);

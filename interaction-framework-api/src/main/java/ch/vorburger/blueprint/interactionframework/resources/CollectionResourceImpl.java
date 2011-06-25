@@ -3,13 +3,13 @@ package ch.vorburger.blueprint.interactionframework.resources;
 import java.util.Collection;
 import java.util.List;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 import ch.vorburger.blueprint.interactionframework.model.Property;
-import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
-public class CollectionResourceImpl<E extends Entity> implements CollectionResource<E> /* TODO extends ResourceImpl */ { 
+public class CollectionResourceImpl<E extends DataStruct> implements CollectionResource<E> /* TODO extends ResourceImpl */ { 
 
 	private final List<E> entries;
 
@@ -45,7 +45,7 @@ public class CollectionResourceImpl<E extends Entity> implements CollectionResou
 	}
 
 	@Override
-	public EntityType getEntityType() {
+	public DataStructType getEntityType() {
 		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 

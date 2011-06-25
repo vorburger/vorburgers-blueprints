@@ -2,7 +2,7 @@ package ch.vorburger.blueprint.interactionframework.resources;
 
 import java.util.Collection;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 
 /**
  * Collection of Entity/Resources.
@@ -16,7 +16,7 @@ import ch.vorburger.blueprint.interactionframework.model.Entity;
  * 
  * @author Michael Vorburger & Kai Kreuzer
  */
-public interface CollectionResource<E extends Entity> extends Resource {
+public interface CollectionResource<E extends DataStruct> extends Resource {
 	// TODO Something isn't quite right here yet.. for remoting we want Paging - but for the client
 	// API we want (optionally) transparent buffered next-page-fetch on Iterator.next() - now to
 	// provide for both access models?!
