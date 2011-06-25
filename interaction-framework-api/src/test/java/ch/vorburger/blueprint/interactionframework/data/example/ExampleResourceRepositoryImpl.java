@@ -67,7 +67,7 @@ public class ExampleResourceRepositoryImpl implements ResourceRepository {
 		}
 	};
 
-	private CollectionResource allBooksResource = new CollectionResource() {
+	private CollectionResource<DataStruct> allBooksResource = new CollectionResource<DataStruct>() {
 		@Override
 		public URI getURI() {
 			return new URI() {
