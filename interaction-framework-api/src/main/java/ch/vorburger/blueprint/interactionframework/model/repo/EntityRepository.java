@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.vorburger.blueprint.interactionframework.model.Entity;
 import ch.vorburger.blueprint.interactionframework.model.EntityId;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityMetadata;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 
 
@@ -15,12 +16,12 @@ import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
  */
 public interface EntityRepository {
 
-	// TODO Metadata getMetadata(); needed?
+	EntityMetadata getMetadata();
 	
 	/**
 	 * TODO Doc better... "is already detached" (like a JPA find & detach combined)
 	 */
-	Entity getEntity(EntityId id);
+	Entity getEntity(EntityId id) throws EntityNotFoundException, RepositoryException;
 	
 	/**
 	 * Save

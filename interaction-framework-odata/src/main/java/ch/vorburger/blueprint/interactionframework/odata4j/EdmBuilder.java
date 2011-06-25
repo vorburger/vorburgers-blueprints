@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.odata4j.core.ODataConstants;
 import org.odata4j.edm.EdmAssociation;
@@ -20,9 +21,9 @@ import org.odata4j.edm.EdmType;
 import org.odata4j.producer.inmemory.InMemoryProducer;
 import org.odata4j.producer.jpa.JPAEdmGenerator;
 
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
-import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
-import ch.vorburger.blueprint.interactionframework.resources.ResourceType;
+import ch.vorburger.blueprint.interactionframework.model.repo.EntityRepository;
 
 /**
  * EdmDataServices builder.
@@ -40,9 +41,9 @@ class EdmBuilder {
 	private static final String CONTAINER_NAME = EdmBuilder.class.getName() + "_GeneratedDefaultContainer";
 
 	private final String ns;
-	private final ResourceRepository repo;
+	private final EntityRepository repo;
 
-	public EdmBuilder(ResourceRepository repo, String namespace) {
+	public EdmBuilder(EntityRepository repo, String namespace) {
 		super();
 		this.ns = namespace;
 		this.repo = repo;
@@ -57,8 +58,8 @@ class EdmBuilder {
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
 		// Now add all the Resource Types as Entity Types:
-		Collection<ResourceType> allResourceTypes = repo.getMetadata().getResourceTypes();
-		for (ResourceType resourceType : allResourceTypes) {
+		Set<EntityType> allEntityTypes = repo.getMetadata().getEntityTypes();
+		for (EntityType resourceType : allEntityTypes) {
 			String resourceName = resourceType.getName();
 
 			List<String> keyNames = new LinkedList<String>();
@@ -113,7 +114,8 @@ class EdmBuilder {
 	}
 
 	// @see http://code.google.com/p/odata4j/issues/detail?id=46
-	private EdmType toEdmType(PropertyType propertyType) {
+	// package local because also used by AbstractInteractionFrameworkODataProducerImpl
+	static EdmType toEdmType(PropertyType propertyType) {
 		Class<?> javaType = propertyType.getValueType().getJavaClass();
 		EdmType type = EdmType.forJavaType(javaType);
 		if (type == null) {

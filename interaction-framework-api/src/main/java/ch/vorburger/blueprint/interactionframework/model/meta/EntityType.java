@@ -9,6 +9,13 @@ import java.util.Set;
  */
 public interface EntityType extends DataStructType {
 
+	/**
+	 * Properties forming the Identity.
+	 * 
+	 * This is a sub-set of the {@link #getProperties()}, not a separate set.
+	 * 
+	 * @return
+	 */
 	Set<PropertyType> getIdentityProperties();
 
 }

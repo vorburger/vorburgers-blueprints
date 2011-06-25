@@ -96,10 +96,12 @@ public class ExampleLibraryConsumerTest extends BaseExample {
 		// retrieve a product entity with a known id
 		OEntity firstBook = consumer.getEntity("Book", 3).execute();
 		reportEntity("A Book", firstBook);
+		// TODO assert book title (just an attribute) *and* ISBN (its ID)
 
 		// list all products
 		for (OEntity product : consumer.getEntities("Book").execute()) {
 			reportEntity("Book: " + product.getProperty("ISBN").getValue(), product);
+			// TODO assert book title and ISBN!
 		}
 	}
 

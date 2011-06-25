@@ -2,7 +2,6 @@ package ch.vorburger.blueprint.interactionframework.resources;
 
 import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 import ch.vorburger.blueprint.interactionframework.model.Entity;
-import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
 /**
