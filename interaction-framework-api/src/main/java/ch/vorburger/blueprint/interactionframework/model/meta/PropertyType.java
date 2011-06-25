@@ -6,4 +6,6 @@ public interface PropertyType /* TODO extends Entity */ {
 	String getName();
 	
 	DataType getValueType();
+	
+	// TODO EntityType getOwningEntity();
 }

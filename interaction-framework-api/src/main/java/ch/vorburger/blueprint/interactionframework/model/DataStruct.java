@@ -17,6 +17,8 @@ import ch.vorburger.blueprint.interactionframework.resources.Resource;
  * @see com.vaadin.data.Item
  * @see http://commons.apache.org/beanutils/api/org/apache/commons/beanutils/DynaBean.html
  * @see org.odata4j.producer.inmemory.PropertyModel
+ * @see org.springframework.data.mapping.model.PersistentEntity
+ * @see javax.persistence.metamodel.EntityType
  * 
  * @author Michael Vorburger
  */
