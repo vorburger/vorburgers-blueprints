@@ -2,7 +2,11 @@ package ch.vorburger.blueprint.interactionframework.model;
 
 import java.io.Serializable;
 
-// TODO Doc
+/**
+ * TODO Doc
+ *
+ * @author Michael Vorburger
+ */
 public interface Property<T> extends Serializable {
 
 	T getValue();

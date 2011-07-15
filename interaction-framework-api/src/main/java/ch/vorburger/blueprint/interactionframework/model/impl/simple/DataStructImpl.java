@@ -1,5 +1,7 @@
 package ch.vorburger.blueprint.interactionframework.model.impl.simple;
 
+import java.util.Map;
+
 import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
@@ -26,6 +28,12 @@ public class DataStructImpl implements DataStruct {
 
 	@Override
 	public DataStructType getDataStructType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Property<?>> getPropertyMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}

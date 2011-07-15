@@ -1,6 +1,7 @@
 package ch.vorburger.blueprint.interactionframework.data.example;
 
 import java.util.List;
+import java.util.Map;
 
 import ch.vorburger.blueprint.interactionframework.model.Entity;
 import ch.vorburger.blueprint.interactionframework.model.EntityId;
@@ -26,10 +27,10 @@ public class LibraryExampleEntityRepositoryImpl implements EntityRepository {
 	private static final PropertyType bookISBNType = new PropertyTypeImpl("isbn", isbnDataType);
 	// TODO bookTitle
 	private static final ResourceType bookType = new ResourceTypeImpl("Book");
-	private static final EntityMetadata metadata = new EntityMetadataImpl();
+	private static final EntityMetadataImpl metadata = new EntityMetadataImpl();
 	static {
 		bookType.getProperties().add(bookISBNType);
-		metadata.getEntityTypes().add(bookType);
+		metadata.getEntityTypesMap().put(bookType.getName(), bookType);
 	}
 
 	private Entity firstBookEntity = new Entity() {
@@ -55,6 +56,18 @@ public class LibraryExampleEntityRepositoryImpl implements EntityRepository {
 		@Override
 		public EntityType getDataStructType() {
 			return bookType;
+		}
+
+
+		@Override
+		public Map<String, Property<?>> getPropertyMap() {
+			throw new UnsupportedOperationException();
+		}
+
+
+		@Override
+		public EntityId getIdentity() {
+			throw new UnsupportedOperationException();
 		}
 	};
 

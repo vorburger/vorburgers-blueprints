@@ -2,8 +2,10 @@ package ch.vorburger.blueprint.interactionframework.resources;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import ch.vorburger.blueprint.interactionframework.model.DataStruct;
+import ch.vorburger.blueprint.interactionframework.model.EntityId;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
@@ -51,6 +53,16 @@ public class CollectionResourceImpl<E extends DataStruct> implements CollectionR
 
 	@Override
 	public Resource addResource(Resource newResource) {
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
+	}
+
+	@Override
+	public EntityId getIdentity() {
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
+	}
+
+	@Override
+	public Map<String, Property<?>> getPropertyMap() {
 		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 

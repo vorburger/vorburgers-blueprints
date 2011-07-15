@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.odata4j.core.ODataConstants;
 import org.odata4j.edm.EdmAssociation;
@@ -21,9 +20,9 @@ import org.odata4j.edm.EdmType;
 import org.odata4j.producer.inmemory.InMemoryProducer;
 import org.odata4j.producer.jpa.JPAEdmGenerator;
 
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityMetadata;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
-import ch.vorburger.blueprint.interactionframework.model.repo.EntityRepository;
 
 /**
  * EdmDataServices builder.
@@ -41,12 +40,12 @@ class EdmBuilder {
 	private static final String CONTAINER_NAME = EdmBuilder.class.getName() + "_GeneratedDefaultContainer";
 
 	private final String ns;
-	private final EntityRepository repo;
-
-	public EdmBuilder(EntityRepository repo, String namespace) {
+	private final EntityMetadata meta;
+	
+	public EdmBuilder(EntityMetadata meta, String namespace) {
 		super();
 		this.ns = namespace;
-		this.repo = repo;
+		this.meta = meta;
 	}
 
 	public EdmDataServices buildEdm() {
@@ -58,8 +57,7 @@ class EdmBuilder {
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
 		// Now add all the Resource Types as Entity Types:
-		Set<EntityType> allEntityTypes = repo.getMetadata().getEntityTypes();
-		for (EntityType resourceType : allEntityTypes) {
+		for (EntityType resourceType : meta.getEntityTypes()) {
 			String resourceName = resourceType.getName();
 
 			List<String> keyNames = new LinkedList<String>();

@@ -9,7 +9,7 @@ import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
  */
 public interface Entity extends DataStruct {
 
-	// TODO When needed: Identity getIdentity();
+	EntityId getIdentity();
 	
 	@Override
 	EntityType getDataStructType();

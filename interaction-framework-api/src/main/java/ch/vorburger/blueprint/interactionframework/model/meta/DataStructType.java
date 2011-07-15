@@ -17,6 +17,7 @@ public interface DataStructType extends DataType, DataStruct {
 
 	// TODO EntityType getParentEntityType()
 	
+	// TODO Iterable<PropertyType> instead Set
 	Set<PropertyType> getProperties();
 	// TODO Map<String, PropertyType> getPropertiesMap();
 	// TODO PropertyType getProperty(String name);

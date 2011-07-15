@@ -1,6 +1,5 @@
 package ch.vorburger.blueprint.interactionframework.model.meta;
 
-import java.util.Set;
 
 /**
  * TODO Doc
@@ -9,6 +8,8 @@ import java.util.Set;
  */
 public interface EntityMetadata {
 
-	Set<EntityType> getEntityTypes();
+	Iterable<EntityType> getEntityTypes();
+
+	EntityType getEntityType(String oEntitySetName);
 	
 }

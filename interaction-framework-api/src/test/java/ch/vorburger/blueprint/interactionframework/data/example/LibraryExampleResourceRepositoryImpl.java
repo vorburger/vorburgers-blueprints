@@ -1,8 +1,10 @@
 package ch.vorburger.blueprint.interactionframework.data.example;
 
 import java.util.Collection;
+import java.util.Map;
 
 import ch.vorburger.blueprint.interactionframework.model.DataStruct;
+import ch.vorburger.blueprint.interactionframework.model.EntityId;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
@@ -54,6 +56,16 @@ public class LibraryExampleResourceRepositoryImpl implements ResourceRepository 
 		@Override
 		public Long getCount() {
 			return 1L;
+		}
+
+		@Override
+		public EntityId getIdentity() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public Map<String, Property<?>> getPropertyMap() {
+			throw new UnsupportedOperationException();
 		}
 	};
 

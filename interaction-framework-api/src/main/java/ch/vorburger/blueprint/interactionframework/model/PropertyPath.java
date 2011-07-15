@@ -20,10 +20,14 @@ public class PropertyPath {
 	private final List<String> finalUnmodifiablePropertyNames;
 	private final String propertyNamesString;
 	
+	/**
+	 * Constructor.
+	 * @param propertyPath Path to properties, '.' (dot) separated (or no dot)
+	 */
 	public PropertyPath(String propertyPath) {
-		if ( propertyPath == null )
+		if (propertyPath == null )
 			throw new NullPointerException("propertyPath == null");
-		if ( propertyPath.trim().length() == 0)
+		if (propertyPath.trim().length() == 0)
 			throw new IllegalArgumentException("propertyPath.trim().length() == 0");
 
 		List<String> propertyNames = new LinkedList<String>();

@@ -5,10 +5,11 @@ import java.util.Set;
 
 import ch.vorburger.blueprint.interactionframework.model.DataStruct;
 import ch.vorburger.blueprint.interactionframework.model.Property;
+import ch.vorburger.blueprint.interactionframework.model.impl.simple.DataStructImpl;
 import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 
-public class DataStructTypeImpl implements DataStructType {
+public class DataStructTypeImpl extends DataStructImpl implements DataStructType {
 
 	private final String name;
 	private final Set<PropertyType> properties;

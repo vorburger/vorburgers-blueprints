@@ -1,6 +1,7 @@
 package ch.vorburger.blueprint.interactionframework.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
@@ -34,6 +35,8 @@ public interface DataStruct extends Serializable {
 	Property<?> getProperty(PropertyType propertyType);
 
 	// TODO Property<?> getProperty(PropertyPath propertyPath);
+
+	Map<String, Property<?>> getPropertyMap();
 	
 	// TODO References/Links, how-to? Or just properties?!
 
