@@ -12,7 +12,7 @@ public interface EntityType extends DataStructType {
 	/**
 	 * Properties forming the Identity.
 	 * 
-	 * This is a sub-set of the {@link #getProperties()}, not a separate set.
+	 * This is a sub-set of the {@link #getPropertyTypes()}, not a separate set.
 	 * 
 	 * @return
 	 */

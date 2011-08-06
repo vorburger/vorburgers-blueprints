@@ -57,16 +57,16 @@ class EdmBuilder {
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
 		// Now add all the Resource Types as Entity Types:
-		for (EntityType resourceType : meta.getEntityTypes()) {
-			String resourceName = resourceType.getName();
+		for (EntityType entityType : meta.getEntityTypes()) {
+			String resourceName = entityType.getName();
 
 			List<String> keyNames = new LinkedList<String>();
-			for (PropertyType idPropertyType : resourceType.getIdentityProperties()) {
+			for (PropertyType idPropertyType : entityType.getIdentityProperties()) {
 				keyNames.add(idPropertyType.getName());
 			}
 
 			List<EdmProperty> edmProperties = new LinkedList<EdmProperty>();
-			Collection<PropertyType> properties = resourceType.getProperties();
+			Collection<PropertyType> properties = entityType.getPropertyTypesMap().values();
 			for (PropertyType propertyType : properties) {
 				EdmProperty edmProperty = toEdmProperty(propertyType);
 				edmProperties.add(edmProperty);

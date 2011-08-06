@@ -8,8 +8,10 @@ package ch.vorburger.blueprint.interactionframework.model.meta;
  */
 public interface EntityMetadata {
 
+	// TODO Use Map here instead, like elsewhere now?
+	
 	Iterable<EntityType> getEntityTypes();
 
-	EntityType getEntityType(String oEntitySetName);
+	EntityType getEntityType(String name);
 	
 }

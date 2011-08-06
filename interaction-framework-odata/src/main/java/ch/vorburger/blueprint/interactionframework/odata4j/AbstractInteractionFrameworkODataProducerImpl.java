@@ -79,7 +79,7 @@ public abstract class AbstractInteractionFrameworkODataProducerImpl implements O
 		final List<OProperty<?>> oProperties = new ArrayList<OProperty<?>>();
 		final List<OLink> oLinks = new ArrayList<OLink>();
 
-		for (PropertyType mPropertyType : mEntity.getDataStructType().getProperties()) {
+		for (PropertyType mPropertyType : mEntity.getDataStructType().getPropertyTypesMap().values()) {
 			Property<?> mProperty = mEntity.getProperty(mPropertyType);
 			String name = mPropertyType.getName();
 			EdmType type = EdmBuilder.toEdmType(mPropertyType);

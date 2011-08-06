@@ -1,12 +1,17 @@
 package ch.vorburger.blueprint.interactionframework.model.meta;
 
-public interface MetaFactory {
-
-	DataStructType newDataStructType();
+// Not currently used
+interface MetaFactory {
+	// TODO Better API: New EntityType on EntityMetadata, new PropertyType on DataStructType, etc.
 	
-	DataType newDataType();
+	EntityMetadata newEntityMetadata();
 	
 	EntityType newEntityType();
 	
+	DataStructType newDataStructType();
+	
+	DataType newDataType(Class<?> javaClass);
+	
 	PropertyType newPropertyType();
+
 }
