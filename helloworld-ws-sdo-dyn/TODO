@@ -1,0 +1,28 @@
+
+* Dynamic Consumer (Client)
+
+* Dynamic Provider (Server)
+
+* testHasWSDL
+
+* How-to run this outside Tuscany "container" (classloader etc), just simply "embedded" ?
+
+* Update to Tuscany 2.0 instead of 1.6
+* EMF Update?
+
+* Clear out HelloWorldServiceComponent - only confusing, no value in this example
+
+* Why is WSDL even needed? Base helloworld-webservice doesn't have one, and seems to create it on the fly - how to do same with this?
+
+* REST!  See helloworld-jaxrs/helloworld-jsonp/helloworld-jsonrpc base examples
+
+* Binary Serialization (no XML or JSON), like e.g. helloworld-scaclient, but must it use hazelcast?)
+
+* DAS?
+
+* Integrate into Tuscany distribution?
+
+* Jetty instead Tomcat
+	should remove stuff like WARNING: Could not get url for /javax/servlet/jsp/resources/jsp_2_0.xsd
+	
+* Why SEVERE: XMLSchema validation error occured in: null ,line = 22, column = 5, Message = cvc-complex-type.2.4.a: Invalid content was found starting with element 'component'. One of '{WC[##other:"http://www.osoa.org/xmlns/sca/1.0"]}' is expected.
