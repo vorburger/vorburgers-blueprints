@@ -1,7 +1,7 @@
 package ch.vorburger.blueprint.interactionframework.resources;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
-import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
+import ch.vorburger.blueprint.interactionframework.model.DataStruct;
+import ch.vorburger.blueprint.interactionframework.model.meta.DataStructType;
 import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
 /**
@@ -13,7 +13,9 @@ public interface ResourceRepository {
 
 	Resource getHomepage(); // TODO ???
 	
-	MetadataResource getMetadata(); // TODO ???
+	Metadata getMetadata(); // TODO ???
+	
+	// TODO ResourceType getMetadata(URI uri);
 	
 	/**
 	 * AKA HTTP GET, JPA find(), RDBMS SQL SELECT, etc.
@@ -21,6 +23,8 @@ public interface ResourceRepository {
 	 * @return
 	 */
 	Resource getResource(URI uri);
+	
+	// TODO Cache-ability... boolean hasChanged(what-type-here?? ETag? TimeStamp? );
 	
 	/**
 	 * AKA HTTP PUT, JPA merge(), RDBMS SQL UPDATE, etc.
@@ -39,7 +43,7 @@ public interface ResourceRepository {
 	 * @param type
 	 * @return an Entity, which may be a Resource (sub-type) also
 	 */
-	Entity newEntity(EntityType type);
+	DataStruct newEntity(DataStructType type);
 	// TODO no? Resource newResource(EntityType type);
 	
 	// Add is on the CollectionResource

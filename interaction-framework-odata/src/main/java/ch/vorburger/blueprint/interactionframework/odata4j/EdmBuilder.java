@@ -20,9 +20,9 @@ import org.odata4j.edm.EdmType;
 import org.odata4j.producer.inmemory.InMemoryProducer;
 import org.odata4j.producer.jpa.JPAEdmGenerator;
 
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityMetadata;
+import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
-import ch.vorburger.blueprint.interactionframework.resources.ResourceRepository;
-import ch.vorburger.blueprint.interactionframework.resources.ResourceType;
 
 /**
  * EdmDataServices builder.
@@ -40,12 +40,12 @@ class EdmBuilder {
 	private static final String CONTAINER_NAME = EdmBuilder.class.getName() + "_GeneratedDefaultContainer";
 
 	private final String ns;
-	private final ResourceRepository repo;
-
-	public EdmBuilder(ResourceRepository repo, String namespace) {
+	private final EntityMetadata meta;
+	
+	public EdmBuilder(EntityMetadata meta, String namespace) {
 		super();
 		this.ns = namespace;
-		this.repo = repo;
+		this.meta = meta;
 	}
 
 	public EdmDataServices buildEdm() {
@@ -57,15 +57,16 @@ class EdmBuilder {
 		List<EdmAssociationSet> associationSets = new ArrayList<EdmAssociationSet>();
 
 		// Now add all the Resource Types as Entity Types:
-		Collection<ResourceType> allResourceTypes = repo.getMetadata().getEntries();
-		for (ResourceType resourceType : allResourceTypes) {
-			String resourceName = resourceType.getName();
+		for (EntityType entityType : meta.getEntityTypes()) {
+			String resourceName = entityType.getName();
 
-			// TODO ID/Keys! For now, just properties...
 			List<String> keyNames = new LinkedList<String>();
+			for (PropertyType idPropertyType : entityType.getIdentityProperties()) {
+				keyNames.add(idPropertyType.getName());
+			}
 
 			List<EdmProperty> edmProperties = new LinkedList<EdmProperty>();
-			Collection<PropertyType> properties = resourceType.getProperties();
+			Collection<PropertyType> properties = entityType.getPropertyTypesMap().values();
 			for (PropertyType propertyType : properties) {
 				EdmProperty edmProperty = toEdmProperty(propertyType);
 				edmProperties.add(edmProperty);
@@ -111,8 +112,9 @@ class EdmBuilder {
 	}
 
 	// @see http://code.google.com/p/odata4j/issues/detail?id=46
-	private EdmType toEdmType(PropertyType propertyType) {
-		Class<?> javaType = propertyType.getValueType().getJavaType();
+	// package local because also used by AbstractInteractionFrameworkODataProducerImpl
+	static EdmType toEdmType(PropertyType propertyType) {
+		Class<?> javaType = propertyType.getValueType().getJavaClass();
 		EdmType type = EdmType.forJavaType(javaType);
 		if (type == null) {
 			throw new IllegalArgumentException("Could not find the EDM-Type for Java type: " + javaType);
@@ -122,7 +124,8 @@ class EdmBuilder {
 
 	private EdmDataServices createEdmDataServices(List<EdmEntitySet> entitySets,
 			List<EdmAssociationSet> associationSets, List<EdmEntityType> entityTypes,
-			List<EdmComplexType> complexTypes, List<EdmAssociation> associations) {
+			List<EdmComplexType> complexTypes, List<EdmAssociation> associations) 
+	{
 		List<EdmSchema> schemas = new ArrayList<EdmSchema>();
 		List<EdmEntityContainer> containers = new ArrayList<EdmEntityContainer>();
 

@@ -68,7 +68,7 @@ public class ExampleLibraryConsumerTest extends BaseExample {
 	 * http://localhost:8887/InMemoryProducerExample.svc/application.wadl
 	 */
 	@Test
-	public void testGetWADL() throws Exception {
+	public void testHttpGetWADL() throws Exception {
 		getRaw(URL + "application.wadl");
 	}
 
@@ -79,27 +79,29 @@ public class ExampleLibraryConsumerTest extends BaseExample {
 	 * test if we can get it.
 	 */
 	@Test
-	public void testGetRootServiceDocument() throws Exception {
+	public void testHttpGetRootServiceDocument() throws Exception {
 		getRaw(URL + "");
 	}
 
 	@Test
-	public void testReportMetadata() throws Exception {
+	public void testODataMetadata() throws Exception {
 		// take a look at the service edm
 		EdmDataServices meta = consumer.getMetadata();
 		reportMetadata(meta);
-		meta.getEdmEntitySet("Books");
+		meta.getEdmEntitySet("Book");
 	}
 
 	@Test
 	public void testGetEntitiesAndEntity() throws Exception {
 		// retrieve a product entity with a known id
-		OEntity havinaCola = consumer.getEntity("Books", 3).execute();
-		reportEntity("Havina Cola", havinaCola);
+		OEntity firstBook = consumer.getEntity("Book", 3).execute();
+		reportEntity("A Book", firstBook);
+		// TODO assert book title (just an attribute) *and* ISBN (its ID)
 
 		// list all products
-		for (OEntity product : consumer.getEntities("Books").execute()) {
+		for (OEntity product : consumer.getEntities("Book").execute()) {
 			reportEntity("Book: " + product.getProperty("ISBN").getValue(), product);
+			// TODO assert book title and ISBN!
 		}
 	}
 

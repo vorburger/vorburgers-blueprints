@@ -1,55 +1,69 @@
 package ch.vorburger.blueprint.interactionframework.resources;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
-import ch.vorburger.blueprint.interactionframework.model.Entity;
+import ch.vorburger.blueprint.interactionframework.model.DataStruct;
+import ch.vorburger.blueprint.interactionframework.model.EntityId;
 import ch.vorburger.blueprint.interactionframework.model.Property;
 import ch.vorburger.blueprint.interactionframework.model.meta.EntityType;
 import ch.vorburger.blueprint.interactionframework.model.meta.PropertyType;
 import ch.vorburger.blueprint.interactionframework.resources.uri.URI;
 
-public class CollectionResourceImpl implements CollectionResource /* TODO extends ResourceImpl */ { 
+public class CollectionResourceImpl<E extends DataStruct> implements CollectionResource<E> /* TODO extends ResourceImpl */ { 
 
+	private final List<E> entries;
+
+	public CollectionResourceImpl(List<E> entries) {
+		super();
+		this.entries = entries;
+	}
+	
 	@Override
 	public URI getURI() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
+	}
+
+
+	@Override
+	public Collection<E> getEntries() {
+		return entries;
 	}
 
 	@Override
+	public Long getCount() {
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
+	}
+	
+	@Override
 	public Property<?> getProperty(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 
 	@Override
 	public Property<?> getProperty(PropertyType propertyType) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 
 	@Override
-	public EntityType getEntityType() {
-		// TODO Auto-generated method stub
-		return null;
+	public EntityType getDataStructType() {
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 
 	@Override
 	public Resource addResource(Resource newResource) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 
 	@Override
-	public Collection<Entity> getEntries() {
-		// TODO Auto-generated method stub
-		return null;
+	public EntityId getIdentity() {
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 
 	@Override
-	public long getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Map<String, Property<?>> getPropertyMap() {
+		throw new UnsupportedOperationException("TODO Implement me!"); // Must implement
 	}
 
 }
