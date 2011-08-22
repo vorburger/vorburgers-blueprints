@@ -31,15 +31,16 @@ import org.junit.Test;
  */
 public class HelloWorldTestServer {
 
-    private SCADomain scaDomain;
+	private SCADomain scaDomain;
 
-        @Before
+	@Before
 	public void startServer() throws Exception {
-            try {
-                scaDomain = SCADomain.newInstance("helloworldws.composite");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+		try {
+			scaDomain = SCADomain.newInstance("helloworldws.composite");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Test
@@ -49,7 +50,9 @@ public class HelloWorldTestServer {
 
 	@After
 	public void stopServer() throws Exception {
-            scaDomain.close();
+		if (scaDomain != null) {
+			scaDomain.close();
+		}
 	}
 
 }

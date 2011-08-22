@@ -28,8 +28,7 @@ public class HelloWorldClient {
 
 	public final static void main(String[] args) throws Exception {
 		SCADomain scaDomain = SCADomain.newInstance("helloworldwsclient.composite");
-		HelloWorldService helloWorldService = scaDomain.getService(HelloWorldService.class,
-				"HelloWorldServiceComponent");
+		HelloWorldService helloWorldService = scaDomain.getService(HelloWorldService.class, "HelloWorldService");
 
 		Name name = HelloworldFactory.INSTANCE.createName();
 

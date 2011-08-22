@@ -22,12 +22,12 @@
     name="helloworldwsclient">
 
     <component name="HelloWorldServiceComponent">
-        <implementation.java class="helloworld.HelloWorldServiceComponent" />
+        <implementation.java class="helloworld.HelloWorldService" />
     </component>
 
     <reference name="HelloWorldService" promote="HelloWorldServiceComponent/helloWorldService">
         <interface.java interface="helloworld.HelloWorldService" />
-        <binding.ws wsdlElement="http://helloworld#wsdl.port(HelloWorldService/HelloWorldSoapPort)" />
+        <binding.ws uri="http://localhost:8080/HelloWorldService" />
     </reference>
 
 </composite>

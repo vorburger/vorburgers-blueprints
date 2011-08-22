@@ -19,5 +19,7 @@
 -->
 <contribution xmlns="http://www.osoa.org/xmlns/sca/1.0"
   xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0">
-  <tuscany:sdo.types namespace="http://helloworld" location="wsdl/helloworld.wsdl"/>
+  
+  <tuscany:sdo.types namespace="http://helloworld" location="xsd/helloworld.xsd"/>
+  
 </contribution>

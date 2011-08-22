@@ -50,7 +50,7 @@ public class HelloWorldDynamicClientTestCase {
 	public static void startClient() throws Throwable {
 		try {
 			scaDomain = SCADomain.newInstance("helloworlddynwsclient.composite");
-			helloWorldService = scaDomain.getService(HelloWorldService.class, "HelloWorldServiceComponent");
+			helloWorldService = scaDomain.getService(HelloWorldService.class, "HelloWorldService");
 
 			server = new SCATestCaseRunner(HelloWorldTestServer.class);
 			server.before();
@@ -77,8 +77,10 @@ public class HelloWorldDynamicClientTestCase {
 	public void testHasWSDL() throws Exception {
 		// test that has exposed an HTTP endpoint that works as expected
 		// to keep this test simple just do ?wsdl on the endpoint
-		URL url = new URL("http://localhost:8085/HelloWorldService?wsdl");
-		Assert.assertTrue(read(url.openStream()).contains("address location="));
+		URL url = new URL("http://localhost:8080/HelloWorldService?wsdl");
+		final String wsdl = read(url.openStream());
+		System.out.println(wsdl);
+		Assert.assertTrue(wsdl.contains("address location="));
 	}
 
 	@AfterClass

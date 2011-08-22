@@ -21,11 +21,10 @@
     xmlns:dbsdo="http://tuscany.apache.org/xmlns/sca/databinding/sdo/1.0" xmlns:hw="http://helloworld"
     name="helloworldws">
     
-    <component name="HelloWorldServiceComponent">
+    <component name="HelloWorldService">
         <implementation.java class="helloworld.HelloWorldImpl" />
         <service name="HelloWorldService">
-            <interface.wsdl interface="http://helloworld#wsdl.interface(HelloWorld)" />
-            <binding.ws uri="http://localhost:8085/HelloWorldService" />
+            <binding.ws/>
         </service>
     </component>
 
