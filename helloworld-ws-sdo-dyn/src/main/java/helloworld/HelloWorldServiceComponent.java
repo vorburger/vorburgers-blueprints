@@ -18,25 +18,27 @@
  */
 package helloworld;
 
+import commonj.sdo.DataObject;
+
 /**
  * The HelloWorld service implementation
  */
 public class HelloWorldServiceComponent implements HelloWorldService {
-   
-    HelloWorldService helloWorldService;
 
-    public String getGreetings(Name name) {
-        System.out.println("Called getGreetings");
-        return helloWorldService.getGreetings(name);
-    }
+	HelloWorldService helloWorldService;
 
-    public HelloWorldService getHelloWorldService() {
-        System.out.println("Got Injected helloWorldService");
-        return helloWorldService;
-    }
+	public String getGreetings(DataObject name) {
+		System.out.println("Called getGreetings");
+		return helloWorldService.getGreetings(name);
+	}
 
-    public void setHelloWorldService(HelloWorldService helloWorldService) {
-        System.out.println("Injected helloWorldService");        
-        this.helloWorldService = helloWorldService;
-    }
+	public HelloWorldService getHelloWorldService() {
+		System.out.println("Got Injected helloWorldService");
+		return helloWorldService;
+	}
+
+	public void setHelloWorldService(HelloWorldService helloWorldService) {
+		System.out.println("Injected helloWorldService");
+		this.helloWorldService = helloWorldService;
+	}
 }

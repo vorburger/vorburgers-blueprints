@@ -20,14 +20,18 @@ package helloworld;
 
 import org.osoa.sca.annotations.Service;
 
+import commonj.sdo.DataObject;
+
 /**
  * This class implements the HelloWorld service.
  */
 @Service(HelloWorldService.class)
 public class HelloWorldImpl implements HelloWorldService {
 
-    public String getGreetings(Name name) {
-        return "Hello " + name.getFirst() + " " + name.getLast();
-    }
+	public String getGreetings(DataObject name) {
+		// TODO Name name = ... name ?
+		// return "Hello " + name.getFirst() + " " + name.getLast();
+		return "Hello " + name.getString("first") + " " + name.getString("last");
+	}
 
 }

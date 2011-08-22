@@ -21,24 +21,24 @@ package helloworld;
 import org.apache.tuscany.sca.host.embedded.SCADomain;
 
 /**
- * This client program shows how to create an SCA runtime, start it, locate the
- * HelloWorld service and invoke it.
+ * This client program shows how to create an SCA runtime, start it, locate the HelloWorld service
+ * and invoke it.
  */
 public class HelloWorldClient {
 
-    public final static void main(String[] args) throws Exception {
-        SCADomain scaDomain = SCADomain.newInstance("helloworldwsclient.composite");
-        HelloWorldService helloWorldService =
-            scaDomain.getService(HelloWorldService.class, "HelloWorldServiceComponent");
+	public final static void main(String[] args) throws Exception {
+		SCADomain scaDomain = SCADomain.newInstance("helloworldwsclient.composite");
+		HelloWorldService helloWorldService = scaDomain.getService(HelloWorldService.class,
+				"HelloWorldServiceComponent");
 
-        Name name = HelloworldFactory.INSTANCE.createName();
+		Name name = HelloworldFactory.INSTANCE.createName();
 
-        name.setFirst("David");
-        name.setLast("Haney");
+		name.setFirst("David");
+		name.setLast("Haney");
 
-        String value = helloWorldService.getGreetings(name);
-        System.out.println(value);
+		String value = helloWorldService.getGreetings(null /* TODO??? name */);
+		System.out.println(value);
 
-        scaDomain.close();
-    }
+		scaDomain.close();
+	}
 }

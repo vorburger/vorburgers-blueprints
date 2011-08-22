@@ -28,43 +28,43 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test case for helloworld web service client 
+ * Test case for helloworld web service client
  */
 public class HelloWorldClientTestCase {
 
-    private HelloWorldService helloWorldService;
-    private SCADomain scaDomain;
-    
-    private SCATestCaseRunner server;
+	private HelloWorldService helloWorldService;
+	private SCADomain scaDomain;
 
-    @Before
-    public void startClient() throws Throwable {
-        try {
-            scaDomain = SCADomain.newInstance("helloworldwsclient.composite");
-            helloWorldService = scaDomain.getService(HelloWorldService.class, "HelloWorldServiceComponent");
-    
-            server =  new SCATestCaseRunner(HelloWorldTestServer.class);
-            server.before();
+	private SCATestCaseRunner server;
 
-        } catch (Throwable e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-    
-    @Test
-    public void testWSClient() throws Exception {
-        Name name = HelloworldFactory.INSTANCE.createName();
-        name.setFirst("John");
-        name.setLast("Smith");
-        String msg = helloWorldService.getGreetings(name);
-        Assert.assertEquals("Hello John Smith", msg);
-    }
+	@Before
+	public void startClient() throws Throwable {
+		try {
+			scaDomain = SCADomain.newInstance("helloworldwsclient.composite");
+			helloWorldService = scaDomain.getService(HelloWorldService.class, "HelloWorldServiceComponent");
 
-    @After
-    public void stopClient() throws Exception {
-    	server.after();
-        scaDomain.close();
-    }
+			server = new SCATestCaseRunner(HelloWorldTestServer.class);
+			server.before();
+
+		} catch (Throwable e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Test
+	public void testWSClient() throws Exception {
+		Name name = HelloworldFactory.INSTANCE.createName();
+		name.setFirst("John");
+		name.setLast("Smith");
+		String msg = helloWorldService.getGreetings(null /* TODO??? name */);
+		Assert.assertEquals("Hello John Smith", msg);
+	}
+
+	@After
+	public void stopClient() throws Exception {
+		server.after();
+		scaDomain.close();
+	}
 
 }

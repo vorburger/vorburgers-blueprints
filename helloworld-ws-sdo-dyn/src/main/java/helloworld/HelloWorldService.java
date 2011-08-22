@@ -20,10 +20,12 @@ package helloworld;
 
 import org.osoa.sca.annotations.Remotable;
 
+import commonj.sdo.DataObject;
+
 /**
  * The interface for the helloworld service
  */
 @Remotable
 public interface HelloWorldService {
-    public String getGreetings(Name name);
+	public String getGreetings(DataObject name);
 }

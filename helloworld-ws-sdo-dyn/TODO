@@ -1,9 +1,11 @@
 
-* Dynamic Consumer (Client)
+* SDO: Why does gen. interface Name not extend DataObject, only NameImpl ?! 
+	change back in HelloWorldClientTestCase & HelloWorldClient
+
+* SDO: Helper to wrap an DataObject in a strongly typed interface (with dyn proxy) ?
+	T SDOStaticTypeHelper.as(DataObject o, Class<T> klass)
 
 * Dynamic Provider (Server)
-
-* testHasWSDL
 
 * How-to run this outside Tuscany "container" (classloader etc), just simply "embedded" ?
 
