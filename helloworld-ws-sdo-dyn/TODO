@@ -1,3 +1,5 @@
+* REST!  See helloworld-jaxrs/helloworld-jsonp/helloworld-jsonrpc base examples
+* Rename project dir helloworld-ws-sdo-dyn -> helloworld-sdo
 
 * SDO: Why does gen. interface Name not extend DataObject, only NameImpl ?! 
 	change back in HelloWorldClientTestCase & HelloWorldClient
@@ -12,12 +14,12 @@
 * Update to Tuscany 2.0 instead of 1.6
 * EMF Update?
 
-* Clear out HelloWorldServiceComponent - only confusing, no value in this example
-
 * Why is WSDL even needed? Base helloworld-webservice doesn't have one, and seems to create it on the fly - how to do same with this?
+    tried in branch github-nowsdl, failed with weired internal NPE on 1.x; retry after 2.0 upgrade
+* Test SOAP/WSDL via JDK wsclientgen, and SOAPui
 
-* REST!  See helloworld-jaxrs/helloworld-jsonp/helloworld-jsonrpc base examples
-
+* Clear out HelloWorldServiceComponent - only confusing, no value in this example
+	(done in branch github-nowsdl; failed)
 * Binary Serialization (no XML or JSON), like e.g. helloworld-scaclient, but must it use hazelcast?)
 
 * DAS?
@@ -28,3 +30,6 @@
 	should remove stuff like WARNING: Could not get url for /javax/servlet/jsp/resources/jsp_2_0.xsd
 	
 * Why SEVERE: XMLSchema validation error occured in: null ,line = 22, column = 5, Message = cvc-complex-type.2.4.a: Invalid content was found starting with element 'component'. One of '{WC[##other:"http://www.osoa.org/xmlns/sca/1.0"]}' is expected.
+
+* Dynamic Service (no static interface for service), not just Data
+ 

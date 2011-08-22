@@ -27,6 +27,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import commonj.sdo.DataObject;
+
 /**
  * Test case for helloworld web service client
  */
@@ -57,7 +59,9 @@ public class HelloWorldClientTestCase {
 		Name name = HelloworldFactory.INSTANCE.createName();
 		name.setFirst("John");
 		name.setLast("Smith");
-		String msg = helloWorldService.getGreetings(null /* TODO??? name */);
+		// TODO Cast to DataObject should be remove when gen. Name interface extends DataObject
+		// (which its *Impl actually does)
+		String msg = helloWorldService.getGreetings((DataObject) name);
 		Assert.assertEquals("Hello John Smith", msg);
 	}
 
