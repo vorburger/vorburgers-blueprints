@@ -6,9 +6,9 @@ import java.net.URL;
 
 import org.apache.tuscany.sdo.api.SDOUtil;
 
+import ch.vorburger.blueprints.data.DataObject;
 import ch.vorburger.blueprints.data.DataObjectFactory;
 
-import commonj.sdo.DataObject;
 import commonj.sdo.helper.HelperContext;
 import commonj.sdo.helper.XSDHelper;
 
@@ -50,8 +50,17 @@ public class XSDDataObjectFactory implements DataObjectFactory /* TODO , TypesPr
 	}
 
 	@Override
-	public DataObject create(String nsURI, String typeName) {
-		return sdoContext.getDataFactory().create(nsURI, typeName);
+	public DataObject create(String typeURI) {
+		final int pos = typeURI.lastIndexOf('#');
+		String nsURI = typeURI.substring(0, pos);
+		String typeName = typeURI.substring(pos + 1);
+		
+		try {
+			commonj.sdo.DataObject sdoDO = sdoContext.getDataFactory().create(nsURI, typeName);
+			return new DataObjectWrapper(sdoDO);
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("Unknown TypeURI for this DataObjectFactory: " + typeURI);
+		}
 	}
 
 //	@Override

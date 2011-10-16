@@ -10,10 +10,9 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import ch.vorburger.blueprints.data.DataObject;
 import ch.vorburger.blueprints.data.javareflect.JavaDataObjectFactory;
 import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
-
-import commonj.sdo.DataObject;
 
 /**
  * Tests.
@@ -24,13 +23,13 @@ public class DataObjectTests {
 
 	@Test
 	public void testDynamicXSD() throws IOException {
+		// TODO First assertThat f.getTypes() contains SampleFormType, keep that Type, use getURI on it, and create using that!
+		
 		XSDDataObjectFactory f = new XSDDataObjectFactory();
 		f.register("/SampleFormStructure.xsd");
-		DataObject dataObject = f.create("http://schemas.vorburger.ch/formsample", "SampleFormType");
-		dataObject.setString("name", "Saluton, Mondpacxo");
-		assertThat(dataObject.getString("name"), equalTo("Saluton, Mondpacxo"));
-		
-		// assertThat f.getTypes() contains SampleFormType
+		DataObject dataObject = f.create("http://schemas.vorburger.ch/formsample#SampleFormType");
+		dataObject.set("name", "Saluton, Mondpacxo");
+		assertThat(dataObject.get("name", String.class), equalTo("Saluton, Mondpacxo"));
 	}
 
 //	@Test(expected=UnsupportedOperationException.class)
@@ -55,12 +54,14 @@ public class DataObjectTests {
 
 	@Test
 	public void testDynamicJava() {
+		// TODO First assertThat f.getTypes() contains Book, keep that Type, use getURI on it, and create using that!
+
 		JavaDataObjectFactory f = new JavaDataObjectFactory();
 		f.register(BookImpl.class);
-		DataObject dataObject = f.create(Book.class.getPackage().getName(), Book.class.getSimpleName());
+		DataObject dataObject = null; // f.create(Book.class.getPackage().getName(), Book.class.getSimpleName());
 		assertThat(dataObject, is(notNullValue()));
-		dataObject.setString("name", "Saluton, Mondpacxo");
-		assertThat(dataObject.getString("name"), equalTo("Saluton, Mondpacxo"));
+		dataObject.set("name", "Saluton, Mondpacxo");
+		assertThat(dataObject.get("name", String.class), equalTo("Saluton, Mondpacxo"));
 	}
 
 	

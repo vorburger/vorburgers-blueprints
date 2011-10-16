@@ -1,14 +1,7 @@
 package ch.vorburger.blueprints.data;
 
-import commonj.sdo.DataObject;
-import commonj.sdo.helper.DataFactory;
-
 /**
- * Factory for SDO DataObjects.
- * 
- * Similar to {@link DataFactory}, but separate so that we can use Generics (which SDO does not),
- * avoid the static INSTANCE, and possible provide different implementations than those of the SDO
- * provider.
+ * Factory for DataObjects.
  * 
  * @author Michael Vorburger
  */
@@ -17,11 +10,10 @@ public interface DataObjectFactory {
 	/**
 	 * Create a new dynamic DataObject.
 	 * 
-	 * @param nsURI Namespace URI of the Type to be created
-	 * @param typeName Name of the Type to be created
+	 * @param uri URI of the Type to be created
 	 * @return DataObject, or null if this DataObjectFactory does not handle that Type
 	 */
-	DataObject create(String nsURI, String typeName);
+	DataObject create(String typeURI);
 
 	// TODO Could offer, if needed: DataObject create(Type nsURI);
 	
