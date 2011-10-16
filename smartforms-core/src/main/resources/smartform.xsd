@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:smartform="http://schemas.vorburger.ch/smartform"
+ 	xmlns:sdo="commonj.sdo"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.vorburger.ch/smartform">
+<!-- 
+	<xsd:import namespace="commonj.sdo"
+		schemaLocation="sdo/datagraph.xsd" />
+ -->
+
+	<xsd:element name="form" type="smartform:FormDetails" />
+
+	<xsd:complexType name="FormDetails">
+		<xsd:sequence>
+			<xsd:element name="property" type="smartform:Field" minOccurs="0" maxOccurs="unbounded" />
+			<!-- This does not have to (should not) be an "open type", so here no: 
+				<xsd:any namespace="##any" minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+			-->
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Field">
+		<xsd:sequence>
+			<xsd:element name="choices" type="smartform:Choice" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="path" type="xsd:string" /> <!-- xsd:ID ? -->
+		<xsd:attribute name="label" type="xsd:string" />
+		<xsd:attribute name="active" type="xsd:boolean" />
+		<xsd:attribute name="required" type="xsd:boolean" />
+		<xsd:attribute name="errrorMessage" type="xsd:string" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="Choice">
+		<xsd:sequence>
+			<xsd:any namespace="##any" minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>
