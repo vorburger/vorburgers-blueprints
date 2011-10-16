@@ -1,0 +1,21 @@
+
+domain.xtext - grammar for...
+
+	package ch.vorburger.blueprints.service.tests
+
+	using Xcore (without operations), for modeling data structures; https://github.com/merks/Xcore
+		class Book {
+			String title
+			int pages
+		}
+		
+	importing Java Bean types from the classpath
+		import Java class ch.vorburger.blueprints.data.tests.tests.Book
+		import Java package ch.vorburger.blueprints.data.tests.tests.domain
+	
+	importing XSD and XSD-from-WSDL from *.xsd & *.wsdl resources on the classpath
+		import XSD ch/vorburger/blueprints/domain/tests/sample.xsd
+		import WSDL ch/vorburger/blueprints/domain/tests/sample.wsdl
+
+	importing OData Entities from $metadata URL (which must be fetched and stored in project...)
+		import OData http://data.stackexchange.com/[$metadata]

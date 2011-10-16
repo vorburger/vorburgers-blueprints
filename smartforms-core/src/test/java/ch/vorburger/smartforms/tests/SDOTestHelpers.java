@@ -14,6 +14,8 @@ public final class SDOTestHelpers {
 	private SDOTestHelpers() {
 	}
 
+	// TODO This is now duplicated in XSDDataObjectFactory, and will have to be removed...
+	
 	/**
 	 * Load SDO Types from XML Schema (XSD).
 	 * 

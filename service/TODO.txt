@@ -1,0 +1,37 @@
+
+https://docs.google.com/document/d/1MwLqz9xTFTtTUmCy3--5SsrEP5CuLWoDN6h05ptcr-o/edit?hl=en_US
+
+service.xtext - grammar for...
+
+	package ch.vorburger.blueprints.service.tests
+	
+	// import ch.vorburger.blueprints.data.tests.tests.Book
+
+	/** Fetch a Book **/	
+	service getBook returns Book (
+			/** The ID of the Book */
+			long bookID)
+		// Class (not Interface) must have a matching method, and a no-args constructor - only really for tests... 
+		implemented-by Java Class ch.vorburger.blueprints.service.tests.BookService.getBook
+		
+	service saveBook (
+			Book book)
+		implemented-by SpringBean bookService.store
+	
+	service lookupBooks returns Book* (
+			String searchText
+			int startWith
+			int pages)
+		implemented-by SpringBean bookService.store
+
+	service previewBook returns HTMLFragment (
+			String isbn)		
+		implemented-by REST http://api.company.com/...
+	
+	service buyBook returns BookOrderConfirmation (
+			String isbn,
+			String creditCardNumber)
+		implemented-by SOAP http://ws.company.com/...
+	
+	service ... create... read... update... delete [?]
+	 	implemented-by OData http://data.stackexchange.com/
