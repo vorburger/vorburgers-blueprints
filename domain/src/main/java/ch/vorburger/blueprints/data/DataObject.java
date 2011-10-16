@@ -7,7 +7,8 @@ import java.io.Serializable;
  * 
  * TODO Doc ... This is ... inspired by SDO but simpler... (simpler Path Expressions, no Change
  * Summary; open Types left to implementations ... double check with MMF Notes in older/first
- * round/project...
+ * round/project... bla http://people.apache.org/~svkrish/tuscanySite/apidocs/sdo/commonj/sdo/DataObject.html
+ *  bla http://commons.apache.org/beanutils/api/org/apache/commons/beanutils/DynaBean.html bla bla
  * 
  * Path is either directly the name of a property in the Type of this DataObject
  * à la XPath, or SDO's "department.0/name", company.get("department[1]/name"), "department[number=123]", 
@@ -17,18 +18,21 @@ import java.io.Serializable;
  */
 public interface DataObject extends Serializable {
 
+	// TODO Create a specific checked DataObjectException class, instead of using IllegalArgumentException?
+	
 	/**
 	 * Short-form for {@link #get(String, Object.class)}.
 	 */
-	Object get(String path);
+	Object get(String path) throws IllegalArgumentException;
 
 	/**
 	 * 
 	 * @param path Path (as defined above)
 	 * @param type requested return Type
 	 * @return value of the property
+	 * @throws IllegalArgumentException if path, or type, are invalid
 	 */
-	<T> T get(String path, Class<T> type);
+	<T> T get(String path, Class<T> type) throws IllegalArgumentException;
 
 	/**
 	 * Sets a property of either this object or an object reachable from it, as identified by the
@@ -36,8 +40,9 @@ public interface DataObject extends Serializable {
 	 * 
 	 * @param path Path (as defined above)
 	 * @param value Value of property
+	 * @throws IllegalArgumentException if path, or value, are invalid
 	 */
-	void set(String path, Object value);
+	void set(String path, Object value) throws IllegalArgumentException;
 
 	
 	// Don't need strongly-typed setters

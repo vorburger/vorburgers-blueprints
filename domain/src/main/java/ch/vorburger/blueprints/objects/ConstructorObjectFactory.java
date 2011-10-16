@@ -1,7 +1,6 @@
 package ch.vorburger.blueprints.objects;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * ObjectFactory which creates objects by calling the default constructor of a Class.
@@ -21,18 +20,8 @@ public class ConstructorObjectFactory<T> implements ObjectFactory<T> {
 			constructor = klass.getConstructor();
 			// Now let's just test it once...
 			constructor.newInstance();
-		} catch (SecurityException e) {
-			throw new ObjectFactoryException(MSG + klass, e);
-		} catch (NoSuchMethodException e) {
-			throw new ObjectFactoryException(MSG + klass, e);
-		} catch (IllegalArgumentException e) {
-			throw new ObjectFactoryException(MSG + klass, e);
-		} catch (InstantiationException e) {
-			throw new ObjectFactoryException(MSG + klass, e);
-		} catch (IllegalAccessException e) {
-			throw new ObjectFactoryException(MSG + klass, e);
-		} catch (InvocationTargetException e) {
-			throw new ObjectFactoryException(MSG + klass, e);
+		} catch (Exception e) {
+			throw new ObjectFactoryException(MSG + klass.toString(), e);
 		}
 	}
 	

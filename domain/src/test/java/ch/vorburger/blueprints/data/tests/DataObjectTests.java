@@ -4,15 +4,20 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.junit.Test;
 
 import ch.vorburger.blueprints.data.DataObject;
 import ch.vorburger.blueprints.data.javareflect.JavaDataObjectFactory;
+import ch.vorburger.blueprints.data.meta.Type;
+import ch.vorburger.blueprints.data.meta.TypesProvider;
 import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
+import ch.vorburger.blueprints.objects.ObjectFactoryException;
 
 /**
  * Tests.
@@ -23,14 +28,39 @@ public class DataObjectTests {
 
 	@Test
 	public void testDynamicXSD() throws IOException {
-		// TODO First assertThat f.getTypes() contains SampleFormType, keep that Type, use getURI on it, and create using that!
-		
 		XSDDataObjectFactory f = new XSDDataObjectFactory();
 		f.register("/SampleFormStructure.xsd");
-		DataObject dataObject = f.create("http://schemas.vorburger.ch/formsample#SampleFormType");
+		
+		String sampleTypeURI = findURIContaining(f, "SampleFormType");
+		DataObject dataObject = f.create(sampleTypeURI);
 		dataObject.set("name", "Saluton, Mondpacxo");
 		assertThat(dataObject.get("name", String.class), equalTo("Saluton, Mondpacxo"));
 	}
+
+	@Test
+	public void testDynamicJava() throws ObjectFactoryException {
+		JavaDataObjectFactory f = new JavaDataObjectFactory();
+		f.register(BookImpl.class);
+
+		String sampleTypeURI = findURIContaining(f, "Book");
+		DataObject dataObject = f.create(sampleTypeURI);
+		assertThat(dataObject, is(notNullValue()));
+		dataObject.set("name", "Saluton, Mondpacxo");
+		assertThat(dataObject.get("name", String.class), equalTo("Saluton, Mondpacxo"));
+	}
+	
+	private String findURIContaining(TypesProvider f, String nameFragment) {
+		List<Type> types = f.getTypes();
+		assertTrue(types.size() > 3);
+		for (Type type : types) {
+			if (type.getURI().contains(nameFragment)) {
+				return type.getURI();
+			}
+		}
+		fail("Factory does not contain any Type with an URI containing " + nameFragment);
+		return null;
+	}
+
 
 //	@Test(expected=UnsupportedOperationException.class)
 //	public void testStaticXSD() {
@@ -51,23 +81,5 @@ public class DataObjectTests {
 //		book = f.create(BookImpl.class);
 //		assertThat(book, is(notNullValue()));
 //	}
-
-	@Test
-	public void testDynamicJava() {
-		// TODO First assertThat f.getTypes() contains Book, keep that Type, use getURI on it, and create using that!
-
-		JavaDataObjectFactory f = new JavaDataObjectFactory();
-		f.register(BookImpl.class);
-		DataObject dataObject = null; // f.create(Book.class.getPackage().getName(), Book.class.getSimpleName());
-		assertThat(dataObject, is(notNullValue()));
-		dataObject.set("name", "Saluton, Mondpacxo");
-		assertThat(dataObject.get("name", String.class), equalTo("Saluton, Mondpacxo"));
-	}
-
 	
-	@Test
-	public void testChain() {
-		fail("Not yet implemented");
-	}
-
 }
