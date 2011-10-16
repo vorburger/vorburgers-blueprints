@@ -8,6 +8,7 @@
 		<groupId>ch.vorburger.blueprints</groupId>
 		<artifactId>blueprints-pom</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../blueprints-pom/pom.xml</relativePath>
 	</parent>
 	
 	

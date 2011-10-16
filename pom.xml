@@ -2,35 +2,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ch.vorburger.blueprints</groupId>
-	<artifactId>blueprints-pom</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>blueprints-all</artifactId>
 	<packaging>pom</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<parent>
+		<artifactId>blueprints-pom</artifactId>
+		<groupId>ch.vorburger.blueprints</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../blueprints-pom/pom.xml</relativePath>
+	</parent>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.8.2</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<modules>
+		<module>blueprints-pom</module>
+		<module>appviewsnflows-core</module>
+		<module>smartforms-core</module>
+		<module>vaadin-example</module>
+	</modules>
 </project>
