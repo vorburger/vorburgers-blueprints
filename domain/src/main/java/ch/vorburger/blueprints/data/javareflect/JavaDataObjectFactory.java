@@ -1,6 +1,5 @@
 package ch.vorburger.blueprints.data.javareflect;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ import ch.vorburger.blueprints.objects.ObjectFactoryException;
 public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 
 	private final Map<String, JavaTypeImpl> map = new HashMap<String, JavaTypeImpl>();
-	private final Collection<JavaTypeImpl> roRegisteredTypes = Collections.unmodifiableCollection(map.values());
+	private final Map<String, ? extends Type> roRegisteredTypes = Collections.unmodifiableMap(map);
 
 	/**
 	 * Register Class.
@@ -55,7 +54,7 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 	}
 
 	@Override
-	public Iterable<? extends Type> getTypes() {
+	public Map<String, ? extends Type> getTypes() {
 		return roRegisteredTypes;
 	}
 

@@ -36,7 +36,8 @@ public class XSDDataObjectFactory implements DataObjectFactory, TypesProvider {
 	private final XSDHelper xsdHelper;
 	private final DataFactory dataFactory;
 	private final List<Type> registeredTypes = new LinkedList<Type>();
-	private final List<Type> roRegisteredTypes = Collections.unmodifiableList(registeredTypes);
+	private final Map<String, TypeImpl> registeredTypesMap = new HashMap<String, TypeImpl>();
+	private final Map<String, TypeImpl> roRegisteredTypes = Collections.unmodifiableMap(registeredTypesMap);
 
 	public XSDDataObjectFactory() {
 		this(SDOUtil.createHelperContext());
@@ -91,6 +92,9 @@ public class XSDDataObjectFactory implements DataObjectFactory, TypesProvider {
 
 		// 4. All went well, now add them to the instance
 		registeredTypes.addAll(newTypes.values());
+		for (TypeImpl type : newTypes.values()) {
+			registeredTypesMap.put(type.getURI(), type);
+		}
 	}
 
 	@Override
@@ -112,7 +116,7 @@ public class XSDDataObjectFactory implements DataObjectFactory, TypesProvider {
 	}
 
 	@Override
-	public List<Type> getTypes() {
+	public Map<String, ? extends Type> getTypes() {
 		return roRegisteredTypes;
 	}
 

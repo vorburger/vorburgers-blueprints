@@ -1,5 +1,7 @@
 package ch.vorburger.blueprints.data.meta;
 
+import java.util.Map;
+
 
 /**
  * Lists Types.
@@ -13,6 +15,6 @@ public interface TypesProvider {
 	 * 
 	 * @return immutable read-only List of Types
 	 */
-	Iterable<? extends Type> getTypes();
+	Map<String, ? extends Type> getTypes();
 	
 }
