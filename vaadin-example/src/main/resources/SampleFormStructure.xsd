@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:formsample="http://schemas.vorburger.ch/formsample"
+ 	xmlns:sdo="commonj.sdo"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.vorburger.ch/formsample">
+
+	<xsd:import namespace="commonj.sdo"
+		schemaLocation="sdo/datagraph.xsd" />
+
+
+	<xsd:element name="form" type="formsample:SampleFormType" />
+
+	<xsd:complexType name="SampleFormType">
+		<xsd:sequence>
+			<xsd:element name="colour" type="formsample:Colour" />
+			<xsd:element name="country" type="formsample:Country" />
+			<xsd:element name="state" type="formsample:State" />
+			<xsd:element name="customer" type="formsample:Customer" />
+			<xsd:element name="changes" type="sdo:ChangeSummaryType" />
+			<!-- Must be an "open type", for FormDataObject -->
+			<xsd:any namespace="##any" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" />
+		<xsd:attribute name="amount" type="xsd:decimal" />
+		<xsd:attribute name="date" type="xsd:date" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Colour">
+		<xsd:attribute name="value" type="xsd:ID" />
+		<xsd:attribute name="label" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Country">
+		<xsd:attribute name="iso3" type="xsd:ID" />
+		<xsd:attribute name="label" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="State">
+		<xsd:attribute name="code" type="xsd:ID" />
+		<xsd:attribute name="label" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Customer">
+		<xsd:attribute name="id" type="xsd:ID" />
+		<xsd:attribute name="name" type="xsd:string" />
+	</xsd:complexType>
+
+</xsd:schema>

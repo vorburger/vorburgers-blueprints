@@ -1,13 +1,18 @@
 package ch.vorburger.uftam.sample.vaadin;
 
+import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
 
+import ch.vorburger.blueprints.data.DataObject;
+import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
 import ch.vorburger.uftam.sample.model.representation.UserInfo;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerList;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerOrders;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.MainView;
+import ch.vorburger.uftam.sample.vaadin.smartform.SampleFormView;
 
 import com.vaadin.Application;
 import com.vaadin.data.util.BeanItem;
@@ -16,6 +21,7 @@ import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Window;
 
 public class SampleApplication extends Application implements ItemClickListener, ClickListener {
@@ -27,6 +33,8 @@ public class SampleApplication extends Application implements ItemClickListener,
 
 	private Button goToCustomers;
 
+	private Button goToFormDemo = new Button("Form Demo");
+	
 	@Override
 	public void init() {
 		setTheme("mytheme");
@@ -60,6 +68,10 @@ public class SampleApplication extends Application implements ItemClickListener,
 		// rootViewComponent);
 		final Window mainWindow = new Window("UFTAM Vaadin Sample Application", mainView);
 
+		// HACK!!!
+		mainWindow.addComponent(goToFormDemo);
+		goToFormDemo.addListener(this);
+		
 		setMainWindow(mainWindow);
 	}
 
@@ -85,7 +97,28 @@ public class SampleApplication extends Application implements ItemClickListener,
 		if (event.getComponent() == goToCustomers) {
 			mainView.setBody(customerList);
 		}
+		
+		if (event.getComponent() == goToFormDemo) {
+			// HACK this shouldn't be in here later of course...
+			XSDDataObjectFactory f = new XSDDataObjectFactory();
+			try {
+				f.register("/SampleFormStructure.xsd");
+			} catch (IOException e) {
+				// HACK Urgh - just shut up, for now..
+				e.printStackTrace();
+			}
+			// 1. Create Form Data Model 
+			DataObject dataObject = f.create("http://schemas.vorburger.ch/formsample#SampleFormType");
+			dataObject.set("name", "Saluton, Mondpacxo");
 
+			// 2. Create View (UI Model) 
+			SampleFormView form = new SampleFormView();
+			
+			// 3. Bind Model to View (UI Model)
+			form.getTextField_1().setValue(dataObject.get("name"));			
+			
+			mainView.setBody(form);
+		}
 	}
 
 }
