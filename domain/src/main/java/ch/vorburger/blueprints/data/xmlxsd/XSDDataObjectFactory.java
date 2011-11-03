@@ -116,6 +116,19 @@ public class XSDDataObjectFactory implements DataObjectFactory, TypesProvider {
 	}
 
 	@Override
+	public DataObject create(Type type) {
+		if (type == null)
+			throw new IllegalArgumentException("type == null");
+		
+//		if (!(type instanceof SDOTypeImpl)) 
+//			throw new IllegalArgumentException(this.getClass().getName() + " cannot create " + type.toString());
+//		SDOTypeImpl javaTypeImpl = (SDOTypeImpl) type;
+		
+		throw new UnsupportedOperationException("TODO"); // see TODO above...
+	}
+
+
+	@Override
 	public Map<String, ? extends Type> getTypes() {
 		return roRegisteredTypes;
 	}

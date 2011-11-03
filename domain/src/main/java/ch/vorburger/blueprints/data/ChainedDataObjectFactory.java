@@ -3,6 +3,8 @@ package ch.vorburger.blueprints.data;
 import java.util.LinkedList;
 import java.util.List;
 
+import ch.vorburger.blueprints.data.meta.Type;
+
 /**
  * DataObjectFactory which internally tries different registered other DataObjectFactories.
  *
@@ -20,6 +22,17 @@ public class ChainedDataObjectFactory implements DataObjectFactory {
 	public DataObject create(String typeURI) {
 		for (DataObjectFactory dataObjectFactory : list) {
 			DataObject dataObject = dataObjectFactory.create(typeURI);
+			if (dataObject != null) {
+				return dataObject;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public DataObject create(Type type) {
+		for (DataObjectFactory dataObjectFactory : list) {
+			DataObject dataObject = dataObjectFactory.create(type);
 			if (dataObject != null) {
 				return dataObject;
 			}

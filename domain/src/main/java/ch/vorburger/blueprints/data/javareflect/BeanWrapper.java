@@ -31,7 +31,8 @@ class BeanWrapper implements DataObject {
 		try {
 			return PropertyUtils.getProperty(beanDataObject, path);
 		} catch (Exception e) {
-			throw new IllegalArgumentException(path + " is not valid", e);
+			throwInvalidPath(path, e);
+			return null; // never actually return null, but Java is too dumb!
 		}
 	}
 
@@ -49,8 +50,19 @@ class BeanWrapper implements DataObject {
 		try {
 			PropertyUtils.setProperty(beanDataObject, path, value);
 		} catch (Exception e) {
-			throw new IllegalArgumentException(path + " is not valid", e);
+			throwInvalidPath(path, e);
 		}
 	}
+
+	private void throwInvalidPath(String path, Exception e) throws IllegalArgumentException {
+		String allProperties;
+		try {
+			allProperties = PropertyUtils.describe(beanDataObject).keySet().toString();
+		} catch (Exception ee) {
+			allProperties = "??? " + ee.getMessage();
+		}
+		throw new IllegalArgumentException(path + " is not valid; allowed properties are: " + allProperties , e);
+	}
+
 
 }

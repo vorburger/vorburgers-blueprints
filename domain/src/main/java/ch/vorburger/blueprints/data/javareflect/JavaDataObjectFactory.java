@@ -8,6 +8,7 @@ import ch.vorburger.blueprints.data.DataObject;
 import ch.vorburger.blueprints.data.DataObjectFactory;
 import ch.vorburger.blueprints.data.meta.Type;
 import ch.vorburger.blueprints.data.meta.TypesProvider;
+import ch.vorburger.blueprints.data.meta.spi.SimpleTypeRegistry;
 import ch.vorburger.blueprints.objects.ConstructorObjectFactory;
 import ch.vorburger.blueprints.objects.ObjectFactory;
 import ch.vorburger.blueprints.objects.ObjectFactoryException;
@@ -26,13 +27,25 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 	 * Register Class.
 	 * 
 	 * @param klass must have a default constructor
+	 * @return 
 	 * @throws ObjectFactoryException if Class has no default constructor
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void register(Class<?> klass) throws ObjectFactoryException {
+	public Type register(Class<?> klass) throws ObjectFactoryException {
+		Type simpleType = SimpleTypeRegistry.getSimpleType(klass);
+		if (simpleType != null)
+			return simpleType;
+		
 		ObjectFactory<?> factory = new ConstructorObjectFactory(klass);
-		JavaTypeImpl type = new JavaTypeImpl(klass, factory );
-		map.put(type.getURI(), type);
+		JavaTypeImpl type = new JavaTypeImpl(klass, factory, this);
+		
+		JavaTypeImpl existingType = map.get(type.getURI());
+		if (existingType == null) {
+			map.put(type.getURI(), type);
+			return type; 
+		} else {
+			return existingType;
+		}
 	}
 
 	/**
@@ -53,6 +66,18 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 		return new BeanWrapper(type.getObject());
 	}
 
+	@Override
+	public DataObject create(Type type) {
+		if (type == null)
+			throw new IllegalArgumentException("type == null");
+
+		if (!(type instanceof JavaTypeImpl)) 
+			throw new IllegalArgumentException(this.getClass().getName() + " cannot create " + type.toString());
+		
+		JavaTypeImpl javaTypeImpl = (JavaTypeImpl) type;
+		return new BeanWrapper(javaTypeImpl.getObject());
+	}
+	
 	@Override
 	public Map<String, ? extends Type> getTypes() {
 		return roRegisteredTypes;

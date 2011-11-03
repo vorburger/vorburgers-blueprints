@@ -7,16 +7,16 @@ package ch.vorburger.blueprints.data.tests;
  */
 public class BookImpl implements Book {
 
-	private String name;
+	private String _name;
 
 	@Override
-	public String getName() {
-		return this.name;
+	public String getAName() {
+		return this._name;
 	}
 
 	@Override
-	public void setName(String name) {
-		this.name = name;
+	public void setAName(String name) {
+		this._name = name;
 	}
 
 }

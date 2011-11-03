@@ -7,7 +7,7 @@ package ch.vorburger.blueprints.data.tests;
  */
 public interface Book {
 
-	String getName();
-	void setName(String name);
+	String getAName();
+	void setAName(String name);
 	
 }

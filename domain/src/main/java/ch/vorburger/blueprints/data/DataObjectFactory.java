@@ -1,5 +1,7 @@
 package ch.vorburger.blueprints.data;
 
+import ch.vorburger.blueprints.data.meta.Type;
+
 /**
  * Factory for DataObjects.
  * 
@@ -15,7 +17,8 @@ public interface DataObjectFactory {
 	 */
 	DataObject create(String typeURI);
 
-	// TODO Could offer, if needed: DataObject create(Type nsURI);
+	DataObject create(Type type);
+	
 	
 // Would this really be needed, is there a use case for such a usage?!
 //	/**
