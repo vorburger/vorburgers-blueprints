@@ -20,7 +20,7 @@ import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
 import ch.vorburger.blueprints.objects.ObjectFactoryException;
 
 /**
- * Tests.
+ * Tests for DataObject & DataObjectFactory implementations.
  *
  * @author Michael Vorburger
  */

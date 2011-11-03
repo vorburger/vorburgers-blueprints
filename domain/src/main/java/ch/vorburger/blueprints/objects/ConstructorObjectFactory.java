@@ -3,13 +3,13 @@ package ch.vorburger.blueprints.objects;
 import java.lang.reflect.Constructor;
 
 /**
- * ObjectFactory which creates objects by calling the default constructor of a Class.
+ * ObjectFactory which creates objects by calling the default constructor of a static Java Class.
  * 
  * @author Michael Vorburger
  */
 public class ConstructorObjectFactory<T> implements ObjectFactory<T> {
 
-	// TODO This was created for something which I ended up not doing; if this util is not going to be used elsewhere, completely delete it again later.
+	// TODO This was created for something which I ended up not doing; if this utility is not going to be used elsewhere, completely delete it again later.
 	
 	private static final String MSG = "Class does not seem to have a working defaul constructor: ";
 	private final Constructor<T> constructor;
