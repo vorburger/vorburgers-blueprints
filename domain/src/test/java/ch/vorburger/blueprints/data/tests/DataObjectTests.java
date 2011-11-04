@@ -72,7 +72,7 @@ public class DataObjectTests {
 	@Test
 	public void testStaticJavaPrivateProperty() throws ObjectFactoryException {
 		JavaDataObjectFactory f = new JavaDataObjectFactory();
-		f.register(BookPrivateField.class);
+		f.registerUsingDirectFieldsInsteadOfJavaBean(BookPrivateField.class);
 		
 		Type type = f.getTypes().get("java:" + BookPrivateField.class.getName());
 		List<Property> properties = type.getProperties();
@@ -88,6 +88,11 @@ public class DataObjectTests {
 		
 		nameDataObject.set("firstName", "Michael");
 		assertEquals("Michael", nameDataObject.get("firstName", String.class));
+		
+		dataObject.set("theName.lastName", "Vorburger");
+		assertEquals("Vorburger", nameDataObject.get("lastName", String.class));
+
+		assertEquals("Vorburger", dataObject.get("theName.lastName", String.class));
 	}
 
 	

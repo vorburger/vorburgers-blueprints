@@ -27,17 +27,32 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 	 * Register Class.
 	 * 
 	 * @param klass must have a default constructor
-	 * @return 
+	 * @return Type (new, or existing previously registered instance if not first time call) 
 	 * @throws ObjectFactoryException if Class has no default constructor
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Type register(Class<?> klass) throws ObjectFactoryException {
+		return register(klass, false);
+	}
+
+	/**
+	 * Register Class.
+	 * 
+	 * Instead of looking for & using JavaBean getters & setters, this does direct access to (all, incl. private) fields. 
+	 * @return Type (new, or existing previously registered instance if not first time call) 
+	 * @throws ObjectFactoryException 
+	 */
+	public Type registerUsingDirectFieldsInsteadOfJavaBean(Class<?> klass) throws ObjectFactoryException {
+		return register(klass, true);
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private Type register(Class<?> klass, boolean directFieldsInsteadOfJavaBean) throws ObjectFactoryException {
 		Type simpleType = SimpleTypeRegistry.getSimpleType(klass);
 		if (simpleType != null)
 			return simpleType;
 		
 		ObjectFactory<?> factory = new ConstructorObjectFactory(klass);
-		JavaTypeImpl type = new JavaTypeImpl(klass, factory, this);
+		JavaTypeImpl type = new JavaTypeImpl(klass, factory, this, directFieldsInsteadOfJavaBean);
 		
 		JavaTypeImpl existingType = map.get(type.getURI());
 		if (existingType == null) {
@@ -47,7 +62,7 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 			return existingType;
 		}
 	}
-
+	
 	/**
 	 * Factory method.
 	 * 
@@ -63,7 +78,7 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 			throw new IllegalArgumentException("Must start with prefix '" + JavaTypeImpl.NS + "' : " + typeURI);
 
 		JavaTypeImpl type = map.get(typeURI);
-		return new BeanWrapper(type.getObject());
+		return new BeanWrapper(type);
 	}
 
 	@Override
@@ -75,7 +90,7 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 			throw new IllegalArgumentException(this.getClass().getName() + " cannot create " + type.toString());
 		
 		JavaTypeImpl javaTypeImpl = (JavaTypeImpl) type;
-		return new BeanWrapper(javaTypeImpl.getObject());
+		return new BeanWrapper(javaTypeImpl);
 	}
 	
 	@Override
