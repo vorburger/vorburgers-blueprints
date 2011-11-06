@@ -9,6 +9,8 @@ public class BookImpl implements Book {
 
 	private String _name;
 
+	// Intentionally no constructor, so uses default no-args constructor
+	
 	@Override
 	public String getAName() {
 		return this._name;

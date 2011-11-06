@@ -25,8 +25,7 @@ public abstract class AbstractBinding implements Binding {
 		}
 		mapFromTo(dataObjectNameMap);
 	}
-	
-	
+
 	public static NamedDataObject newNamedDataObject(String name, DataObject dataObject) {
 		return new NamedDataObject(name, dataObject);
 	}

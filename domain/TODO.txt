@@ -1,4 +1,17 @@
 
+Split into sub-modules
+	ch.vorburger.data
+	ch.vorburger.data.reflect
+	ch.vorburger.data.xsd
+
+
+NEW
+	ch.vorburger.data.odata
+	
+	
+Fluent API DSL for programmatically creating Type, and instances (implemented via SDO for now; raw EMF later) 
+
+
 domain.xtext - grammar for...
 
 	package ch.vorburger.blueprints.service.tests

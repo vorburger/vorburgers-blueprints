@@ -1,0 +1,4 @@
+
+* PropertyChangeSupport stuff?
+
+* Mix-In capability?

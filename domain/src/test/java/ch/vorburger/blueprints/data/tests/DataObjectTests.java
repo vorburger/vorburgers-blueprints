@@ -29,21 +29,8 @@ import ch.vorburger.blueprints.objects.ObjectFactoryException;
  * @author Michael Vorburger
  */
 public class DataObjectTests {
-
-	@Test
-	public void testDynamicXSD() throws IOException {
-		XSDDataObjectFactory f = new XSDDataObjectFactory();
-		f.register("/SampleFormStructure.xsd");
-		
-		String sampleTypeURI = findURIContaining(f, "SampleFormType");
-		DataObject dataObject = f.create(sampleTypeURI);
-		dataObject.set("name", "Saluton, Mondpacxo");
-		assertThat(dataObject.get("name", String.class), equalTo("Saluton, Mondpacxo"));
-		
-		Type type = f.getTypes().get(sampleTypeURI);
-		assertEquals(8, type.getProperties().size());
-	}
-
+	// TODO Rename to JavaDataObjectTests
+	
 	@Test
 	public void testLeafSimpleTypes() throws ObjectFactoryException {
 		JavaDataObjectFactory f = new JavaDataObjectFactory();
@@ -51,7 +38,7 @@ public class DataObjectTests {
 		assertNull(stringType.getProperties());
 		assertEquals(String.class, stringType.getInstanceClass());
 	}
-	
+
 	@Test
 	public void testStaticJavaBean() throws ObjectFactoryException {
 		JavaDataObjectFactory f = new JavaDataObjectFactory();
@@ -60,8 +47,7 @@ public class DataObjectTests {
 		String sampleTypeURI = findURIContaining(f, "Book");
 		DataObject dataObject = f.create(sampleTypeURI);
 		assertThat(dataObject, is(notNullValue()));
-		dataObject.set("AName", "Saluton, Mondpacxo");
-		assertThat(dataObject.get("AName", String.class), equalTo("Saluton, Mondpacxo"));
+		checkBookDataObject(dataObject);
 		
 		Type type = f.getTypes().values().iterator().next();
 		assertEquals(1, type.getProperties().size());
@@ -69,6 +55,27 @@ public class DataObjectTests {
 		assertEquals(String.class, type.getProperties().iterator().next().getType().getInstanceClass());
 	}
 
+	@Test
+	public void testStaticJavaBeanAsDataObject() throws ObjectFactoryException {
+		JavaDataObjectFactory f = new JavaDataObjectFactory();
+		BookImpl bean1 = new BookImpl();
+		DataObject bean1AsDataObject = f.wrap(bean1);
+		checkBookDataObject(bean1AsDataObject);
+	}
+
+	@Test
+	public void testStaticJavaBeanWithConstructorAsDataObject() throws ObjectFactoryException {
+		JavaDataObjectFactory f = new JavaDataObjectFactory();
+		BookImplWithConstructor bean2 = new BookImplWithConstructor(false);
+		DataObject bean2AsDataObject = f.wrap(bean2);
+		checkBookDataObject(bean2AsDataObject);
+	}
+	
+	private void checkBookDataObject(DataObject dataObject) {
+		dataObject.set("AName", "Saluton, Mondpacxo");
+		assertThat(dataObject.get("AName", String.class), equalTo("Saluton, Mondpacxo"));
+	}
+	
 	@Test
 	public void testStaticJavaPrivateProperty() throws ObjectFactoryException {
 		JavaDataObjectFactory f = new JavaDataObjectFactory();
@@ -95,7 +102,21 @@ public class DataObjectTests {
 		assertEquals("Vorburger", dataObject.get("theName.lastName", String.class));
 	}
 
-	
+	@Test
+	public void testStaticJavaPrivatePropertyAsDataObject() throws ObjectFactoryException {
+		
+	}
+
+	@Test
+	public void testStaticJavaBeanAsDataObjectViaConversion() throws ObjectFactoryException {
+		
+	}
+
+	@Test
+	public void testDataObjectAsStaticJavaBeanViaConversion() throws ObjectFactoryException {
+		
+	}
+
 	private String findURIContaining(TypesProvider f, String nameFragment) {
 		Map<String, ? extends Type> types = f.getTypes();
 		for (Type type : types.values()) {
@@ -106,13 +127,6 @@ public class DataObjectTests {
 		fail("Factory does not contain any Type with an URI containing " + nameFragment + ", only: " + f.getTypes().keySet());
 		return null;
 	}
-
-
-//	@Test(expected=UnsupportedOperationException.class)
-//	public void testStaticXSD() {
-//		DataObjectFactory f = new XSDDataObjectFactory();
-//		f.create(Book.class);
-//	}
 
 // Would this really be needed, is there a use case for such a usage?!
 //	@Test

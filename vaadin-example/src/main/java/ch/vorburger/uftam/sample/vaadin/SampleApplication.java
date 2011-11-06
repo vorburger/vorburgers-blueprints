@@ -5,6 +5,10 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import ch.vorburger.blueprints.data.DataObject;
+import ch.vorburger.blueprints.data.binding.Binding;
+import ch.vorburger.blueprints.data.binding.BindingException;
+import ch.vorburger.blueprints.data.binding.SimpleBinding;
+import ch.vorburger.blueprints.data.javareflect.JavaDataObjectFactory;
 import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
@@ -100,22 +104,33 @@ public class SampleApplication extends Application implements ItemClickListener,
 		
 		if (event.getComponent() == goToFormDemo) {
 			// HACK this shouldn't be in here later of course...
-			XSDDataObjectFactory f = new XSDDataObjectFactory();
+			XSDDataObjectFactory xf = new XSDDataObjectFactory();
 			try {
-				f.register("/SampleFormStructure.xsd");
+				xf.register("/SampleFormStructure.xsd");
 			} catch (IOException e) {
 				// HACK Urgh - just shut up, for now..
 				e.printStackTrace();
 			}
 			// 1. Create Form Data Model 
-			DataObject dataObject = f.create("http://schemas.vorburger.ch/formsample#SampleFormType");
+			DataObject dataObject = xf.create("http://schemas.vorburger.ch/formsample#SampleFormType");
 			dataObject.set("name", "Saluton, Mondpacxo");
 
 			// 2. Create View (UI Model) 
 			SampleFormView form = new SampleFormView();
 			
 			// 3. Bind Model to View (UI Model)
-			form.getTextField_1().setValue(dataObject.get("name"));			
+			JavaDataObjectFactory jf = new JavaDataObjectFactory();
+			SimpleBinding b = new SimpleBinding();
+			// This is like form.getTextField_1().setValue(dataObject.get("name")) : 
+			b.addMappingFromTo("model.name", "ui.textField_1.value");
+			try {
+				b.mapFromTo(SimpleBinding.newNamedDataObject("model", dataObject),
+						// TODO Remove this wrap, Conversion should be automatic later
+							SimpleBinding.newNamedDataObject("ui", jf.wrap(form)));
+			} catch (BindingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			mainView.setBody(form);
 		}

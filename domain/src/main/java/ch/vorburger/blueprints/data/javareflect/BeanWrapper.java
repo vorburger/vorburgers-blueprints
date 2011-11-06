@@ -32,6 +32,11 @@ class BeanWrapper implements DataObject {
 		this.directFieldsInsteadOfJavaBean = type.directFieldsInsteadOfJavaBean;
 	}
 
+	BeanWrapper(JavaTypeImpl type, Object beanDataObject) {
+		this.beanDataObject = beanDataObject;
+		this.directFieldsInsteadOfJavaBean = type.directFieldsInsteadOfJavaBean;
+	}
+
 	private BeanWrapper(Object beanDataObject) {
 		this.beanDataObject = beanDataObject;
 		this.directFieldsInsteadOfJavaBean = false;
@@ -67,7 +72,6 @@ class BeanWrapper implements DataObject {
 	@SuppressWarnings("unchecked")
 	public <T> T get(String path, Class<T> type) {
 		DataObjectImplUtil.checkPath(path);
-		// TODO same as below!
 		Object o = get(path);
 		T value = (T) ConvertUtils.convert(o, type);
 		if (DataObject.class.equals(type) && !(value instanceof DataObject)) {

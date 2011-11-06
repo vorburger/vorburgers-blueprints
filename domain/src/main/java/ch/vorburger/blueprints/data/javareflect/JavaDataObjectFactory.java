@@ -98,4 +98,15 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 		return roRegisteredTypes;
 	}
 
+	public DataObject wrap(Object bean) {
+		Type type;
+		// TODO Remove this try/catch! Need to refactor above...
+		try {
+			type = register(bean.getClass());
+		} catch (ObjectFactoryException e) {
+			throw new IllegalArgumentException("Huh, this should never happen?!", e);
+		}
+		JavaTypeImpl javaTypeImpl = (JavaTypeImpl) type;
+		return new BeanWrapper(javaTypeImpl, bean);
+	}
 }

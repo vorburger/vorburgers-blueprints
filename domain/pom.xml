@@ -35,6 +35,12 @@
 			<artifactId>commons-beanutils-core</artifactId>
 			<version>1.8.3</version>
 		</dependency>
+		<dependency>
+			<!-- TODO Review usage; for now just evaluating as alternative to commons-beanutils... -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>3.0.6.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 </project>
