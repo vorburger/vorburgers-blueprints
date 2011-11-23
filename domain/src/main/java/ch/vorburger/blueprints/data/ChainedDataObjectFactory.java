@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ch.vorburger.blueprints.data.meta.Type;
+import ch.vorburger.blueprints.objects.ObjectFactoryException;
 
 /**
  * DataObjectFactory which internally tries different registered other DataObjectFactories.
@@ -19,7 +20,7 @@ public class ChainedDataObjectFactory implements DataObjectFactory {
 	}
 	
 	@Override
-	public DataObject create(String typeURI) {
+	public DataObject create(String typeURI) throws ObjectFactoryException {
 		for (DataObjectFactory dataObjectFactory : list) {
 			DataObject dataObject = dataObjectFactory.create(typeURI);
 			if (dataObject != null) {
@@ -30,7 +31,7 @@ public class ChainedDataObjectFactory implements DataObjectFactory {
 	}
 
 	@Override
-	public DataObject create(Type type) {
+	public DataObject create(Type type) throws ObjectFactoryException {
 		for (DataObjectFactory dataObjectFactory : list) {
 			DataObject dataObject = dataObjectFactory.create(type);
 			if (dataObject != null) {

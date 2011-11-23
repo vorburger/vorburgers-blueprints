@@ -31,4 +31,8 @@ public class PropertyImpl implements Property {
 		return type;
 	}
 
+	@Override
+	public String toString() {
+		return name + ": " + type.getURI();
+	}
 }

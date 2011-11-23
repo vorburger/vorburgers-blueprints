@@ -10,4 +10,40 @@
 	
 	<artifactId>dyna</artifactId>
 	
+	<dependencies>
+<!-- TODO Remove? Best just define the simplest possible interface myself..,
+		<dependency>
+				We are actually only interested in the
+				Dyna Bean & Co. API here at this level;
+				we will NOT use the Reflection stuff!
+				
+				Only: DynaBean, DynaClass, DynaProperty
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils-core</artifactId>
+		</dependency>
+-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.core.databinding</groupId>
+			<artifactId>beans</artifactId>
+			<version>1.0.0-I20070606-0010</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.beansbinding</groupId>
+			<artifactId>beansbinding</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdesktop</groupId>
+			<artifactId>beansbinding</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
 </project>

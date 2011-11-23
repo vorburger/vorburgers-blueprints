@@ -20,8 +20,12 @@ import ch.vorburger.blueprints.objects.ObjectFactoryException;
  */
 public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 
-	private final Map<String, JavaTypeImpl> map = new HashMap<String, JavaTypeImpl>();
-	private final Map<String, ? extends Type> roRegisteredTypes = Collections.unmodifiableMap(map);
+	// TODO BeanUtils' WrapDynaClass is using a ContextClassLoaderLocal WeakHashMap...
+	// do we nee this as well here?!  If somebody keeps a JavaDataObjectFactory around in a static?!
+	
+	private final Map<String, JavaTypeImpl> nameMap = new HashMap<String, JavaTypeImpl>();
+	private final Map<String, ? extends Type> roRegisteredTypes = Collections.unmodifiableMap(nameMap);
+	private final Map<Class<?>, JavaTypeImpl> classMap = new HashMap<Class<?>, JavaTypeImpl>();
 
 	/**
 	 * Register Class.
@@ -51,16 +55,24 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 		if (simpleType != null)
 			return simpleType;
 		
-		ObjectFactory<?> factory = new ConstructorObjectFactory(klass);
-		JavaTypeImpl type = new JavaTypeImpl(klass, factory, this, directFieldsInsteadOfJavaBean);
+		Type knownComplexType = classMap.get(klass);
+		if (knownComplexType != null)
+			return knownComplexType;
 		
-		JavaTypeImpl existingType = map.get(type.getURI());
-		if (existingType == null) {
-			map.put(type.getURI(), type);
-			return type; 
-		} else {
-			return existingType;
+		// We'll now try to create an ObjectFactory for the class.
+		// If we can't, that's not so bad - we'll still have Type information, 
+		// just not be able to create instances (only wrap existing POJOs)
+		ObjectFactory<?> factory = null;
+		try {
+			factory = new ConstructorObjectFactory(klass);
+		} catch (ObjectFactoryException e) {
+			// IGNORE
 		}
+		
+		JavaTypeImpl type = new JavaTypeImpl(klass, factory, this, directFieldsInsteadOfJavaBean);
+		nameMap.put(type.getURI(), type);
+		classMap.put(klass, type);
+		return type; 
 	}
 	
 	/**
@@ -68,21 +80,22 @@ public class JavaDataObjectFactory implements DataObjectFactory, TypesProvider {
 	 * 
 	 * @param nsURI Java Package name
 	 * @param typeName Java Class or Interface name
+	 * @throws ObjectFactoryException 
 	 */
 	@Override
-	public DataObject create(String typeURI) {
+	public DataObject create(String typeURI) throws ObjectFactoryException {
 		if (typeURI == null)
 			throw new IllegalArgumentException("typeURI == null");
 		
 		if (!typeURI.startsWith(JavaTypeImpl.NS)) 
 			throw new IllegalArgumentException("Must start with prefix '" + JavaTypeImpl.NS + "' : " + typeURI);
 
-		JavaTypeImpl type = map.get(typeURI);
+		JavaTypeImpl type = nameMap.get(typeURI);
 		return new BeanWrapper(type);
 	}
 
 	@Override
-	public DataObject create(Type type) {
+	public DataObject create(Type type) throws ObjectFactoryException {
 		if (type == null)
 			throw new IllegalArgumentException("type == null");
 

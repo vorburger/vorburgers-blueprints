@@ -14,4 +14,8 @@ public class ObjectFactoryException extends Exception {
 		super(msg, e);
 	}
 
+	public ObjectFactoryException(String msg) {
+		super(msg);
+	}
+
 }

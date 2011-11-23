@@ -2,6 +2,9 @@ package ch.vorburger.blueprints.dyna.spring;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.beanutils.BasicDynaClass;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaClass;
@@ -47,4 +50,14 @@ public class DynaSpringTest {
 		assertEquals("Michael", name);
 	}
 
+	@Test
+	public void testExpressionParserWithMap() throws IllegalAccessException, InstantiationException {
+		Map<String, Object> struct = new HashMap<String, Object>();
+		struct.put("name", "Mickey Mouse");
+		
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression("name");
+		String name = (String) exp.getValue(struct);
+		assertEquals("Mickey Mouse", name);
+	}
 }

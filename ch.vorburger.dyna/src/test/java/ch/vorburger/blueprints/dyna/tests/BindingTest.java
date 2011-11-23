@@ -1,13 +1,14 @@
-package ch.vorburger.blueprints.data.tests;
+package ch.vorburger.blueprints.dyna.tests;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.Test;
 
-import ch.vorburger.blueprints.data.DataObject;
-import ch.vorburger.blueprints.data.binding.SimpleBinding;
-import ch.vorburger.blueprints.data.binding.BindingException;
+import ch.vorburger.blueprints.dyna.DynaBean;
+import ch.vorburger.blueprints.dyna.access.DynaBeanAwarePropertyAccessorService;
+import ch.vorburger.blueprints.dyna.access.PathResolvingPropertyAccessorService;
+import ch.vorburger.blueprints.dyna.access.PropertyAccessorService;
+import ch.vorburger.blueprints.dyna.binding.SimpleBinding;
 
 /**
  * Tests for Binding.
@@ -17,8 +18,9 @@ import ch.vorburger.blueprints.data.binding.BindingException;
 public class BindingTest {
 
 	@Test
-	public void testBinding() throws Exception {
-		SimpleBinding b = new SimpleBinding();
+	public void testSimpleBinding() throws Exception {
+		PropertyAccessorService s = new DynaBeanAwarePropertyAccessorService(null);
+		SimpleBinding b = new SimpleBinding(s);
 		b.addMappingFromTo("a.something", "c.somethingElse");
 		b.addMappingFromTo("b.somethingElse", "c.something");
 		
@@ -45,24 +47,42 @@ public class BindingTest {
 		Assert.assertEquals(new Long(27), c_toObject.somethingElse);
 	}
 
+	@Test
+	public void testNestedBinding() throws Exception {
+		PropertyAccessorService s = new DynaBeanAwarePropertyAccessorService(null);
+		s = new PathResolvingPropertyAccessorService(s);
+		SimpleBinding b = new SimpleBinding(s);
+		b.addMappingFromTo("a.something", "c.containedObject.somethingElse");
+		TestDataObject a_fromObject = new TestDataObject();
+		a_fromObject.something = 27L;
+		TestDataObject c_toObject = new TestDataObject();
+		c_toObject.containedObject = new TestDataObject(); 
+				
+		b.mapFromTo(SimpleBinding.newNamedDataObject("a", a_fromObject),
+					SimpleBinding.newNamedDataObject("c", c_toObject));
+		
+		Assert.assertEquals(new Long(27), c_toObject.containedObject.somethingElse);
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void testBadBinding1() throws Exception {
-		new SimpleBinding().addMappingFromTo("a.something", "c.");
+		new SimpleBinding(null).addMappingFromTo("a.something", "c.");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testBadBinding2() throws Exception {
-		new SimpleBinding().addMappingFromTo("something", "c.somethingElse");
+		new SimpleBinding(null).addMappingFromTo("something", "c.somethingElse");
 	}
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testBadBinding3() throws Exception {
-		new SimpleBinding().addMappingFromTo("b.somethingElse", "something");
+		new SimpleBinding(null).addMappingFromTo("b.somethingElse", "something");
 	}
 	
-	private static class TestDataObject implements DataObject {
+	private static class TestDataObject implements DynaBean {
 		Long something;
 		Long somethingElse;
+		TestDataObject containedObject;
 
 		@Override
 		public Object get(String path) throws IllegalArgumentException {
@@ -70,6 +90,8 @@ public class BindingTest {
 				return something;
 			} else if (path.equals("somethingElse")) {
 				return somethingElse;
+			} else if (path.equals("containedObject")) {
+				return containedObject;
 			}
 			throw new UnsupportedOperationException(path);
 		}
@@ -80,14 +102,11 @@ public class BindingTest {
 				this.something = (Long) value;
 			} else if (path.equals("somethingElse")) {
 				this.somethingElse = (Long) value;
+			} else if (path.equals("containedObject")) {
+				this.containedObject = (TestDataObject) containedObject;
 			} else {
 				throw new UnsupportedOperationException(path);
 			}
-		}
-
-		@Override
-		public <T> T get(String path, Class<T> type) throws IllegalArgumentException {
-			throw new UnsupportedOperationException();
 		}
 
 	}

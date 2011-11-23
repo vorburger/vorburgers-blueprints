@@ -1,11 +1,10 @@
-package ch.vorburger.blueprints.data.binding;
+package ch.vorburger.blueprints.dyna.binding;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import ch.vorburger.blueprints.data.DataObject;
+import ch.vorburger.blueprints.dyna.access.PropertyAccessorService;
 
 /**
  * Simple Binding Implementation.
@@ -17,8 +16,15 @@ import ch.vorburger.blueprints.data.DataObject;
  */
 public class SimpleBinding extends AbstractBinding {
 
+	private final PropertyAccessorService propertyAccessor;
+	
 	private List<SimpleMapping> mappings = new LinkedList<SimpleMapping>();
 	
+	public SimpleBinding(PropertyAccessorService propertyAccessor) {
+		super();
+		this.propertyAccessor = propertyAccessor;
+	}
+
 //	public Binding addFromType(String name, Type type) {
 //		// TODO... store type, so we can do better checks on map() ...
 //		return this;
@@ -56,13 +62,18 @@ public class SimpleBinding extends AbstractBinding {
 	}
 
 	@Override
-	public void mapFromTo(Map<String, DataObject> dataObjectNameMap) throws BindingException {
+	public void mapFromTo(Map<String, Object> dataObjectNameMap) throws BindingException {
 		for (SimpleMapping mapping : mappings) {
-			DataObject fromDO = dataObjectNameMap.get(mapping.fromDataObjectName);
+			Object fromDO = dataObjectNameMap.get(mapping.fromDataObjectName);
 			if (fromDO == null) 
 				throw new BindingException("No DataObject named '" + mapping.fromDataObjectName + "' available for mapping " + mapping.toString());
-			DataObject toDO = dataObjectNameMap.get(mapping.toDataObjectName);
-			toDO.set(mapping.toPath, fromDO.get(mapping.fromPath));
+
+			Object toDO = dataObjectNameMap.get(mapping.toDataObjectName);
+			if (toDO == null) 
+				throw new BindingException("No DataObject named '" + mapping.toDataObjectName + "' available for mapping " + mapping.toString());
+			
+			Object value = propertyAccessor.getPropertyValue(fromDO, mapping.fromPath);
+			propertyAccessor.setPropertyValue(toDO, mapping.toPath, value);
 		}
 	}
 
@@ -80,8 +91,6 @@ public class SimpleBinding extends AbstractBinding {
 			builder.append(toDataObjectName).append(PATH_SEPARATOR).append(toPath);
 			return builder.toString();
 		}
-		
-		
 	}
 	
 }

@@ -1,8 +1,6 @@
-package ch.vorburger.blueprints.data.binding;
+package ch.vorburger.blueprints.dyna.binding;
 
 import java.util.Map;
-
-import ch.vorburger.blueprints.data.DataObject;
 
 /**
  * DataObject-to-DataObject bi-directional binding helper.
@@ -15,7 +13,7 @@ import ch.vorburger.blueprints.data.DataObject;
  */
 public interface Binding {
 
-	void mapFromTo(Map<String, DataObject> dataObjectNameMap) throws BindingException;
+	void mapFromTo(Map<String, Object> dataObjectNameMap) throws BindingException;
 
 	void mapFromTo(NamedDataObject... namedDataObjects) throws BindingException;
 
@@ -24,9 +22,9 @@ public interface Binding {
 
 	public static class NamedDataObject {
 		String name;
-		DataObject dataObject;
+		Object dataObject;
 
-		NamedDataObject(String name, DataObject dataObject) {
+		NamedDataObject(String name, Object dataObject) {
 			this.name = name;
 			this.dataObject = dataObject;
 		}

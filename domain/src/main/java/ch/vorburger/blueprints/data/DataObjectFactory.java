@@ -1,6 +1,7 @@
 package ch.vorburger.blueprints.data;
 
 import ch.vorburger.blueprints.data.meta.Type;
+import ch.vorburger.blueprints.objects.ObjectFactoryException;
 
 /**
  * Factory for DataObjects.
@@ -14,10 +15,11 @@ public interface DataObjectFactory {
 	 * 
 	 * @param uri URI of the Type to be created
 	 * @return DataObject, or null if this DataObjectFactory does not handle that Type
+	 * @throws ObjectFactoryException 
 	 */
-	DataObject create(String typeURI);
+	DataObject create(String typeURI) throws ObjectFactoryException;
 
-	DataObject create(Type type);
+	DataObject create(Type type) throws ObjectFactoryException;
 	
 	
 // Would this really be needed, is there a use case for such a usage?!

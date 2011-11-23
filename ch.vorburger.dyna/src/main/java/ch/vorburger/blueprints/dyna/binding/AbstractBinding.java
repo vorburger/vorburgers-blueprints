@@ -1,9 +1,7 @@
-package ch.vorburger.blueprints.data.binding;
+package ch.vorburger.blueprints.dyna.binding;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import ch.vorburger.blueprints.data.DataObject;
 
 /**
  * Abstract base class for Binding Implementations.
@@ -15,18 +13,18 @@ public abstract class AbstractBinding implements Binding {
 	protected static final char PATH_SEPARATOR = '.';
 
 	@Override
-	public abstract void mapFromTo(Map<String, DataObject> dataObjectNameMap) throws BindingException; 
+	public abstract void mapFromTo(Map<String, Object> dataObjectNameMap) throws BindingException; 
 
 	@Override
 	public void mapFromTo(NamedDataObject... namedDataObjects) throws BindingException {
-		Map<String, DataObject> dataObjectNameMap = new HashMap<String, DataObject>();
+		Map<String, Object> dataObjectNameMap = new HashMap<String, Object>();
 		for (NamedDataObject namedDataObject : namedDataObjects) {
 			dataObjectNameMap.put(namedDataObject.name, namedDataObject.dataObject);
 		}
 		mapFromTo(dataObjectNameMap);
 	}
 
-	public static NamedDataObject newNamedDataObject(String name, DataObject dataObject) {
+	public static NamedDataObject newNamedDataObject(String name, Object dataObject) {
 		return new NamedDataObject(name, dataObject);
 	}
 

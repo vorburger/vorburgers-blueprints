@@ -9,6 +9,8 @@ public final class DataObjectImplUtil {
 	private DataObjectImplUtil() {
 	}
 	
+	// NOTE: WHILE EVERYTHING IS IN A MESS, I DUPLICATED THIS FROM domain/ to ch.vorburger.dyna
+	
 	public static void checkPath(String path) {
 		if (path.indexOf('/') > -1) {
 			throw new IllegalArgumentException("Use '.' instead of '/' to separate properties in DataObject path");

@@ -1,15 +1,15 @@
 package ch.vorburger.uftam.sample.vaadin;
 
-import java.io.IOException;
 import java.util.Collection;
-import java.util.Iterator;
 
-import ch.vorburger.blueprints.data.DataObject;
-import ch.vorburger.blueprints.data.binding.Binding;
-import ch.vorburger.blueprints.data.binding.BindingException;
-import ch.vorburger.blueprints.data.binding.SimpleBinding;
-import ch.vorburger.blueprints.data.javareflect.JavaDataObjectFactory;
-import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
+import ch.vorburger.blueprints.dyna.DynaBean;
+import ch.vorburger.blueprints.dyna.SimpleDynaBean;
+import ch.vorburger.blueprints.dyna.access.DynaBeanAwarePropertyAccessorService;
+import ch.vorburger.blueprints.dyna.access.PathResolvingPropertyAccessorService;
+import ch.vorburger.blueprints.dyna.access.PropertyAccessorService;
+import ch.vorburger.blueprints.dyna.binding.BindingException;
+import ch.vorburger.blueprints.dyna.binding.SimpleBinding;
+import ch.vorburger.blueprints.dyna.spring.SpringPropertyAccessorService;
 import ch.vorburger.uftam.sample.model.domain.Customer;
 import ch.vorburger.uftam.sample.model.domain.repository.CustomersRepository;
 import ch.vorburger.uftam.sample.model.representation.UserInfo;
@@ -19,13 +19,17 @@ import ch.vorburger.uftam.sample.vaadin.justcomponents.MainView;
 import ch.vorburger.uftam.sample.vaadin.smartform.SampleFormView;
 
 import com.vaadin.Application;
+import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Component;
+import com.vaadin.ui.Component.Event;
+import com.vaadin.ui.Component.Listener;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
 
 public class SampleApplication extends Application implements ItemClickListener, ClickListener {
@@ -68,8 +72,7 @@ public class SampleApplication extends Application implements ItemClickListener,
 
 		// Component component = mainDecoView.getRootComponent();
 		// ComponentContainer rootViewComponent = (ComponentContainer) component;
-		// final Window mainWindow = new Window("UFTAM Vaadin Sample Application",
-		// rootViewComponent);
+		// final Window mainWindow = new Window("UFTAM Vaadin Sample Application", rootViewComponent);
 		final Window mainWindow = new Window("UFTAM Vaadin Sample Application", mainView);
 
 		// HACK!!!
@@ -104,6 +107,7 @@ public class SampleApplication extends Application implements ItemClickListener,
 		
 		if (event.getComponent() == goToFormDemo) {
 			// HACK this shouldn't be in here later of course...
+/*			
 			XSDDataObjectFactory xf = new XSDDataObjectFactory();
 			try {
 				xf.register("/SampleFormStructure.xsd");
@@ -114,23 +118,45 @@ public class SampleApplication extends Application implements ItemClickListener,
 			// 1. Create Form Data Model 
 			DataObject dataObject = xf.create("http://schemas.vorburger.ch/formsample#SampleFormType");
 			dataObject.set("name", "Saluton, Mondpacxo");
-
+*/
 			// 2. Create View (UI Model) 
 			SampleFormView form = new SampleFormView();
 			
 			// 3. Bind Model to View (UI Model)
-			JavaDataObjectFactory jf = new JavaDataObjectFactory();
-			SimpleBinding b = new SimpleBinding();
+/*			JavaDataObjectFactory jf = new JavaDataObjectFactory();
+ */		
+			DynaBean dynaBean = new SimpleDynaBean();
+			dynaBean.set("name", "Saluton, Mondpacxo");
+			dynaBean.set("amount", 123.45);
+
+			PropertyAccessorService s = new SpringPropertyAccessorService();
+			s = new DynaBeanAwarePropertyAccessorService(s);
+			s = new PathResolvingPropertyAccessorService(s);
+			SimpleBinding b = new SimpleBinding(s);
+			
 			// This is like form.getTextField_1().setValue(dataObject.get("name")) : 
-			b.addMappingFromTo("model.name", "ui.textField_1.value");
+			b.addMappingFromTo("model.name", "ui.textField_name.value");
+			b.addMappingFromTo("model.amount", "ui.textField_amount.value");
+			
 			try {
-				b.mapFromTo(SimpleBinding.newNamedDataObject("model", dataObject),
-						// TODO Remove this wrap, Conversion should be automatic later
-							SimpleBinding.newNamedDataObject("ui", jf.wrap(form)));
+				b.mapFromTo(SimpleBinding.newNamedDataObject("model", dynaBean),
+							SimpleBinding.newNamedDataObject("ui", form));
 			} catch (BindingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			ValueChangeListener vclistener = new ValueChangeListener() {
+				@Override
+				public void valueChange(ValueChangeEvent event) {
+					System.out.println(event.getProperty().getValue());
+					//System.out.println(event.getComponent().getDebugId());
+					//System.out.println(event.getComponent().toString());
+					System.out.println();
+				}
+			};
+			TextField c = (TextField) s.getPropertyValue(form, "textField_amount");
+			c.addListener(vclistener);
 			
 			mainView.setBody(form);
 		}

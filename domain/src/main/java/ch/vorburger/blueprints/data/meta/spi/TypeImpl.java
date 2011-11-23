@@ -1,11 +1,12 @@
 package ch.vorburger.blueprints.data.meta.spi;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import ch.vorburger.blueprints.data.meta.Property;
 import ch.vorburger.blueprints.data.meta.Type;
-import java.util.Collections;
 
 /**
  * Implementation of Type.
@@ -18,8 +19,8 @@ public class TypeImpl implements Type {
 
 	private final String uri;
 	private final Class<?> klass;
-	private final List<Property> properties = new LinkedList<Property>();
-	private final List<Property> roProperties = Collections.unmodifiableList(properties);
+	private final Map<String, Property> properties = new HashMap<String, Property>();
+	private final Collection<Property> roProperties = Collections.unmodifiableCollection(properties.values());
 	
 	public TypeImpl(String uri, Class<?> klass) {
 		super();
@@ -37,7 +38,7 @@ public class TypeImpl implements Type {
 	}
 
 	@Override
-	public List<Property> getProperties() {
+	public Collection<Property> getProperties() {
 		return roProperties;
 	}
 
@@ -47,7 +48,17 @@ public class TypeImpl implements Type {
 	}
 
 	public void addProperty(Property p) {
-		properties.add(p);
+		properties.put(p.getName(), p);
 	}
 	
+
+	@Override
+	public Property getProperty(String name) {
+		Property p = properties.get(name);
+		if (p == null)
+			throw new IllegalArgumentException("No such property: " + name);
+		return p;
+	}
+
+	// TODO @Override public String toString() {
 }

@@ -8,4 +8,15 @@
   <groupId>ch.vorburger.blueprints</groupId>
   <artifactId>dyna.commons-beanutils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>ch.vorburger.blueprints</groupId>
+  		<artifactId>dyna</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-beanutils</groupId>
+  		<artifactId>commons-beanutils-core</artifactId>
+  	</dependency>
+  </dependencies>
 </project>

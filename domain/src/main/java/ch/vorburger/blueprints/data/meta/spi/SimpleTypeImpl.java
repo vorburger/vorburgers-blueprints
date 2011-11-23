@@ -37,4 +37,13 @@ public class SimpleTypeImpl implements Type {
 		return null;
 	}
 
+	@Override
+	public Property getProperty(String name) {
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "Simple/Leaf Type for " + klass.getName(); 
+	}
 }

@@ -1,4 +1,4 @@
-package ch.vorburger.blueprints.data.binding;
+package ch.vorburger.blueprints.dyna.binding;
 
 /**
  * Exception for Binding.

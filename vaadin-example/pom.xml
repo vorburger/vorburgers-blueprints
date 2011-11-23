@@ -236,7 +236,12 @@
 		</dependency>
 		<dependency>
 			<groupId>ch.vorburger.blueprints</groupId>
-			<artifactId>domain</artifactId>
+			<artifactId>dyna</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.vorburger.blueprints</groupId>
+			<artifactId>dyna.spring</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

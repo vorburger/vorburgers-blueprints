@@ -32,6 +32,7 @@
 	</repositories>
 
 	<dependencies>
+<!-- 	
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
@@ -43,8 +44,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		<!-- Only needed if XMI Resource serialization is needed (it probably actually won't be later in what I'm looking into this for) -->
+ -->		
+		<!-- Only needed if XMI Resource serialization is needed (it probably actually won't be later in what I'm looking into this for)
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
@@ -52,7 +53,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		
+ -->		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

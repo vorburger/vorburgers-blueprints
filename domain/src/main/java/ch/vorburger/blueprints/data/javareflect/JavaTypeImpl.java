@@ -16,9 +16,23 @@ import ch.vorburger.blueprints.objects.ObjectFactoryException;
 class JavaTypeImpl extends TypeImpl {
 
 	static final String NS = "java:";
+	
+	/**
+	 * May be null, if this POJO Class cannot be instantiated (e.g. if it doesn't have a default constructor)
+	 */
 	private final ObjectFactory<?> beanFactory;
+	
 	final boolean directFieldsInsteadOfJavaBean;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param klass
+	 * @param beanFactory may be null, if this POJO Class cannot be instantiated (e.g. if it doesn't have a default constructor)
+	 * @param javaDataObjectFactory
+	 * @param directFieldsInsteadOfJavaBean
+	 * @throws ObjectFactoryException
+	 */
 	JavaTypeImpl(Class<?> klass, ObjectFactory<?> beanFactory, JavaDataObjectFactory javaDataObjectFactory, boolean directFieldsInsteadOfJavaBean) throws ObjectFactoryException {
 		super(NS + checkClass(klass));
 		this.beanFactory = beanFactory;
@@ -33,7 +47,7 @@ class JavaTypeImpl extends TypeImpl {
 				// TODO Nested properties are probably not yet handled correctly here..
 				String name = beanutilsProperty.getName();
 				Class<?> classType = beanutilsProperty.getType();
-				addProperty(javaDataObjectFactory, name, classType);
+				addProperty(klass, javaDataObjectFactory, name, classType);
 			}
 		} else {
 			Class<?> currentClass = klass;
@@ -41,7 +55,7 @@ class JavaTypeImpl extends TypeImpl {
 				Field[] fields = currentClass.getDeclaredFields();
 				for (Field field : fields) {
 					if (!field.isSynthetic()) {
-						addProperty(javaDataObjectFactory, field.getName(), field.getType());
+						addProperty(klass, javaDataObjectFactory, field.getName(), field.getType());
 					}
 				}
 				currentClass = currentClass.getSuperclass();
@@ -49,15 +63,24 @@ class JavaTypeImpl extends TypeImpl {
 		}
 	}
 
-	private void addProperty(JavaDataObjectFactory javaDataObjectFactory, String name, Class<?> classType) throws ObjectFactoryException {
+	private void addProperty(Class<?> klass, JavaDataObjectFactory javaDataObjectFactory, String name, Class<?> classType) throws ObjectFactoryException {
 		if (classType != Class.class) {
-			Type type = javaDataObjectFactory.register(classType);
-			Property property = new PropertyImpl(name, type);
-			super.addProperty(property);
+			if (classType != klass) {
+				Type type = javaDataObjectFactory.register(classType);
+				Property property = new PropertyImpl(name, type);
+				super.addProperty(property);
+			} else {
+				// This is not trivial to handle... would have to consider inter-dependant circles between two classes also, not just self-references..
+				throw new IllegalArgumentException(klass.getName() + "." + name + " is self-circular; TODO handle this!");
+			}
+				
 		}
 	}
 
-	Object getObject() {
+	Object getObject() throws ObjectFactoryException {
+		if (beanFactory == null) {
+			throw new ObjectFactoryException("Cannot getObject(), because no POJO Java Class ObjectFactory (doesn't have a default constructor?) for: " + this.getURI());
+		}
 		return beanFactory.getObject();
 	}
 

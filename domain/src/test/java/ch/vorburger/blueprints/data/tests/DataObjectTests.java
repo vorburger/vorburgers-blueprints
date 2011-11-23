@@ -7,12 +7,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
-import java.util.List;
+import java.io.File;
+import java.util.Collection;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.vorburger.blueprints.data.DataObject;
@@ -20,7 +22,6 @@ import ch.vorburger.blueprints.data.javareflect.JavaDataObjectFactory;
 import ch.vorburger.blueprints.data.meta.Property;
 import ch.vorburger.blueprints.data.meta.Type;
 import ch.vorburger.blueprints.data.meta.TypesProvider;
-import ch.vorburger.blueprints.data.xmlxsd.XSDDataObjectFactory;
 import ch.vorburger.blueprints.objects.ObjectFactoryException;
 
 /**
@@ -63,12 +64,33 @@ public class DataObjectTests {
 		checkBookDataObject(bean1AsDataObject);
 	}
 
+	/**
+	 * Tests that POJO with non-default constructors can be wrapped (but not created, obviously).
+	 */
 	@Test
 	public void testStaticJavaBeanWithConstructorAsDataObject() throws ObjectFactoryException {
 		JavaDataObjectFactory f = new JavaDataObjectFactory();
 		BookImplWithConstructor bean2 = new BookImplWithConstructor(false);
 		DataObject bean2AsDataObject = f.wrap(bean2);
 		checkBookDataObject(bean2AsDataObject);
+	}
+	
+	/**
+	 * Tests that POJO with self-reference can be wrapped,
+	 * without causing an infinite recursive loop.
+	 */
+	@Test
+	public void testStaticJavaBeanSelfReferenceNoLoopAndAutoWrapUnwrap() throws ObjectFactoryException {
+		JavaDataObjectFactory f = new JavaDataObjectFactory();
+		BookWithBook bean1 = new BookWithBook();
+		DataObject bean1AsDataObject = f.wrap(bean1);
+		checkBookDataObject(bean1AsDataObject);
+		
+		bean1.setPreviousEditionBook(bean1);
+		assertTrue(bean1AsDataObject.get("previousEditionBook") instanceof DataObject);
+		
+		bean1AsDataObject.set("previousEditionBook", bean1);
+		bean1AsDataObject.set("previousEditionBook", bean1AsDataObject);
 	}
 	
 	private void checkBookDataObject(DataObject dataObject) {
@@ -82,11 +104,12 @@ public class DataObjectTests {
 		f.registerUsingDirectFieldsInsteadOfJavaBean(BookPrivateField.class);
 		
 		Type type = f.getTypes().get("java:" + BookPrivateField.class.getName());
-		List<Property> properties = type.getProperties();
+		Collection<Property> properties = type.getProperties();
 		assertEquals(1, properties.size());
-		assertEquals("theName", properties.get(0).getName());
-		assertEquals("java:" + Name.class.getName(), properties.get(0).getType().getURI());
-		assertEquals(2, properties.get(0).getType().getProperties().size());
+		Property firstProperty = properties.iterator().next();
+		assertEquals("theName", firstProperty.getName());
+		assertEquals("java:" + Name.class.getName(), firstProperty.getType().getURI());
+		assertEquals(2, firstProperty.getType().getProperties().size());
 		
 		DataObject dataObject = f.create(type);
 		assertNotNull(dataObject);
@@ -103,20 +126,35 @@ public class DataObjectTests {
 	}
 
 	@Test
+	@Ignore("TODO Implement me!")
+	public void testStaticJavaTypesWithCollectionMultiAndmapPropertyAsDataObject() throws ObjectFactoryException {
+		
+	}
+	
+	@Test
+	@Ignore("TODO Implement me!")
 	public void testStaticJavaPrivatePropertyAsDataObject() throws ObjectFactoryException {
 		
 	}
 
 	@Test
+	@Ignore("TODO Implement me!")
 	public void testStaticJavaBeanAsDataObjectViaConversion() throws ObjectFactoryException {
 		
 	}
 
 	@Test
+	@Ignore("TODO Implement me!")
 	public void testDataObjectAsStaticJavaBeanViaConversion() throws ObjectFactoryException {
 		
 	}
 
+	@Test
+	public void testSomeTypes() throws ObjectFactoryException {
+		JavaDataObjectFactory f = new JavaDataObjectFactory();
+		f.register(File.class);
+	}
+	
 	private String findURIContaining(TypesProvider f, String nameFragment) {
 		Map<String, ? extends Type> types = f.getTypes();
 		for (Type type : types.values()) {
