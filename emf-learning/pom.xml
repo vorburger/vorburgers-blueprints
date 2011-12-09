@@ -3,9 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ch.vorburger.uftam</groupId>
 	<artifactId>emf-learning</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+
+	<parent>
+		<groupId>ch.vorburger.blueprints</groupId>
+		<artifactId>blueprints-pom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../blueprints-pom/pom.xml</relativePath>
+	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,7 +37,7 @@
 	</repositories>
 
 	<dependencies>
-<!-- 	
+ 	
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
@@ -44,8 +49,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
- -->		
-		<!-- Only needed if XMI Resource serialization is needed (it probably actually won't be later in what I'm looking into this for)
+		
+		<!-- Only needed if XMI Resource serialization is needed (it probably actually won't be later in what I'm looking into this for) -->
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
@@ -53,11 +58,10 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
- -->		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
 		

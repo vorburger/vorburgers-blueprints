@@ -1,0 +1,6 @@
+# TODO... JSON vs. YAML...
+
+SampleDataStruct {
+	name = "Hello World"
+	amount = 123.45
+}

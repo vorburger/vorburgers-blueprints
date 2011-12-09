@@ -1,0 +1,5 @@
+
+SampleDataStruct {
+	name: String
+	amount: BigDecimal
+}

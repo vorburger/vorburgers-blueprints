@@ -1,0 +1,5 @@
+model: SampleDataStruct
+ui: SampleFormView
+
+ui.textField_name.value <=> model.name
+ui.textField_amount.value <=> model.amount

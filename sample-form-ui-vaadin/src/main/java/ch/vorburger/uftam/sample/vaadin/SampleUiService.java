@@ -2,7 +2,7 @@ package ch.vorburger.uftam.sample.vaadin;
 
 import ch.vorburger.blueprints.dyna.access.PropertyAccessorService;
 import ch.vorburger.blueprints.dyna.binding.SimpleBinding;
-import ch.vorburger.uftam.sample.vaadin.smartform.SampleFormView;
+import ch.vorburger.blueprints.sample.form.vaadin.SampleFormView;
 
 /**
  * TODO Doc

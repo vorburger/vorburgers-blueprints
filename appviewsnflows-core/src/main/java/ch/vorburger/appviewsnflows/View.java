@@ -8,4 +8,7 @@ package ch.vorburger.appviewsnflows;
  * @author Michael Vorburger
  */
 public interface View {
+	
+	// TODO REMOVE this, eventually; probably wasn't a good idea?
+	
 }

@@ -16,7 +16,6 @@ import ch.vorburger.uftam.sample.model.representation.UserInfo;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerList;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.CustomerOrders;
 import ch.vorburger.uftam.sample.vaadin.justcomponents.MainView;
-import ch.vorburger.uftam.sample.vaadin.smartform.SampleFormView;
 
 import com.vaadin.Application;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -119,9 +118,6 @@ public class SampleApplication extends Application implements ItemClickListener,
 			DataObject dataObject = xf.create("http://schemas.vorburger.ch/formsample#SampleFormType");
 			dataObject.set("name", "Saluton, Mondpacxo");
 */
-			// 2. Create View (UI Model) 
-			SampleFormView form = new SampleFormView();
-			
 			// 3. Bind Model to View (UI Model)
 /*			JavaDataObjectFactory jf = new JavaDataObjectFactory();
  */		
@@ -157,8 +153,6 @@ public class SampleApplication extends Application implements ItemClickListener,
 			};
 			TextField c = (TextField) s.getPropertyValue(form, "textField_amount");
 			c.addListener(vclistener);
-			
-			mainView.setBody(form);
 		}
 	}
 

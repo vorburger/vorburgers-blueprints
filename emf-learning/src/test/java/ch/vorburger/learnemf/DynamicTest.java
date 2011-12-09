@@ -25,6 +25,7 @@ import com.ibm.devworks.sample.DynamicModelingEngine;
  */
 public class DynamicTest {
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
 	public void testDynamicEMF() {
 		/*
