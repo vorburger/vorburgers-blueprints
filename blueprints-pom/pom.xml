@@ -39,6 +39,11 @@
 				<artifactId>commons-beanutils-core</artifactId>
 				<version>1.8.3</version>
 			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>7.3.0.v20110203</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

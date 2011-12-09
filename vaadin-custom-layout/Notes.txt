@@ -1,0 +1,39 @@
+
+1. CSS inside layouts/ is ignored by Vaadin
+   e.g. src\main\webapp\VAADIN\themes\mycustotheme\layouts\Wikipedia-Homepage_files\main.css (delete it)
+   must instead be appended to e.g. src\main\webapp\VAADIN\themes\mycustotheme\styles.css
+
+2. CSS from <style> inside layout/*.html, as well as anything else outside the <body> in templates, is ignored by Vaadin   
+   must instead simply append content of all <style> to e.g. src\main\webapp\VAADIN\themes\mycustotheme\styles.css
+
+3. Fonts are still not exactly same size... unclear why; ask CSS experts (the files are now identical, very strange?!)
+	font-size: 15px;
+	vs. font-size: 18px;
+	
+4. CustomLayout suggests location attribute on <div> elements (not on any attribute), so e.g. this in a HTML preview template:
+		<input id="searchInput" name="search" type="search" size="20" autofocus="autofocus" accesskey="F" results="10">
+	should be wrapped like this:
+		<div location="searchInputLocation" style="display:inline">
+			<input id="searchInput" name="search" type="search" size="20" autofocus="autofocus" accesskey="F" results="10">
+		</div>
+	and, assuming htmlLayout.addComponent(new TextField(), "searchInputLocation"), will then be replaced by this at run-time:
+		<div location="searchInputLocation" style="display:inline">
+			<input type="text" class="v-textfield">
+		</div>
+    NOTE: Vaadin will really put only an <input> in there.  Only if e.g. setCaption() etc. is used will it add more, otherwise none of this:
+		<div location="searchInputLocation" style="display: inline; ">
+			<div class="v-captionwrapper">
+				<div class="v-caption">
+					<div class="v-captiontext">Bla bla bla</div>
+					<div class="v-caption-clearelem"></div>
+				</div>
+				<input type="text" class="v-textfield">
+			</div>
+		</div>
+
+5. CSS class="v-textfield" could be overriden in Theme, if e.g. padding from Vaadin is not suitable
+
+6. It's probably not possible to keep special attributes like e.g. type="search" for <input>, this would require a Custom Vaadin GWT Component
+   (but this should rarely be a real issue in practice...)
+
+7. All <div location="..."> *MUST* be configured with an addComponent(), otherwise their content disappears (which makes sense)
