@@ -1,5 +1,9 @@
 @import url(../reindeer/styles.css);
 
+.inline {
+	display: inline;
+}
+
 .v-textfield {
 	padding: 0px 0px 0px;
 }

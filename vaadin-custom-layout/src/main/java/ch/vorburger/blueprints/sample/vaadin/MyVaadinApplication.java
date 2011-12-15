@@ -43,7 +43,7 @@ public class MyVaadinApplication extends Application
         final TextField textInput = new TextField();
         textInput.setValue("Michael");
         // textInput.setCaption("Bla bla bla");
-        //textInput.setStyleName("none");
+        //textInput.setStyleName("none"); // or addStyleName()
 		htmlLayout.addComponent(textInput, "searchInputLocation");
         
 		Button searchGo = new NativeButton(); // or just new Button() for <div> instead of <button>
@@ -55,6 +55,10 @@ public class MyVaadinApplication extends Application
 			}
 		});
 		htmlLayout.addComponent(searchGo, "searchGoButton");
+		
+		Label label = new Label("Search!");
+		label.addStyleName("inline");
+		htmlLayout.addComponent(label, "searchSpan");
 		
 		window.setContent(htmlLayout);
         

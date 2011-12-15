@@ -37,3 +37,21 @@
    (but this should rarely be a real issue in practice...)
 
 7. All <div location="..."> *MUST* be configured with an addComponent(), otherwise their content disappears (which makes sense)
+
+8. Wrong location names are silently ignored/swallowed; @see http://dev.vaadin.com/ticket/8137 
+
+9. The location attribute works on e.g. <span> (and probably anything else) as well, not just <div> : 
+      <span location="searchSpan">Search</span>
+   with:
+   		Label label = new Label("Search!");
+		label.addStyleName("inline");
+		htmlLayout.addComponent(label, "searchSpan");
+   works as expected, kinda: 
+		<span location="searchSpan">
+			<div class="v-label v-label-inline inline" style="width: 51px; ">Search!</div>
+		</span>
+	note:
+		- Needs: .inline { display: inline; } CSS
+		- If e.g. label.setCaption() is used, then creates and 5x (!) <DIV> with <div class="v-label" style="width: 4px; "></div> that screws up layout
+			Not a problem, just don't use setCaption/Icon/Error if you want to use it only as a Label
+		- The style="width: 51px; " ... isn't really needed, but is not really a problem, either.
