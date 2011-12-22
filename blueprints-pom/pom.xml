@@ -9,7 +9,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.0.6.RELEASE</spring.version>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<slf4j.version>1.6.1</slf4j.version>
 	</properties>
 
 	<dependencyManagement>
@@ -35,6 +36,11 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils-core</artifactId>
 				<version>1.8.3</version>
@@ -44,6 +50,26 @@
 				<artifactId>jetty-webapp</artifactId>
 				<version>7.3.0.v20110203</version>
 			</dependency>
+			<dependency>
+				<!-- TODO Could move this from dependencyManagement to default dependency <scope>test</scope> for all modules? -->
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!--  TODO... enable... make sure HTML_I18N_Test doesn't print
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+TODO Could move this from dependencyManagement to default dependency <scope>test</scope> for all modules? 
+ 
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<scope>test</scope>
+				<version>${slf4j.version}</version>
+			</dependency>
+-->
 		</dependencies>
 	</dependencyManagement>
 

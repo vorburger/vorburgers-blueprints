@@ -1,0 +1,35 @@
+Check if handles https://issues.apache.org/jira/browse/WICKET-3433 better?
+
+Write a TranslatableCustomLayout, in a new ch.vorburger.blueprints.ui.vaadin.i18n.customlayout module
+notify http://dev.vaadin.com/browser/contrib/tpt/projects/tpt/src/eu/livotov/tpt/i18n/TranslatableCustomLayout.java
+Package that as a Component for the Directory?
+
+Implement idea for inline translations, 
+via <i18n:translation lang="de" text="Dritter Punkt" />
+in sample-transitional_withSomeInlineTranslationIdea.html
+Vaadin & GWT templates both don't do this - I just thought this could be fun.
+
+Integrate a CMS-like live translation change in app (e.g. Ctrl-Click on Labels)
+
+It would be cool if there was an Eclipse Plug-In to support 
+menu Source > Externalize Strings for the HTML/XML Editor!
+	It could support e.g. both my proposed syntax from this project
+	(intended for use in Vaadin CustomLayout), as well as e.g. Wicket HTML.
+
+Test that respective property files can *override* the content from the XML (or the other way around; actually, which one should be stronger?!)
+
+Test that labels already defined in the xml:lang of the template don't
+have to be repeated in a respective property files - they are used as is.
+They are not hard-coded / default to 'en' though - the xml:lang must be read.
+
+Implement idea using embedded i18n:attribute,
+instead of i18n:message="alt:logo.alt.intag, title:logo.title.intag"  
+like so:
+		<!-- This alternative syntax is allowed as well: -->
+		<img src="/images/logo2.png" alt="Company Logo" title="This is the Company Logo">
+				<i18n:attribute name="alt" key="logo.alt"  /> 
+				<i18n:attribute name="title" key="logo.title" />
+		</img>
+
+Define a XSD schema for i18n
+add it in sample-strict.xhtml header

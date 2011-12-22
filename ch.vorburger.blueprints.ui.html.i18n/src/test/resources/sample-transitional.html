@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- <i18n:message key="sample.title"> can NOT be used in <title> -->
+	<title>Title</title>
+</head>
+<body>
+	<ul>
+		<li><i18n:message key="point.one">Point One</i18n:message></li>
+		<li><i18n:message key="point.two">Point Two</i18n:message></li>
+		<li id="p3"><i18n:message key=point.three>Point <b>Three</b></i18n:message></li>
+		
+		<!-- Message key is intentionally an attribute of i18n:message, and not element content,
+			 as this ensures that raw HTML preview of this template in a Browser is not affected -->
+	</ul>
+	
+	<!-- Sometimes you want to translate HTML element attributes -->
+	<div>
+		<!-- This is NOT XML - tags don't need to be closed in HTML! -->
+		<img src="/images/logo1.png" alt="Company Logo" title="This is the Company Logo" 
+			i18n:message="alt:logo.alt.intag, title:logo.title.intag" >
+	</div>
+</body>
+</html>

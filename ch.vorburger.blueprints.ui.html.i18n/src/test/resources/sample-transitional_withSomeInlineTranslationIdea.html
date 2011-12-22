@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- Note the xml:lang="en" which specifies that the labels in this file are in English -->
+<html xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- <i18n:message key="sample.title"> can NOT be used in <title> -->
+	<title>Title</title>
+</head>
+<body>
+	<ul>
+		<li><i18n:message key="point.one" description="Uhm, this Message is for Making a Point (Note to Translator)">Point One</i18n:message></li>
+		<li><i18n:message>Point Two
+				<!-- It's also possible to define (some) translations directly in-line: -->
+				<i18n:translation lang="de" text="Zweiter Punkt" />
+				<i18n:translation lang="eo" text="Dua Punkto" />
+				<!-- The 'text' is intentionally an attribute and not element content,
+					as this ensures that raw HTML preview of this template in a Browser is not affected -->
+			</i18n:message>
+		</li>
+		<!-- Key and in-line can be mixed! -->
+		<li id="p3"><i18n:message key=point.three>Point <b>Three</b>
+				<i18n:translation lang="de" text="Dritter Pnkt" />
+				<!-- There is intentionally a typo above; because we have a key, we can override -->
+			</i18n:message>
+	</ul>
+	
+	<!-- Sometimes you want to translate HTML element attributes -->
+	<div>
+		<!-- This is NOT XML - tags don't need to be closed in HTML! -->
+		<img src="/images/logo.png" 
+			alt="Company Logo" title="This is the Company Logo" 
+			i18n:message="alt:logo.alt.inline, title:logo.title.inline" >
+
+		<!-- This alternative syntax is allowed as well: -->
+		<img src="/images/logo.png"
+			alt="Company Logo" title="This is the Company Logo">
+				<i18n:attribute name="alt" key="logo.alt"  /> 
+				<i18n:attribute name="title" key="logo.title">
+					<i18n:translation lang="de" text="Titel des Logos auf Deutsch" />
+				</i18n:attribute> 
+		</img>
+
+	</div>
+</body>
+</html>

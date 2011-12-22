@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>ch.vorburger.blueprints</groupId>
+		<artifactId>blueprints-pom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../blueprints-pom/pom.xml</relativePath>
+	</parent>
+
+	<groupId>ch.vorburger.blueprints.ui.html</groupId>
+	<artifactId>html-i18n</artifactId>
+
+	<dependencies>
+		<dependency>
+			<!-- This is an internal implementation dependency.
+				 Library users should not directly use Jericho, only this module's API. -->
+			<groupId>net.htmlparser.jericho</groupId>
+			<artifactId>jericho-html</artifactId>
+			<version>3.2</version>
+		</dependency>
+<!-- 		
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>nu.validator.htmlparser</groupId>
+			<artifactId>htmlparser</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+ -->
+ 
+		<!-- TODO Remove Spring... not here!
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+ -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		 -->
+	</dependencies>
+
+</project>

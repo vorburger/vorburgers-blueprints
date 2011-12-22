@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.vorburger.ch/i18n"
+	xmlns:tns="http://www.vorburger.ch/i18n" elementFormDefault="qualified">
+
+	<!-- Import for xml:lang, as per http://www.w3.org/TR/xml-i18n-bp/#generic-includeinxsd -->
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd" />
+
+	<!-- TODO... -->
+	<element name="message">
+		<complexType>
+			<attribute name="key" type="xml:id" />
+			<attribute ref="xml:lang" use="optional" />
+		</complexType>
+	</element>
+</schema>
