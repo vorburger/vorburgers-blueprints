@@ -8,6 +8,9 @@ public class SampleFormApplication extends Application {
 	@Override
 	public void init() {
 		SampleFormView formView = new SampleFormView();
+		formView.service = new SomeBeanServiceImpl();
+		formView.init();
+		
 		final Window mainWindow = new Window("Vaadin Form Sample Application", formView);
 		// INSTEAD of mainWindow.addComponent(formView);
 		setMainWindow(mainWindow);

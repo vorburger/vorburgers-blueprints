@@ -28,17 +28,18 @@ public class MyVaadinApplication extends Application
         setMainWindow(window);
         
         setTheme("mycustotheme");
-        CustomLayout htmlLayout = new CustomLayout("Wikipedia-Homepage");
-//        InputStream is = getClass().getResourceAsStream("/Wikipedia-Homepage.html");
-//        if (is == null) {
-//        	throw new RuntimeException("Resource not found");
-//        }
-//		try {
-//			htmlLayout = new CustomLayout(is);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+        CustomLayout htmlLayout; //= new CustomLayout("Wikipedia-Homepage");
+        InputStream is = getClass().getResourceAsStream("/VAADIN/themes/mycustotheme/layouts/Wikipedia-Homepage.html");
+        if (is == null) {
+        	throw new RuntimeException("Resource not found");
+        }
+		try {
+			htmlLayout = new CustomLayout(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 		
         final TextField textInput = new TextField();
         textInput.setValue("Michael");

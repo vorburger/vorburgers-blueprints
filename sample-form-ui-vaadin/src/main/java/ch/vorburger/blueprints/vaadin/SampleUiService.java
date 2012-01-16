@@ -1,4 +1,4 @@
-package ch.vorburger.uftam.sample.vaadin;
+package ch.vorburger.blueprints.vaadin;
 
 import ch.vorburger.blueprints.dyna.access.PropertyAccessorService;
 import ch.vorburger.blueprints.dyna.binding.SimpleBinding;

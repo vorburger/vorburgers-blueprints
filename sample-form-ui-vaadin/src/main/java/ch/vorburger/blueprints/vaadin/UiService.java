@@ -1,4 +1,4 @@
-package ch.vorburger.uftam.sample.vaadin;
+package ch.vorburger.blueprints.vaadin;
 
 import com.vaadin.ui.ComponentContainer;
 

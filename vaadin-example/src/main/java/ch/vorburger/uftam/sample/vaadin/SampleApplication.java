@@ -134,13 +134,13 @@ public class SampleApplication extends Application implements ItemClickListener,
 			b.addMappingFromTo("model.name", "ui.textField_name.value");
 			b.addMappingFromTo("model.amount", "ui.textField_amount.value");
 			
-			try {
-				b.mapFromTo(SimpleBinding.newNamedDataObject("model", dynaBean),
-							SimpleBinding.newNamedDataObject("ui", form));
-			} catch (BindingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				b.mapFromTo(SimpleBinding.newNamedDataObject("model", dynaBean),
+//							SimpleBinding.newNamedDataObject("ui", form));
+//			} catch (BindingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 			ValueChangeListener vclistener = new ValueChangeListener() {
 				@Override
@@ -151,8 +151,8 @@ public class SampleApplication extends Application implements ItemClickListener,
 					System.out.println();
 				}
 			};
-			TextField c = (TextField) s.getPropertyValue(form, "textField_amount");
-			c.addListener(vclistener);
+//			TextField c = (TextField) s.getPropertyValue(form, "textField_amount");
+//			c.addListener(vclistener);
 		}
 	}
 

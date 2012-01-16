@@ -21,6 +21,12 @@ public class LearnMessages_Test {
 	}
 
 	@Test(expected=MissingResourceException.class)
+	public final void learnMessagesFailing() {
+		Locale.setDefault(Locale.ITALIAN);
+		assertEquals("Hello World", Messages.getString("LearnMessages_Test.hello-world", Locale.FRENCH)); //$NON-NLS-1$ //$NON-NLS-2$
+	}	
+	
+	@Test(expected=MissingResourceException.class)
 	public final void badKey() {
 		Messages.getString("nonex", Locale.FRENCH); //$NON-NLS-1$ //$NON-NLS-2$
 	}

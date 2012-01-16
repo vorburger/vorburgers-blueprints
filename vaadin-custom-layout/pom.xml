@@ -92,6 +92,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>ch.vorburger.blueprints</groupId>
+			<artifactId>blueprints-spring-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	
+		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
 			<scope>provided</scope>
